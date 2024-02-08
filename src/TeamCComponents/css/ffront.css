@@ -64,14 +64,10 @@ a.c_forum_decor:hover {
 
 /* Add the following CSS rule for styling the text area */
 #discussionContent {
-  width: 100%;
-  /* Make the text area full-width */
-  max-width: 100%;
-  /* Set a maximum width if needed */
-  min-height: 150px;
-  /* Set the minimum height for the text area */
-  resize: vertical;
-  /* Allow vertical resizing of the text area */
+  width: 100%; /* Make the text area full-width */
+  max-width: 100%; /* Set a maximum width if needed */
+  /* min-height: 100px; Set the minimum height for the text area */
+  resize: vertical; /* Allow vertical resizing of the text area */
 }
 
 /* Adjust the margin-top for the post discussion container */

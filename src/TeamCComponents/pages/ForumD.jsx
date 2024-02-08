@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/fdiscussion.css';
-import { AiOutlineLike } from "react-icons/ai";
-import { AiOutlineDislike } from "react-icons/ai";
+import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { MdOutlineReply } from "react-icons/md";
 import { FaArrowLeft } from "react-icons/fa";
+import { BsThreeDots } from "react-icons/bs";
 import { Link } from 'react-router-dom';
 import Team_D_HeaderV2 from '../../TeamDComponents/Team_D_HeaderV2';
 
 const ForumD = () => {
   const [likeCount, setLikeCount] = useState(0);
   const [dislikeCount, setDislikeCount] = useState(0);
-
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [editing, setEditing] = useState(false);
+  const [editedContent, setEditedContent] = useState("");
+  const [textareaRows, setTextareaRows] = useState(3); // Adjust the number of rows based on content length
+  
   const handleReaction = (type) => {
     if (type === 'like') {
       setLikeCount((prevLikeCount) => prevLikeCount + 1);
@@ -18,148 +22,176 @@ const ForumD = () => {
       setDislikeCount((prevDislikeCount) => prevDislikeCount + 1);
     }
   };
- // Function to update the post time dynamically
- function updatePostTime() {
-  var postTimeElement = document.getElementById('post-time');
-  var currentDate = new Date();
-  var formattedDate = currentDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-  var formattedTime = currentDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
-  var updatedTime = 'Time - ' + formattedDate + ' ' + formattedTime;
-  postTimeElement.innerText = updatedTime;
+  
+  // Function to update the post time dynamically
+  useEffect(() => {
+    const updatePostTime = () => {
+      var postTimeElement = document.getElementById('post-time');
+      var currentDate = new Date();
+      var formattedDate = currentDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      var formattedTime = currentDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+      var updatedTime = formattedDate + ' - ' + formattedTime;
+      postTimeElement.innerText = updatedTime;
+    };
+    // Call the function to update post time when the page loads
+    updatePostTime();
 
-// Call the function to update post time when the page loads
-updatePostTime();
+    // Retrieve parameters from the URL
+    //var urlParams = new URLSearchParams(window.location.search);
+    //var title = urlParams.get('title');
+    //var content = decodeURIComponent(urlParams.get('content'));
 
-// Retrieve parameters from the URL
-var urlParams = new URLSearchParams(window.location.search);
-var title = urlParams.get('title');
-var content = decodeURIComponent(urlParams.get('content'));
+    // Set the discussion details on the webpage
+    //document.getElementById("discussionTitle").innerText = title;
+    //document.getElementById("discussionContent").innerText = content;
+  }, []);
 
-// Set the discussion details on the webpage
-document.getElementById("discussionTitle").innerText = title;
-document.getElementById("discussionContent").innerText = content;
-}
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const handleEditClick = () => {
+
+    // Close the dropdown
+    setDropdownOpen(false);
+     // Get the post content
+            var postContent = document.getElementById('discussionContent');
+
+            // Create an editable textarea
+            var textarea = document.createElement('textarea');
+            textarea.className = 'form-control';
+            textarea.rows = '3';
+            textarea.value = postContent.innerText;
+
+            // Replace post content with the textarea
+            postContent.replaceWith(textarea);
+
+            // Add a "Save Changes" button
+            var saveButton = document.createElement('button');
+            saveButton.className = 'btn btn-success mt-2';
+            saveButton.innerText = 'Save Changes';
+            saveButton.onclick = function () {
+                // Save the changes and replace the textarea with the new post content
+                postContent.innerText = textarea.value;
+
+                // Remove the "Save Changes" button
+                saveButton.remove();
+
+                // Replace the textarea with the updated post content
+                textarea.replaceWith(postContent);
+            };
+
+            // Append the "Save Changes" button
+            textarea.insertAdjacentElement('afterend', saveButton);
+        }
 
 
+  const handleDeleteClick = () => {
+    console.log("Delete clicked");
+    // Get the post container
+    var postContainer = document.querySelector('.TeamCForumC_Forumcard');
+
+    // Create a confirmation prompt
+    var confirmation = confirm("Do you want to delete this post?");
+
+    // If the user confirms deletion, remove the post container
+    if (confirmation) {
+        postContainer.remove();
+    }
+    
+  };
+  
   return (
     <>
-    <Team_D_HeaderV2 />
-    <div className="ForumDSpace">
-        {/*30/24*/}
+      <Team_D_HeaderV2 />
+      <div className="ForumDSpace">
         <div className="ForumC_ForumDcontainer">
-          {/*02/05/24*/}
-          <Link to="/ForumF"
-            id="TeamCReturnButtonFf"
-            className="btn btn-secondary">
+          <Link to="/ForumF" id="TeamCReturnButtonFf" className="btn btn-secondary">
             <FaArrowLeft />
-          </Link> {/*02/05/24*/}
+          </Link>
           <div className="TeamCForumC_Forumcard">
-            {/*30/24*/}
             <div className="TeamCCardBody">
-              {/*30/24*/}
               <div className="TeamCFlex d-flex justify-content-between align-items-center mb-2">
                 <div>
                   <h6 className="nameUSerfw-bold text-success mb-1">
                     @Luigi
-                  </h6>{/*02/05/24*/}
-                  <p
-                    id="post-time"
-                    className=" TeamC_ForumD text-muted small mb-0">
-                    {/*30/24*/}
+                  </h6>
+                  <p id="post-time" className="TeamC_ForumD text-muted small mb-0">
                     {new Date().toLocaleString()}
                   </p>
                 </div>
                 <div className="TeamForum_Drop dropdown position-absolute top-0 end-0 three-dots">
-                  <a
-                    className="TeamC_forum_link link-muted"
-                    href="#"
-                    role="button"
-                    id="dropdownMenuLink"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    <i className="TeamCdots bx bx-dots-horizontal-rounded"></i>
-                  </a>
-                  <ul
-                    className="dropdown-menu"
-                    aria-labelledby="dropdownMenuLink">
+                  <button className="TeamC_forum_link link-muted" onClick={toggleDropdown} aria-expanded={dropdownOpen ? 'true' : 'false'}>
+                    <BsThreeDots className="TeamCdots bx bx-dots-horizontal-rounded" />
+                  </button>
+                  <ul className={`dropdown-menu${dropdownOpen ? ' show' : ''}`} aria-labelledby="dropdownMenuLink">
                     <li>
-                      <a
-                        className="dropdown-item"
-                        href="#"
-                        onClick={() => console.log("Edit clicked")}>
+                      <Link to="#" className="dropdown-item" onClick={handleEditClick}>
                         Edit
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        className="dropdown-item"
-                        href="#"
-                        onClick={() => console.log("Delete clicked")}>
+                      <Link to="#" className="dropdown-item" onClick={handleDeleteClick}>
                         Delete
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>
               </div>
-
               <h2 id="discussionTitle" className="TeamC_discSec mt-3 mb-3 pb-2">
                 Tsukiden Upcoming Events
-              </h2>{/*02/05/24*/}
-
-              <p id="discussionContent" className="TeamC_ForumD mb-4 pb-2">
-                {/*30/24*/}
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                quam velit, vulputate eu pharetra nec, mattis ac neque.
-              </p>{/*02/05/24*/}
-
+              </h2>
+              {/* {editing ? (
+                <textarea
+                  id="commentTextArea"
+                  className="TeamC_controlForm form-control mb-3"
+                  rows={textareaRows}
+                  value={editedContent}
+                  onChange={(e) => setEditedContent(e.target.value)}
+                ></textarea>
+              ) : ( */}
+                <p id="discussionContent" className="TeamC_ForumD mb-4 pb-2">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+                  quam velit, vulputate eu pharetra nec, mattis ac neque.
+                </p>
+              {/* )} */}
+              {/* {editing && (
+                <button className="TeamCForumBtnPrime btn btn-success me-2" onClick={handleSaveChanges}>
+                  Save Changes
+                </button>
+              )} */}
               <div className="TeamCFlex d-flex justify-content-start">
-                <a
-                  href="#!"
-                  className="TeamCFlex d-flex align-items-center me-3 reaction-button"
-                  onClick={() => handleReaction("like")}>
+                <a href="#!" className="TeamCFlex d-flex align-items-center me-3 reaction-button" onClick={() => handleReaction("like")}>
                   <AiOutlineLike />
-                  {/*30/24*/}
                   <span className="reaction-counter">{likeCount}</span>
                 </a>
-                <a
-                  href="#!"
-                  className="TeamCFlex d-flex align-items-center me-3 reaction-button"
-                  onClick={() => handleReaction("dislike")}>
+                <a href="#!" className="TeamCFlex d-flex align-items-center me-3 reaction-button" onClick={() => handleReaction("dislike")}>
                   <AiOutlineDislike />
-                  {/*30/24*/}
                   <span className="reaction-counter">{dislikeCount}</span>
                 </a>
-                <a
-                  href="#!"
-                  className="TeamCFlex d-flex align-items-center me-3 reply-button"
-                  onClick={() => console.log("Reply clicked")}>
+                <a href="#!" className="TeamCFlex d-flex align-items-center me-3 reply-button" onClick={() => console.log("Reply clicked")}>
                   <MdOutlineReply />
-                  {/*30/24*/}
                   Reply
                 </a>
               </div>
-
               <div id="commentContainer" className="mt-3">
                 <textarea
                   id="commentTextArea"
                   className="TeamC_controlForm form-control"
                   rows="3"
-                  placeholder="Write your comment..."></textarea>
-                <button
-                  className="TeamCForumBtnPrime btn btn-primary mt-2"
-                  onClick={() => console.log("Reply clicked")}>
+                  placeholder="Write your comment..."
+                ></textarea>
+                <button className="TeamCForumBtnPrime btn btn-primary mt-2" onClick={() => console.log("Reply clicked")}>
                   Reply
                 </button>
-                {/*30/24*/}
               </div>
-
               <div id="commentsSection" className="mt-3">
                 {/* Existing or future comments and replies will be appended here */}
               </div>
             </div>
           </div>
         </div>
-      </div> {/*Change div temporarily 2/5/24*/}
+      </div>
     </>
   );
 }
