@@ -46,6 +46,12 @@
     font-size: 1.5rem;
 }
 
+#c_assessment_sql:hover,
+#c_assessment_svn:hover,
+#c_assessment_html:hover {
+    filter: drop-shadow(0 0 1em #126912);
+}
+
 #enrollButton1,
 #enrollButton2,
 #enrollButton3 {

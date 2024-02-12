@@ -26,7 +26,8 @@ const DiscussionPosts = ({ discussionTitle, authorName }) => {
             <div className="col px-5">
               <a
                 className="c_forum_btnicn ion-ios-chatboxes-outline icon-1x"
-                href="#"></a>
+                href="#"
+              ></a>
               <span className="d-block text-sm">0 replies</span>
             </div>
           </div>

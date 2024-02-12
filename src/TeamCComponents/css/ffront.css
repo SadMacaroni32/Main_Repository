@@ -1,251 +1,210 @@
-@media (max-width: 767px), (min-width: 768px) and (max-width: 1023px), (min-width: 1024px) {
+@media (max-width: 767px),
+  (min-width: 768px) and (max-width: 1023px),
+  (min-width: 1024px) {
   /* Styles for different screen sizes */
-.ForumFSpace {
-  background: #ebffe5;
-  color: #708090;
-  margin-top: 20px;
-}
+  .ForumFSpace {
+    background: #ebffe5;
+    color: #708090;
+    margin-top: 20px;
+  }
 
-.c_forum_btnicn {
-  font-size: 24px !important;
-  color: #165207;
-}
+  .c_forum_btnicn {
+    font-size: 24px !important;
+    color: #165207;
+  }
 
-.c_forum_decor {
-  text-decoration: none;
-}
+  .c_forum_decor {
+    text-decoration: none;
+  }
 
-.a.c_forum_decor,
-a.c_forum_decor:focus,
-a.c_forum_decor:hover {
-  color: #165207 !important;
-}
+  .a.c_forum_decor,
+  a.c_forum_decor:focus,
+  a.c_forum_decor:hover {
+    color: #165207 !important;
+  }
 
-.text-black,
-.text-hover-black:hover {
-  color: #000 !important;
-}
+  .text-black,
+  .text-hover-black:hover {
+    color: #000 !important;
+  }
 
-/* .font-weight-bold {
+  /* .font-weight-bold {
   font-weight: 700 !important;
 } */
 
-/* .h4 {
+  /* .h4 {
   text-shadow: #000;
 } */
 
-/* Update the color of the icon */
-.ion-ios-chatboxes-outline {
-  color: #165207;
-}
-
-/* Change the icon color to hex #165207
+  /* Update the color of the icon */
+  .ion-ios-chatboxes-outline {
+    color: #165207;
+  } /* Change the icon color to hex #165207
 
 
 /* Update the background color of the container*/
-.card {
-  background-color: #f5f5f5;
-}
+  .card {
+    background-color: #f5f5f5;
+  }
+  /* } //Change the container/card color to light gray */
 
-/* } //Change the container/card color to light gray */
+  /* Update the color of the "Forum" text */
+  .c_forum_big {
+    padding: 10px;
+    color: #145a32; /* Change the "Forum" text color to dark green */
+    /*text-shadow: 0 0 3px black, 0 0 5px white;*/
+  }
 
-/* Update the color of the "Forum" text */
-.c_forum_big {
-  padding: 10px;
-  color: #145a32;
-  /* Change the "Forum" text color to dark green */
-  /*text-shadow: 0 0 3px black, 0 0 5px white;*/
-}
+  #discussionForm {
+    /* display: none; */
+    display: block;
+  }
 
-#discussionForm {
-  /* display: none; */
-  display: block;
-}
+  /* Add the following CSS rule for styling the text area */
+  #discussionContent {
+    width: 100%; /* Make the text area full-width */
+    max-width: 100%; /* Set a maximum width if needed */
+    /* min-height: 100px; Set the minimum height for the text area */
+    resize: vertical; /* Allow vertical resizing of the text area */
+  }
 
-/* Add the following CSS rule for styling the text area */
-#discussionContent {
-  width: 100%; /* Make the text area full-width */
-  max-width: 100%; /* Set a maximum width if needed */
-  /* min-height: 100px; Set the minimum height for the text area */
-  resize: vertical; /* Allow vertical resizing of the text area */
-}
+  /* Adjust the margin-top for the post discussion container */
+  .discussion-container {
+    margin-top: 20px; /* Adjust the margin-top as needed */
+  }
 
-/* Adjust the margin-top for the post discussion container */
-.discussion-container {
-  margin-top: 20px;
-  /* Adjust the margin-top as needed */
-}
-
-/* Adjust the size of the search bar */
-.c_forum_search {
-  width: 100%;
-  /* Full width on small devices */
-  max-width: none;
-  /* Remove max-width on larger devices */
-  border-radius: 15%;
-  background-color: #e0f8d9;
-  color: black;
-  resize: none;
-  border-radius: 15px;
-}
+  /* Adjust the size of the search bar */
+  .c_forum_search {
+    width: 100%; /* Full width on small devices */
+    max-width: none; /* Remove max-width on larger devices */
+    border-radius: 15%;
+    background-color: #e0f8d9;
+    color: black;
+    resize: none;
+    border-radius: 15px;
+  }
 
 .c_forum_search:focus {
   background-color: #ebffe5;
 }
 
 
-/* Add the following CSS rules for styling the search button */
-#c_forum_btnsrch {
-  background-color: #165207;
-  /* Green background color */
-  color: #fff;
-  /* White text color */
-  border-color: #165207;
-  /* Green border color */
-  transition: background-color 0.3s ease;
-  /* Smooth transition for background color */
-}
-
-#c_forum_btnsrch:hover {
-  background-color: #58824d;
-  /* Darker green on hover */
-  border-color: #165207;
-  /* Darker green border on hover */
-}
-
-#c_forum_btnsrch {
-  background-color: #58824d;
-  color: white;
-}
-
-/* Add the following CSS rules for styling the "Add discussion" button */
-.c_forum_btngr {
-  background-color: #165207;
-  /* Green background color */
-  color: #fff;
-  /* White text color */
-  border-color: #165207;
-  /* Green border color */
-  transition: background-color 0.3s ease;
-  /* Smooth transition for background color */
-  text-align: left;
-  /* Align the text to the left */
-  padding-left: 20px;
-  /* Add padding to the left */
-}
-
-.c_forum_btngr:hover {
-  background-color: #58824d;
-  /* Darker green on hover */
-  border-color: #165207;
-  /* Darker green border on hover */
-}
-
-.c_forum_btngr:active {
-  background-color: #a4bca7;
-  color: white;
-  font-style: italic;
-}
-
-
-
-.TeamC_FormCon {
-  border-radius: 15%;
-  background-color: #e0f8d9;
-  color: black;
-  resize: none;
-  border-radius: 15px;
-}
-
-.TeamC_FormCon:focus {
-  background-color: #ebffe5;
-}
-
-/* Add the following CSS rule for styling the discussion card container */
-.discussion-container {
-  /*1/16/24*/
-  background-color: #c3e6cb;
-  /* Change the color to your preferred one */
-  padding: 15px;
-  /* Adjust the padding as needed */
-  margin-bottom: 15px;
-  /* Adjust the margin as needed */
-  border-radius: 10px;
-  /* Add border-radius for rounded corners */
-}
-
-/* Add the following CSS rule for stretching the forum content */
-.stretch-forum {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.stretch-forum .c_forum_adjustm {
-  flex: -1;
-}
-
-/*UPDATE NEWWWWWW FOR MOBILE RESPONSIVE */
-@media (max-width: 767px) {
-  .ForumFSpace {
-    margin-top: 60px;
-    /* Adjust the top margin for smaller screens */
+  /* Add the following CSS rules for styling the search button */
+  #c_forum_btnsrch {
+    background-color: #165207; /* Green background color */
+    color: #fff; /* White text color */
+    border-color: #165207; /* Green border color */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
   }
 
-  .c_forum_adjustm {
-    margin-top: 20px;
-    /* Adjust the margin-top for the main content on smaller screens */
+  #c_forum_btnsrch:hover {
+    background-color: #58824d; /* Darker green on hover */
+    border-color: #165207; /* Darker green border on hover */
   }
 
-  .c_forum_search {
-    width: 100%;
-    /* Full width on small devices */
-    max-width: none;
-    /* Remove max-width on larger devices */
+  #c_forum_btnsrch {
+    background-color: #58824d;
+    color: white;
   }
 
+  /* Add the following CSS rules for styling the "Add discussion" button */
   .c_forum_btngr {
-    text-align: center;
-    /* Center the text for the "Add discussion" button on small screens */
-    padding-left: 0;
-    /* Remove padding from the left for small screens */
-    width: 100%;
-    /* Make the button full-width on small screens */
+    background-color: #165207; /* Green background color */
+    color: #fff; /* White text color */
+    border-color: #165207; /* Green border color */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+    text-align: left; /* Align the text to the left */
+    padding-left: 20px; /* Add padding to the left */
   }
 
-  #discussionForm {
-    padding: 15px;
-    /* Add padding to the discussion form on small screens */
+  .c_forum_btngr:hover {
+    background-color: #58824d; /* Darker green on hover */
+    border-color: #165207; /* Darker green border on hover */
   }
 
-  .fTeamC_FormCon {
+  .c_forum_btngr:active {
+    background-color: #a4bca7;
+    color: white;
+    font-style: italic;
+  }
+
+  .TeamC_FormCon {
+    border-radius: 15%;
+    background-color: #e0f8d9;
+    color: black;
+    resize: none;
     border-radius: 15px;
-    /* Maintain border-radius for form controls on small screens */
   }
 
+  .TeamC_FormCon:focus {
+    background-color: #ebffe5;
+  }
+
+  /* Add the following CSS rule for styling the discussion card container */
   .discussion-container {
-    margin-top: 20px;
-    /* Adjust the margin-top for the discussion container on small screens */
-    padding: 10px;
-    /* Add padding to the discussion container on small screens */
+    /*1/16/24*/
+    background-color: #c3e6cb; /* Change the color to your preferred one */
+    padding: 15px; /* Adjust the padding as needed */
+    margin-bottom: 15px; /* Adjust the margin as needed */
+    border-radius: 10px; /* Add border-radius for rounded corners */
   }
 
+  /* Add the following CSS rule for stretching the forum content */
   .stretch-forum {
-    padding: 20px;
-    /* Add padding to the container for small screens */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   }
-}
 
-.c_forum_modal {
-  background-color: #165207;
-  /* Change the background color to your preferred color */
-  color: white;
-  /* Change the text color to white or your preferred color */
-  text-align: center;
-}
+  .stretch-forum .c_forum_adjustm {
+    flex: -1;
+  }
 
-.c_forum_modbod {
-  padding: 5px;
-  /* Add padding to the modal body */
-}
+  /*UPDATE NEWWWWWW FOR MOBILE RESPONSIVE */
+  @media (max-width: 767px) {
+    .ForumFSpace {
+      margin-top: 60px; /* Adjust the top margin for smaller screens */
+    }
+
+    .c_forum_adjustm {
+      margin-top: 20px; /* Adjust the margin-top for the main content on smaller screens */
+    }
+
+    .c_forum_search {
+      width: 100%; /* Full width on small devices */
+      max-width: none; /* Remove max-width on larger devices */
+    }
+
+    .c_forum_btngr {
+      text-align: center; /* Center the text for the "Add discussion" button on small screens */
+      padding-left: 0; /* Remove padding from the left for small screens */
+      width: 100%; /* Make the button full-width on small screens */
+    }
+
+    #discussionForm {
+      padding: 15px; /* Add padding to the discussion form on small screens */
+    }
+
+    .fTeamC_FormCon {
+      border-radius: 15px; /* Maintain border-radius for form controls on small screens */
+    }
+
+    .discussion-container {
+      margin-top: 20px; /* Adjust the margin-top for the discussion container on small screens */
+      padding: 10px; /* Add padding to the discussion container on small screens */
+    }
+
+    .stretch-forum {
+      padding: 20px; /* Add padding to the container for small screens */
+    }
+  }
+  .c_forum_modal {
+    background-color: #165207; /* Change the background color to your preferred color */
+    color: white; /* Change the text color to white or your preferred color */
+    text-align: center;
+  }
+
+  .c_forum_modbod {
+    padding: 5px; /* Add padding to the modal body */
+  }
 }

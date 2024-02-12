@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../css/ffront.css";
 import { IoIosSearch } from "react-icons/io";
 import DiscussionPosts from "./DiscussionPosts";
-import Team_D_HeaderV2 from '../../TeamDComponents/Team_D_HeaderV2';
-
+import Team_D_HeaderV2 from "../../TeamDComponents/Team_D_HeaderV2";
 
 const ForumF = () => {
   const [isSearchButtonDisabled, setIsSearchButtonDisabled] = useState(true);
@@ -75,9 +74,9 @@ const ForumF = () => {
     );
 
     // Reset the input fields and hide the form using state-setting functions
-  setDiscussionTitle("");
-  setDiscussionContent("");
-  setShowDiscussionForm(false);
+    setDiscussionTitle("");
+    setDiscussionContent("");
+    setShowDiscussionForm(false);
 
     // Show modal and set timeout to close it after 1 second
     var myModal = new bootstrap.Modal(document.getElementById("niceModal"));
@@ -95,10 +94,10 @@ const ForumF = () => {
   };
 
   // Add event listener to prevent Enter key from submitting the form
-  document.addEventListener('keydown', function (event) {
-  if (event.key === 'Enter') {
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
       event.preventDefault();
-  }
+    }
   });
 
   const toggleSearchButton = () => {
@@ -116,25 +115,24 @@ const ForumF = () => {
   }, []);
 
   //hide and show submit form
-  const [showForm, setShowForm] = useState(false)
-  
+  const [showForm, setShowForm] = useState(false);
+
   //functionlity for hiding form when submit
   const hideFormHandle = () => {
-    setShowForm(prev => !prev)
-     setShowDiscussionForm(false)
-  }
+    setShowForm((prev) => !prev);
+    setShowDiscussionForm(false);
+  };
 
-  
   return (
     <>
-    <Team_D_HeaderV2 />
-    <div className="ForumFSpace">
+      <Team_D_HeaderV2 />
+      <div className="ForumFSpace">
         <div className="container stretch-forum">
           <div className="row justify-content-center">
             <div className="c_forum_adjustm col-lg-12 mb-3">
               {/*30/24*/}
               <div className="row text-left mb-5">
-                <br/>
+                <br />
                 <div className="c_forum_adjustm col-lg-9mx-auto">
                   {/*30/24*/}
                   <div className="row text-left mb-5">
@@ -142,7 +140,7 @@ const ForumF = () => {
                       <button
                         className="c_forum_btngr btn btn-lg btn-success py-2 px-4 mb-3 bg-op-6 roboto-bold"
                         onClick={toggleDiscussionForm}
-                        >
+                      >
                         {/*30/24*/}
                         Add discussion
                       </button>
@@ -162,7 +160,8 @@ const ForumF = () => {
                           className="btn btn-success"
                           type="button"
                           onClick={searchDiscussions}
-                          disabled={isSearchButtonDisabled}>
+                          disabled={isSearchButtonDisabled}
+                        >
                           <IoIosSearch />
                           {/*30/24*/}
                         </button>
@@ -206,7 +205,12 @@ const ForumF = () => {
                             type="button"
                             className="c_forum_btngr btn btn-success"
                             onClick={hideFormHandle}
-                            style={{ marginTop: "10px", paddingLeft: "11px", backgroundColor: '#165207' }}>
+                            style={{
+                              marginTop: "10px",
+                              paddingLeft: "11px",
+                              backgroundColor: "#165207",
+                            }}
+                          >
                             Post
                           </button>
                         </div>
@@ -214,9 +218,7 @@ const ForumF = () => {
                     </div>
                   )}
                 </div>
-                <div >
-                  {showForm && <DiscussionPosts />}
-                </div>
+                <div>{showForm && <DiscussionPosts />}</div>
               </div>
             </div>
           </div>
@@ -225,7 +227,8 @@ const ForumF = () => {
             id="niceModal"
             tabIndex="-1"
             aria-labelledby="niceModalLabel"
-            aria-hidden="true">
+            aria-hidden="true"
+          >
             <div className="modal-dialog">
               <div className="c_forum_modal modal-content">
                 <div className="c_forum_modbod modal-body">
@@ -239,7 +242,8 @@ const ForumF = () => {
             id="discussionDetailModal"
             tabindex="-1"
             aria-labelledby="discussionDetailModalLabel"
-            aria-hidden="true">
+            aria-hidden="true"
+          >
             <div className="modal-dialog modal-lg">
               <div className="modalCont modal-content">
                 <div className="modal-header">
@@ -250,7 +254,8 @@ const ForumF = () => {
                     type="button"
                     className="btn-close"
                     data-bs-dismiss="modal"
-                    aria-label="Close"></button>
+                    aria-label="Close"
+                  ></button>
                 </div>
                 <div className="modal-body">
                   <div id="discussionDetailContent"></div>
@@ -265,4 +270,3 @@ const ForumF = () => {
 };
 
 export default ForumF;
-

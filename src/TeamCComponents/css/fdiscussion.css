@@ -21,61 +21,61 @@
   color: #165207;
 }
 
-.TeamCdots{
+  .TeamCdots {
     margin-top: 20px;
     margin-right: 15px;
     color: #165207;
-}
+  }
 
-.TeamCFlex {
-  color: #165207;
-}
+  .TeamCFlex {
+    color: #165207;
+  }
 
-.TeamCFlex:hover {
-  color: #5c974e;
-}
+  .TeamCFlex:hover {
+    color: #5c974e;
+  }
 
-/* Adjusted color for buttons on hover */
-.TeamForum_Drop:hover .TeamC_forum_link {
-  color: #5c974e;
-}
+  /* Adjusted color for buttons on hover */
+  .TeamForum_Drop:hover .TeamC_forum_link {
+    color: #5c974e;
+  }
 
-/* Adjusted color for textarea focus */
-.TeamC_controlForm:focus {
-  border-color: 1px solid #165207;
-  box-shadow: 0 0 0 0.25rem rgba(22, 82, 7, 0.25);
-  display: block;
-  width: 100%;
-  padding: .375rem .75rem;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color:#212529;
-  background-color: #fff;
-  background-clip: padding-box;
-  appearance: none;
-  border-radius: .25rem;
-}
+  /* Adjusted color for textarea focus */
+  .TeamC_controlForm:focus {
+    border-color: 1px solid #165207;
+    box-shadow: 0 0 0 0.25rem rgba(22, 82, 7, 0.25);
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    appearance: none;
+    border-radius: 0.25rem;
+  }
 
-.TeamCForumBtnPrime {
-  background-color: #165207;
-  border-color: #165207;
-}
+  .TeamCForumBtnPrime {
+    background-color: #165207;
+    border-color: #165207;
+  }
 
-.TeamCForumBtnPrime:hover {
-  background-color: #5c974e;
-  border-color: #5c974e;
-}
+  .TeamCForumBtnPrime:hover {
+    background-color: #5c974e;
+    border-color: #5c974e;
+  }
 
-/* Center-aligned container */
-.ForumC_ForumDcontainer {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  /*margin: 20px; deleted: 2/5/24*/
-}
+  /* Center-aligned container */
+  .ForumC_ForumDcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    /*margin: 20px; deleted: 2/5/24*/
+  }
 
 /* Card style */
 .TeamCForumC_Forumcard {
@@ -93,88 +93,80 @@
   border-radius: .25rem;/*2/7/24*/
 }
 
-.TeamCCardBody {
-  padding: 20px;
-  border-style: solid;
-  /*Temporary change 2/5/24*/
-}
+  .TeamCCardBody {
+    padding: 20px;
+    border-style: solid; /*Temporary change 2/5/24*/
+  }
 
-/* 3-dots button style */
-.three-dots {
-  cursor: pointer;
-}
+  /* 3-dots button style */
+  .three-dots {
+    cursor: pointer;
+  }
 
-/* Like/Dislike/Reply button style */
-.like-button,
-.dislike-button,
-.reply-button {
-  cursor: pointer;
-  color: #165207;
-}
+  /* Like/Dislike/Reply button style */
+  .like-button,
+  .dislike-button,
+  .reply-button {
+    cursor: pointer;
+    color: #165207;
+  }
 
-.like-button:hover,
-.dislike-button:hover,
-.reply-button:hover {
-  color: #5c974e;
-}
+  .like-button:hover,
+  .dislike-button:hover,
+  .reply-button:hover {
+    color: #5c974e;
+  }
 
-/* Reply textarea style */
-#commentContainer {
-  display: none;
-}
+  /* Reply textarea style */
+  #commentContainer {
+    display: none;
+  }
 
-/* Container for each reply */
-/* Adjusted styling for nested reply containers */
-.reply-container {
-  background-color: #c3e6cb;
-  border-radius: 8px;
-  padding: 10px;
-  margin-bottom: 5px;
-  /* Adjusted margin to create space between nested reply containers */
-  margin-left: 5px;
-  /* Adjusted margin to create indentation for nested replies */
-  position: relative;
-  /* Set position to relative for proper placement of absolute elements */
-}
+  /* Container for each reply */
+  /* Adjusted styling for nested reply containers */
+  .reply-container {
+    background-color: #c3e6cb;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 5px; /* Adjusted margin to create space between nested reply containers */
+    margin-left: 5px; /* Adjusted margin to create indentation for nested replies */
+    position: relative; /* Set position to relative for proper placement of absolute elements */
+  }
 
-/* Style for the additional reply container */
-.additional-reply-container {
-  position: relative;
-  /* Set position to relative for proper placement of absolute elements */
-  margin-left: 15px;
-  /* Adjusted left position to create indentation for additional replies */
-  display: none;
-  /* Hide additional reply container by default */
-}
+  /* Style for the additional reply container */
+  .additional-reply-container {
+    position: relative; /* Set position to relative for proper placement of absolute elements */
+    margin-left: 15px; /* Adjusted left position to create indentation for additional replies */
+    display: none; /* Hide additional reply container by default */
+  }
 
-/* Like/Dislike/Reply button style for replies */
-.like-button,
-.dislike-button,
-.reply-button {
-  cursor: pointer;
-  color: #165207;
-  margin-right: 15px;
-  /* Adjust spacing between buttons */
-}
+  /* Like/Dislike/Reply button style for replies */
+  .like-button,
+  .dislike-button,
+  .reply-button {
+    cursor: pointer;
+    color: #165207;
+    margin-right: 15px; /* Adjust spacing between buttons */
+  }
 
-.like-button:hover,
-.dislike-button:hover,
-.reply-button:hover {
-  color: #5c974e;
-}
+  .like-button:hover,
+  .dislike-button:hover,
+  .reply-button:hover {
+    color: #5c974e;
+  }
 
-/* Reply textarea style */
-.reply-textarea {
-  display: none;
-}
+  /* Reply textarea style */
+  .reply-textarea {
+    display: none;
+  }
 
-/* Style for the return button */
-#TeamCReturnButtonFf {
-  position: fixed;
-  bottom: 15px;
-  left: 15px;
-  font-size: 24px;
-  width: 55px;
-  background-color: #165207;
-}
+  /* Style for the return button */
+  #TeamCReturnButtonFf {
+    position: fixed;
+    bottom: 15px;
+    left: 15px;
+    font-size: 24px;
+    width: 55px;
+    background-color: #165207;
+  }
 }

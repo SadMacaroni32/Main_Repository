@@ -73,5 +73,8 @@ const getOptionText = (index, question) => {
   }
 };
 
+
+
+
 // Exporting all functions and hooks
 export { showNextTopic, hideAllTopics, enroll, redirectToGoogle, useToggleChoices, getOptionText };

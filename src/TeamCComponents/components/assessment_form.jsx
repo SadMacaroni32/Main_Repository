@@ -5,62 +5,27 @@ import { data } from "../data/quiz_content_data";
 import '../css/quizform_style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function TeamC_QuizForm_Component() {
+function TeamC_AssessmentForm_Component() {
   const { pathname } = useLocation();
   let quizTitle = '';
   let descText = '';
   let urlReturn = '';
 
   switch (pathname) {
-    /* QUIZ CHAPTER 1   */
-    case '/quiz_sql1':
-      quizTitle = 'Chapter 1: SQL Quiz';
+    case '/assessment_sql':
+      quizTitle = 'Assessment Examination [SQL Programming]';
       descText = 'Please keep your notes before taking the quiz. No cheating! Go anzen ni.';
-      urlReturn = '/course1_sql';
+      urlReturn = '/assessment';
       break;
-    case '/quiz_svn1':
-      quizTitle = 'Chapter 1: Subversion Quiz';
+    case '/assessment_svn':
+      quizTitle = 'Assessment Examination [Subversion]';
       descText = 'Please keep your notes before taking the quiz. No cheating! Go anzen ni.';
-      urlReturn = '/course1_svn';
+      urlReturn = '/assessment';
       break;
-    case '/quiz_html1':
-      quizTitle = 'Chapter 1: HTML Programming Quiz';
+    case '/assessment_html':
+      quizTitle = 'Assessment Examination [HTML Programming]';
       descText = 'Please keep your notes before taking the quiz. No cheating! Go anzen ni.';
-      urlReturn = '/course1_hprog';
-      break;
-
-    /* QUIZ CHAPTER 2   */
-    case '/quiz_sql2':
-      quizTitle = 'Chapter 2: SQL Quiz';
-      descText = 'Please keep your notes before taking the quiz. No cheating! Go anzen ni.';
-      urlReturn = '/course2_sql';
-      break;
-    case '/quiz_svn2':
-      quizTitle = 'Chapter 2: Subversion Quiz';
-      descText = 'Please keep your notes before taking the quiz. No cheating! Go anzen ni.';
-      urlReturn = '/course2_svn';
-      break;
-    case '/quiz_html2':
-      quizTitle = 'Chapter 2: HTML Programming Quiz';
-      descText = 'Please keep your notes before taking the quiz. No cheating! Go anzen ni.';
-      urlReturn = '/course2_hprog';
-      break;
-
-    /* QUIZ CHAPTER 3   */
-    case '/quiz_sql3':
-      quizTitle = 'Chapter 3: SQL Quiz';
-      descText = 'Please keep your notes before taking the quiz. No cheating! Go anzen ni.';
-      urlReturn = '/course';
-      break;
-    case '/quiz_svn3':
-      quizTitle = 'Chapter 3: Subversion Quiz';
-      descText = 'Please keep your notes before taking the quiz. No cheating! Go anzen ni.';
-      urlReturn = '/course';
-      break;
-    case '/quiz_html3':
-      quizTitle = 'Chapter 3: HTML Programming Quiz';
-      descText = 'Please keep your notes before taking the quiz. No cheating! Go anzen ni.';
-      urlReturn = '/course3_hprog';
+      urlReturn = '/assessment';
       break;
 
     default:
@@ -181,7 +146,7 @@ function TeamC_QuizForm_Component() {
                     backgroundColor: "#D9FFCF",
                     textAlign: "center",
                     overflow: "visible",
-                    border: "2px solid    ",
+                    border: "2px solid",
                     borderColor: "#0e3b03"
                   }}
                 >
@@ -289,4 +254,4 @@ function TeamC_QuizForm_Component() {
   )
 }
 
-export default TeamC_QuizForm_Component;
+export default TeamC_AssessmentForm_Component;
