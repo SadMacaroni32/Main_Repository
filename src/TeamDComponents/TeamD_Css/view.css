@@ -183,6 +183,9 @@
     .contentViewPdf {
         padding: 20px;
     }
+    #goBackTooltip, #criteriaTooltip, #downloadTooltip{
+        display: none;
+    }
 }
 
 @media only screen and (max-width: 426px) and (min-width: 375px){
@@ -211,6 +214,9 @@
 
     .contentViewPdf {
         padding: 20px;
+    }
+    #goBackTooltip, #criteriaTooltip, #downloadTooltip{
+        display: none;
     }
 }
 
@@ -268,6 +274,9 @@
     .contentViewPdf {
         padding: 20px;
     }
+    #goBackTooltip, #criteriaTooltip, #downloadTooltip{
+        display: none;
+    }
 }
 
 @media only screen and (max-width: 321px){
@@ -311,5 +320,8 @@
     }
     .certificatesView {
         background-color: transparent;
+    }
+    #goBackTooltip, #criteriaTooltip, #downloadTooltip{
+        display: none;
     }
 }

@@ -1,39 +1,40 @@
-//* eslint-disable no-unused-vars */
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from "./AuthContext";
-import Footer from "./Footer";
+import Footer from './Footer';
 
-function TeamA_LoginForm() {
+function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [passwordError, setPasswordError] = useState('');
   const [error, setError] = useState(null);
 
   // Use the useAuth hook to get the handleLogin and setLoggedIn functions
-  const { handleLogin } = useAuth();
+  const { handleLogin } = useAuth(); 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
-      // Hardcoded logic to check email and password
-      if (
-        (email === 'student@gmail.com' && password === 'admin123') ||
-        (email === 'faculty@gmail.com' && password === 'admin123')
-      ) {
-        // If the credentials are valid, redirect to the respective dashboards
-        navigate(email === 'student@gmail.com' ? '/TeamCdashboard' : '/TeamBdashboard');
+      console.log('Form submitted'); // Add this line for debugging
+  
+      const result = await handleLogin({ email, password });
+      
+      if (result.success) {
+        console.log('Login successful'); // Add this line for debugging
+        navigate('/dashboard');
       } else {
-        // If email or password is incorrect, set the password error and display a message
-        setPasswordError('Invalid Email or Password. Please try again.');
-        // Perform normal login
-        await handleLogin({ email, password }, navigate);
+        setError('Invalid email or password. Please try again.');
       }
     } catch (error) {
-      setError('Invalid email or password. Please try again.');
+      setError('An unexpected error occurred. Please try again later.');
       console.error('Login failed:', error);
+    }
+  };
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSubmit(e);
     }
   };
 
@@ -53,15 +54,11 @@ function TeamA_LoginForm() {
           type="password"
           id="password"
           value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-            // Clear password error when the user starts typing again
-            setPasswordError('');
-          }}
+          onChange={(e) => setPassword(e.target.value)}
+          onKeyPress={handleKeyPress} 
           placeholder="Password"
           required
         />
-        {passwordError && <div className="error-message" style={{ color: 'red' }}>{passwordError}</div>}
         <div className="remember-me">
           {/* Your remember me checkbox */}
         </div>
@@ -73,12 +70,12 @@ function TeamA_LoginForm() {
             Forgot your password?
           </div>
         </Link>
-        <button className="TeamA-button">Sign in</button>
+        <button  className="TeamA-button">Sign in</button>
         {error && <div className="error-message">{error}</div>}
       </form>
-      <Footer />
     </>
   );
 }
 
-export default TeamA_LoginForm;
+
+export default LoginForm;

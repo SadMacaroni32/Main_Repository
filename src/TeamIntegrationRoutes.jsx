@@ -74,6 +74,7 @@ import Team_D_View from "./TeamDComponents/Team_D_View";
 import Team_D_Verification from "./TeamDComponents/Team_D_Verification";
 import Team_D_Verif_nonuser from "./TeamDComponents/Team_D_Verif_nonuser";
 import Team_D_Content from "./TeamDComponents/Team_D_Content";
+import Home from "./TeamAComponents/components/Home";
 
 
 function TeamIntegrationRoutes() {
@@ -82,7 +83,7 @@ function TeamIntegrationRoutes() {
       <Suspense fallback={<TeamB_Fallbackloading />}>
         <Routes>
           {/* TEAM A */}
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<Dashboard />} />
@@ -113,7 +114,7 @@ function TeamIntegrationRoutes() {
             path="/teambcreatenewchaptertitle"
             element={<TeamB_CreateNewChapterTitle />}
           />
-          <Route path="/teambtopicpage" element={<TeamB_TopicPage />} />
+          <Route path="/teambtopicpage/:id" element={<TeamB_TopicPage />} />
           <Route
             path="teambcreatenewcoursecopy"
             element={<TeamB_CreateNewCourseCopy />}

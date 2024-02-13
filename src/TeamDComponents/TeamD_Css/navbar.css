@@ -148,7 +148,7 @@
         background: rgba( 217, 255, 207, 0.65 );
         box-shadow: 0 8px 32px -8px rgba( 31, 38, 135, 0.37 );
         backdrop-filter: blur( 9px );
-        -webkit-backdrop-filter: blur( 9px );
+    /* -webkit-backdrop-filter: blur( 9px ); hidden this since the above equivalent of this are already supported in chrome/edge 2/12/24*/
         border-bottom-left-radius: 25px;
         border-bottom-right-radius: 25px;
         border: 1px solid rgba( 255, 255, 255, 0.18 );
@@ -199,7 +199,8 @@
         padding: 10px !important;
         border-radius: 25px;
         margin-bottom: 10px !important;
-        text-shadow: transparent !important;
+        /* text-shadow: transparent !important; this is non standard*/
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0)!important; /* Transparent shadow current standard 2/12/24*/
     }
     .profile_info img {
         border: 2px solid #126912;

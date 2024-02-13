@@ -1,6 +1,8 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext();
 
@@ -8,49 +10,46 @@ export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [isAuthReady, setIsAuthReady] = useState(false); // Added isAuthReady state
+  const [timeoutId, setTimeoutId] = useState(null);
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
-      // Retrieve authentication token from localStorage
       const authToken = localStorage.getItem('authToken');
-  
-      // Perform logout API call with the authentication token
+
       const response = await fetch('http://localhost:8085/api/v1/auth/logout', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${authToken}`, // 'Authorization' is the key
+          'Authorization': `Bearer ${authToken}`,
         },
       });
-  
+
       if (response.ok) {
-        // Clear authentication token
         localStorage.removeItem('authToken');
-        // Clear other session-related items if needed
-        // localStorage.removeItem('otherSessionItem');
-        // Update login state
+        localStorage.removeItem('username');
+        localStorage.removeItem('email');
+        localStorage.removeItem('lastName');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('firstName');
+
         setLoggedIn(false);
-        // Redirect to another page (e.g., home page)
-        history.push('/');
+        clearTimeout(timeoutId);
+
+        navigate('/');
       } else {
-        // Handle logout failure
         console.error('Logout failed', response.status, response.statusText);
-        // Display user-friendly message
-        // setError('Logout failed. Please try again.');
       }
     } catch (error) {
-      // Handle network or unexpected errors
       console.error('Unexpected error during logout', error);
-      // Display user-friendly message
-      // setError('An unexpected error occurred. Please try again.');
     }
   };
-  
 
   const handleLogin = async (credentials) => {
     try {
       setLoading(true);
-
+  
       const response = await fetch('http://localhost:8085/api/v1/auth/signin', {
         method: 'POST',
         headers: {
@@ -58,46 +57,88 @@ export const AuthProvider = ({ children }) => {
         },
         body: JSON.stringify(credentials),
       });
-
+  
+      const data = await response.json();
+  
       if (response.ok) {
-        const data = await response.json();
-
-        // Check the actual structure of the server response
+        console.log('Server Response:', data);
+  
         if (data.accessToken) {
-          // Update authentication token
           localStorage.setItem('authToken', data.accessToken);
-          // Update login state
+  
+          updateLocalStorage('userId', data.userId);
+          updateLocalStorage('username', data.username);
+          updateLocalStorage('firstName', data.firstName);
+          updateLocalStorage('lastName', data.lastName);
+          updateLocalStorage('email', data.email);
+  
           setLoggedIn(true);
-          console.log('Login successful. AccessToken:', data.accessToken);
           setError(null);
+  
+          clearTimeout(timeoutId);
+          const newTimeoutId = setTimeout(() => {
+            handleLogout();
+          }, 3600000);
+          setTimeoutId(newTimeoutId);
+  
+          return { success: true, user: data }; // Return the success status and user data
         } else {
           console.error('Token missing in response:', data);
           setError('Invalid response from the server: Token missing');
         }
       } else {
-        const errorData = await response.json(); // Assuming the server sends additional error information
-        console.error('Login failed. Server response:', errorData);
-        setError('Invalid email or password. Please try again.');
+        console.error('Login failed. Server response:', data);
+  
+        if (response.status === 401) {
+          setError('Invalid email or password. Please try again.');
+        } else {
+          setError('An unexpected error occurred. Please try again later.');
+        }
       }
     } catch (error) {
-      // Handle network or unexpected errors
       console.error('Unexpected error during login', error);
+  
+      console.log('Response status:', response?.status);
+      console.log('Response statusText:', response?.statusText);
+  
       setError('An unexpected error occurred. Please try again later.');
     } finally {
       setLoading(false);
     }
+  
+    return { success: false, user: null }; // Return the failure status
+  };
+  
+
+  const updateLocalStorage = (key, value) => {
+    if (value !== undefined) {
+      localStorage.setItem(key, value);
+
+      clearTimeout(timeoutId);
+      const newTimeoutId = setTimeout(() => {
+        handleLogout();
+      }, 3600000);
+      setTimeoutId(newTimeoutId);
+    }
   };
 
-  // Check for stored token on initialization
   useEffect(() => {
     const storedToken = localStorage.getItem('authToken');
     if (storedToken) {
       setLoggedIn(true);
+      setIsAuthReady(true);
+
+      const newTimeoutId = setTimeout(() => {
+        handleLogout();
+      }, 3600000);
+      setTimeoutId(newTimeoutId);
+    } else {
+      setIsAuthReady(true);
     }
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, handleLogin, handleLogout, setLoggedIn, error, loading }}>
+    <AuthContext.Provider value={{ isLoggedIn, handleLogin, handleLogout, setLoggedIn, error, loading, isAuthReady }}>
       {children}
     </AuthContext.Provider>
   );
@@ -107,7 +148,6 @@ AuthProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => {
   const context = useContext(AuthContext);
 
@@ -117,5 +157,3 @@ export const useAuth = () => {
 
   return context;
 };
-
-export default AuthContext;

@@ -1,121 +1,146 @@
 /* eslint-disable react/no-unknown-property */
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useNavigation} from 'react-router-dom';
 import "../styles/Auth.css";
 import { useAuth } from "./AuthContext";
+import { Modal } from 'react-bootstrap';
+import ProfileEditForm from './ProfileEditForm';
 
 
-function Profile() {
+// Function to get user image type
+function getUserImageType(profilePicture) {
+  // Check if profilePicture is defined and not null
+  if (profilePicture && profilePicture.startsWith) {
+    // Check the image type based on the data
+    const isPNG = profilePicture.startsWith('data:image/png;base64,');
+    const isJPEG = profilePicture.startsWith('data:image/jpeg;base64,');
+    
+    if (isPNG) {
+      return 'png';
+    } else if (isJPEG) {
+      return 'jpeg';
+    } else {
+      // Return a default type or handle accordingly
+      return 'unknown'; // You can change this to 'jpeg' or handle as needed
+    }
+  } else {
+    // Return a default type or handle accordingly
+    return 'unknown'; // You can change this to 'jpeg' or handle as needed
+  }
+}
 
-  const navigate = useNavigate();
 
-
-  const goBack = () => {
-    navigate(-1);
-  };
+const Profile  = ({ handleClose, handleEditClick }) => {
 
   const { isLoggedIn, handleLogout } = useAuth();
   const [userData, setUserData] = useState({});
-  const [email, setEmail] = useState('');
-  const [userName, setUserName] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [updateData, setUpdateData] = useState({});
+  const navigate = useNavigate(); //
+
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        // Introduce a delay to ensure asynchronous operations have completed
-        setTimeout(async () => {
-          const authToken = localStorage.getItem('yourAuthTokenKey');
-
-          if (!authToken) {
-            console.error('Authentication token not found');
-            return;
-          }
-
-          const response = await fetch('http://localhost:8085/api/v1/auth/user', {
-            method: 'GET',
-            headers: {
-              'Authorization': `Bearer ${authToken}`,
-            },
-          });
-
-          if (response.ok) {
-            const userData = await response.json();
-            setUserData(userData);
+        const userId = localStorage.getItem('userId');
+        if (!userId) {
+          console.error('User ID not found in local storage');
+          return;
+        }
+  
+        const response = await fetch(`http://localhost:8085/api/v1/auth/users/${userId}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+  
+        if (response.ok) {
+          const userData = await response.json();
+          setUserData(userData);
+  
+          if (userData.profilePicture !== undefined && userData.profilePicture !== null) {
+            const base64 = btoa(String.fromCharCode(...new Uint8Array(userData.profilePicture)));
+            const imageType = getUserImageType(userData.profilePicture);
+            const dataUrl = `data:image/${imageType};base64,${base64}`;
+  
+            // console.log('base64:', base64);
+            // console.log('imageType:', imageType);
+            // console.log('dataUrl:', dataUrl);
+  
+            setUpdateData((prevData) => ({
+              ...prevData,
+              profilePicture: dataUrl,
+            }));
           } else {
-            console.error('Failed to fetch user data');
+            console.error('Profile picture is undefined or null in user data');
           }
-        }, 100); // Adjust the delay as needed
+        } else {
+          console.error('Failed to fetch user data', response.status, response.statusText);
+        }
       } catch (error) {
-        console.error('Error during user data fetch:', error);
+        console.error('Unexpected error during user data fetch', error);
       }
     };
-
+  
     fetchUserData();
   }, []);
 
+    
   return (
     <>
-     <div className="home-header">
-     <Link onClick={goBack}>
-        <img
-           src="..\src\assets\TeamAassets\companyLogo.png"
-          alt="Logo"
-          className="Qlogo"
-        />
-        </Link>
-      </div>
-    <div className="Prof1-wrapper">
-    <Link to="/teamcdashboard">
-        <button className="wBackbutton">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
-        </svg>
+      {/* <UserNavigation isLoggedIn={isLoggedIn} handleLogout={handleLogout} /> */}
+      <div className="Prof1-wrapper">
+        <div className="Prof1-left">
+        <button onClick={handleClose} className="wBackbutton">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+          </svg>
         </button>
-        </Link>
-      <div className="Prof1-left">
-        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" className="bi bi-person-lines-fill" viewBox="0 0 16 16">
-          <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z" />
-        </svg>
-      </div>
-      <div className="Prof1-right">
-        <div className="Prof1-info">
-          <h3>Profile Information</h3>
-          <div className="Prof1-info_data">
-            <div className="Prof1-info_row">
-              <h4>Username:</h4>
-              <p>{userData.email}</p>
-            </div>
-            <div className="Prof1-info_row">
-              <h4>First name:</h4>
-              <p>{userData.userName}</p>
-            </div>
-            <div className="Prof1-info_row">
-              <h4>Last name:</h4>
-              <p>{userData.email}</p>
-            </div>
-            <div className="Prof1-info_row">
-              <h4>Email:</h4>
-              <p>{userData.email}</p>
+        <img
+          src={`data:image/${getUserImageType(userData.profilePicture)};base64,${userData.profilePicture}`}
+          alt="Profile"
+          className="Profile-picture"
+        />
+          <h4>{userData.firstName} {userData.lastName}</h4>
+          <p>Position name</p>
+        </div>
+        <div className="Prof1-right">
+          <div className="Prof1-info">
+            <h3>Profile Information</h3>
+            <div className="Prof1-info_data">
+              <div className="Prof1-data_row">
+                <h4>Email</h4>
+                <p>{userData.email}</p>
+              </div>
+              <div className="Prof1-data_row">
+                <h4>Username</h4>
+                <p>{userData.username}</p>
+              </div>
+              <div className="Prof1-data_row">
+                <h4>First Name</h4>
+                <p>{userData.firstName}</p>
+              </div>
+              <div className="Prof1-data_row">
+                <h4>Last Name</h4>
+                <p>{userData.lastName}</p>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="Pro1-data">
+          <div className="Pro1-data">
           {/* Add content for earned badges */}
         </div>
-        <div className="Prof1-buttons">
-          <Link to="/update">
-            <button className="Prof1-Editbuttons">Edit</button>
-          </Link>
-          <Link to="/change">
-            <button className="Prof1-ChangeButton">Change Password</button>
-          </Link>
+          <div className="Prof1-buttons">
+            <Link to="#">
+              <button onClick={handleEditClick} className="Prof1-Editbuttons">Edit</button>
+            </Link>
+            <Link to="/change">
+              <button className="Prof1-ChangeButton">Change Password</button>
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
-  </>
-);
+    </>
+  );
 }
 
 export default Profile;
