@@ -8,8 +8,11 @@ import axios from "axios";
 
 //import course context
 import { CourseContext } from "../context/CourseContext";
+import { useNavigate } from "react-router-dom";
+
 
 const CopyofCreateNewCourse = () => {
+  const navigate = useNavigate();
   //state for handling course data
   const [course, setCourse] = useState({
     // course_id: "",
@@ -51,8 +54,8 @@ const CopyofCreateNewCourse = () => {
   };
 
   const handleSubmit = async (e) => {
-    console.log("Form submitted:", course);
 
+ 
     // Assuming your API call is successful, update the state to indicate form submission
     try {
       await axios.post("http://localhost:8080/api/courses", course);
@@ -61,6 +64,7 @@ const CopyofCreateNewCourse = () => {
       console.error("Error submitting form:", error);
       // Handle error if the API call fails
     }
+   
   };
   console.log(course);
   //react hook for tooltip
@@ -70,8 +74,8 @@ const CopyofCreateNewCourse = () => {
 
   return (
     <>
-      <div className="w-[100%] h-[100vh] pt-[3rem]  2xl:pt-[8rem] backdrop-blur-[.1rem] ">
         {!formSubmitted && (
+      <div className="w-[100%] h-[100vh] pt-[3rem]  2xl:pt-[8rem] backdrop-blur-[.1rem] ">
           <div className=" flex border-[.01rem] drop-shadow-2xl shadow-lg border-black rounded-lg m-auto bg-[#EBFFE5] lg:max-w-[550px] 2xl:max-h-[672px] 2xl:max-w-[724px] ">
             <form onSubmit={handleSubmit} className="w-[80%] m-auto py-2 ">
               <div className="flex items-center py-1 text-black lg:font-bold lg:text-3xl lg:py-0">
@@ -144,8 +148,8 @@ const CopyofCreateNewCourse = () => {
               </div>
             </form>
           </div>
-        )}
       </div>
+        )}
     </>
   );
 };

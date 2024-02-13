@@ -17,17 +17,17 @@ const Home = () => {
         <div className="english-message">
           <h1>Gain knowledge. Learn your way. Be the best.</h1>
         </div>
-        <div className="courses">
-          <div className="square">
+        <div className="TeamA-courses">
+          <div className="TeamA-square">
             <h3>Programming</h3>
           </div>
-          <div className="square">
+          <div className="TeamA-square">
             <h3>Bayani Intelligence</h3>
           </div>
-          <div className="square">
+          <div className="TeamA-square">
             <h3>Business</h3>
           </div>
-          <div className="square">
+          <div className="TeamA-square">
             <h3>Security</h3>
           </div>
         </div>

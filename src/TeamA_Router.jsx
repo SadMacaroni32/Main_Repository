@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import Dashboard from "../src/TeamAComponents/components/Dashboard";
 import Landing from "../src/TeamAComponents/components/Landing";
 import Login from "../src/TeamAComponents/components/Login";
 import Register from "../src/TeamAComponents/components/Register";
@@ -15,12 +14,13 @@ import About from "../src/TeamAComponents/components/About";
 import Footer from "./TeamAComponents/components/Footer";
 import Email from "./TeamAComponents/components/Email"; 
 import About from "../src/TeamAComponents/components/About";
+import Home from "./TeamAComponents/components/Home";
 
 function TeamA_Router() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot" element={<Forgot />} />

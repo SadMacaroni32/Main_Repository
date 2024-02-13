@@ -107,14 +107,14 @@ const CourseListCard = () => {
             </div>
             <div className="flex flex-col h-full gap-y-5">
               {/* change to currentCourse for API connection */}
-              {courselist.map((course, idx) => {
+              {currentCourse.map((course, idx) => {
                 return (
                   <div key={idx} className="w-[60vw] rounded-md shadow-md">
                     <div className=" relative flex px-0 py-0 rounded-md xl:h-[115px]  ">
                       <div className="bg-[#BCE8B1] flex py-1 item-center justify-center text-center text-[.8rem] lg:text-[1rem] w-[30%] lg:w-[20%] lg:p-5 rounded-l-sm lg:rounded-l-md">
                         <p className="lg:font-medium TeamB_text-shadow h-[8vh] flex items-center  ">
                           {/* change to course_id for api connection */}
-                          PL00{course.id}
+                          PL00{course.course_id}
                         </p>
                       </div>
 
@@ -123,25 +123,25 @@ const CourseListCard = () => {
                         className="text-white TeamB_text-shadow  lg:font-bold text-[.8rem] py-1 lg:py-0 lg:text-[1.2rem] w-full flex justify-center items-center
                             rounded-r-sm lg:rounded-r-md 	bg-[#126912]  ">
                         {/* change to course_title for api connection */}
-                        {course.courseTitle}
+                        {course.course_title}
                       </Link>
 
                       <span
                         onClick={() => {
                           setShowEditTitle((prev) => !prev);
-                          setEditCourseId(course.id);
+                          setEditCourseId(course.course_id);
                         }}
                         className="absolute cursor-pointer right-2 flex items-center h-full text-white text-[1.5rem]">
                         <FaEdit />
                       </span>
-                      {showEditTitle && editCourseId === course.id && (
+                      {showEditTitle && editCourseId === course.course_id && (
                         <div className="fixed top-0 left-0 z-10 h-full lg:w-full">
                           <div className="w-[100%]">
                             <CourseTitleModal
                               courseId={editCourseId}
                               //  past courseTitle as props to set the value of input in CourseTitleModal
 
-                              courseTitle={course.courseTitle}
+                              courseTitle={course.course_title}
                             />
                           </div>
                         </div>
@@ -152,7 +152,7 @@ const CourseListCard = () => {
               })}
             </div>
 
-            {courses.length < 5 ? (
+            {courses.length < 4 ? (
               <></>
             ) : (
               <Stack spacing={2} className="">
