@@ -32,7 +32,7 @@ const TeamB_EditChapterTitle = lazy(() => import("./TeamBComponents/components/C
 const TeamB_CreateNewChapterTitle = lazy(() => import("./TeamBComponents/components/CourseList & AddCourseList/CreateNewChapterTitle"));
 const TeamB_CreateNewCourseCopy = lazy(() => import("./TeamBComponents/components/CourseList & AddCourseList/CreateCourse/CreateNewCourse"));
 const TeamB_TopicPage = lazy(() => import("./TeamBComponents/components/Topic/TopicPages/TopicPage"));
-
+import TeamB_EditTopic from "./TeamBComponents/components/Topic/TopicPages/EditTopic";
 
 // TEAM C IMPORT
 
@@ -83,10 +83,9 @@ function TeamIntegrationRoutes() {
       <Suspense fallback={<TeamB_Fallbackloading />}>
         <Routes>
           {/* TEAM A */}
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/forgot" element={<Forgot />} />
           <Route path="/verify" element={<Verification />} />
           <Route path="/profile" element={<Profile />} />
@@ -119,6 +118,7 @@ function TeamIntegrationRoutes() {
             path="teambcreatenewcoursecopy"
             element={<TeamB_CreateNewCourseCopy />}
           />
+          <Route path="teambtopicedit/:id" element={<TeamB_EditTopic/>}/>
 
         {/* TEAM C */}
         <Route path="/teamcdashboard" element={<TeamC_Dashboard />} />

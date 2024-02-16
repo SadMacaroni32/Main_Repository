@@ -22,7 +22,7 @@ function TeamC_ChapterSvn() {
 
           <div className="c_course_cardmain card flex-grow-1" style={{ marginTop: '10px', willChange: 'filter', transition: 'filter 300ms', backgroundColor: '#126912', borderRadius: '1rem', }}>
             <Link to="/chapters_sql" className="h4 text-white text-decoration-none c_chapter_cardtext">
-              <div className="card-body d-flex" id="c_course_cardbody" style={{ backgroundColor: '#126912', borderRadius: '10px', borderRadius: '1rem', }}>
+              <div className="card-body d-flex" id="c_course_cardbody" style={{ backgroundColor: '#126912', borderRadius: '1rem', }}>
                 The SQL Query
               </div>
             </Link>
@@ -39,7 +39,7 @@ function TeamC_ChapterSvn() {
 
           <div className="c_course_cardmain card flex-grow-1" style={{ marginTop: '10px', willChange: 'filter', transition: 'filter 300ms', backgroundColor: '#126912', borderRadius: '1rem', }}>
             <Link to="/chapters_svn" className="h4 text-white text-decoration-none c_chapter_cardtext">
-              <div className="card-body d-flex" id="c_course_cardbody" style={{ backgroundColor: '#126912', borderRadius: '10px', borderRadium: '1rem', }}>
+              <div className="card-body d-flex" id="c_course_cardbody" style={{ backgroundColor: '#126912', borderRadium: '1rem', }}>
                 Version Control: Subversion
               </div>
             </Link>
@@ -55,7 +55,7 @@ function TeamC_ChapterSvn() {
 
           <div className="c_course_cardmain card flex-grow-1" style={{ marginTop: '10px', willChange: 'filter', transition: 'filter 300ms', backgroundColor: '#126912', borderRadius: '1rem', }}>
             <Link to="/chapters_hprog" className="h4 text-white text-decoration-none c_chapter_cardtext">
-              <div className="card-body d-flex" id="c_course_cardbody" style={{ backgroundColor: '#126912', borderRadius: '10px', borderRadius: '1rem', }}>
+              <div className="card-body d-flex" id="c_course_cardbody" style={{ backgroundColor: '#126912', borderRadius: '1rem', }}>
                 HTML Programming Language
               </div>
             </Link>

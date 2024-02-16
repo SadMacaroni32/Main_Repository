@@ -18,11 +18,13 @@ import Team_D_HeaderV2 from "./Team_D_HeaderV2";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 const Team_D_View = () => {
+  // Get the location object and extract the data from the state
   const location = useLocation();
   const { data } = location.state;
+  // Construct the PDF URL based on the data received
   const pdfURL = `/PDF/${data.pdfName}`;
   console.log(location, "Props Location");
-
+  // Tooltip components for UI elements
   const [show, setShow] = useState(false);
   const [showNotification, setShowNotification] = useState(null);
   const [disableDownloadButton, setDisableDownloadButton] = useState(false);
@@ -120,9 +122,12 @@ const Team_D_View = () => {
   const downloadTooltip = (
     <Tooltip id="downloadTooltip">Download Certificate</Tooltip>
   );
-  const criteriaTooltip = <Tooltip id="criteriaTooltip">Certificate Criteria</Tooltip>;
+  const criteriaTooltip = (
+    <Tooltip id="criteriaTooltip">Certificate Criteria</Tooltip>
+  );
 
   return (
+    //for certificate view and download
     <div>
       {/* <Header /> */}
       <Team_D_HeaderV2 />
@@ -162,6 +167,7 @@ const Team_D_View = () => {
                 </Button>
               </OverlayTrigger>
             </div>
+            {/* download certificate */}
             <div className="download_View">
               <OverlayTrigger placement="top" overlay={downloadTooltip}>
                 <Button
@@ -174,7 +180,7 @@ const Team_D_View = () => {
                 </Button>
               </OverlayTrigger>
             </div>
-
+            {/* criteria view for certificate */}
             <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton className="TeamD_mdl_hdr">
                 <Modal.Title>

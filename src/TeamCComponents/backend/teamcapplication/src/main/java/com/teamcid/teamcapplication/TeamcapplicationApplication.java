@@ -1,13 +1,13 @@
-package com.teamcid.teamcartifactid;
+package com.teamcid.teamcapplication;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TeamcartifactidApplication {
+public class TeamcapplicationApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TeamcartifactidApplication.class, args);
+		SpringApplication.run(TeamcapplicationApplication.class, args);
 	}
 
 }

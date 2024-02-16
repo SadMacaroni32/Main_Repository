@@ -60,7 +60,7 @@ const ForumF = () => {
 
     // Add an event listener to the discussion title for redirection
     var discussionTitleElement = newDiscussionCard.querySelector(
-      `#discussionTitle_${Date.now()}`
+      `#discussionTitle_${Date.now()}`,
     );
     discussionTitleElement.addEventListener("click", function () {
       redirectToDiscussionDetails(discussionTitle, discussionContent);
@@ -70,12 +70,12 @@ const ForumF = () => {
     var existingDiscussions = document.getElementById("discussionPosts");
     existingDiscussions.insertBefore(
       newDiscussionCard,
-      existingDiscussions.firstChild
+      existingDiscussions.firstChild,
     );
 
     // Reset the input fields and hide the form using state-setting functions
     setDiscussionTitle("");
-    setDiscussionContent("");
+    setDiscussionContent("")
     setShowDiscussionForm(false);
 
     // Show modal and set timeout to close it after 1 second

@@ -1,101 +1,101 @@
-
+/* Styles for the navigation bar */
 .navbar {
-  background-color: #D9FFCF;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: +100;
+  background-color: #D9FFCF; /* Background color */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle effect */
+  z-index: +100; /* Sets the stacking order of the navbar */
 }
-
+/* Styles for the navbar brand logo */
 .navbar-brand img {
-  height: 50px; 
+  height: 50px; /* Height of the brand logo */
 }
 
-
+/* Styles for the navigation links */
 .navbar-nav {
-  margin-left: auto;
+  margin-left: auto; /* Aligns the navigation links to the right */
 }
 
 .nav-link {
-  text-decoration: none;
-  color: #333333;
-  font-weight: 500;
-  margin-right: 20px;
+  text-decoration: none; /* Removes underline */
+  color: #333333; /* Color of the links */
+  font-weight: 500; /* Font weight */
+  margin-right: 20px; /* Right margin between links */
 }
 
 .nav-link:hover {
-  color: #126912; 
+  color: #126912;  /* Color on hover */
 }
-
+/* Styles for buttons within the navbar */
 .btns {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 10px;
+  gap: 10px; /* Gap between buttons */
 }
 
 .login_btn{
-  background-color: #126912;
-  padding: 5px;
-  color: white;
-  border-radius: 10px;
+  background-color: #126912; /* Background color of buttons */
+  padding: 5px; /* Padding */
+  color: white; /* Text color */
+  border-radius: 10px; /* Border radius */
 }
 
 .reg_btn{
-  background-color: #126912;
-  padding: 5px;
-  color: white;
-  border-radius: 10px;
+  background-color: #126912; /* Background color of buttons */
+  padding: 5px; /* Padding */
+  color: white; /* Text color */
+  border-radius: 10px; /* Border radius */
 }
 
 .login_btn:hover{
-background-color:  #ffffff ;
-color: #126912;
-border-color: #126912;
+background-color:  #ffffff ; /* Background color on hover */
+color: #126912; /* Text color on hover */
+border-color: #126912; /* Border color on hover */
 }
 
 .reg_btn:hover{
-  background-color:  #ffffff ;
-  color: #126912;
-  border-color: #126912;
+  background-color:  #ffffff ; /* Background color on hover */
+  color: #126912; /* Text color on hover */
+  border-color: #126912; /* Border color on hover */
 }
 
 button {
-  margin-left: 20px;
-  padding: 8px 15px;
-  font-size: 14px;
+  margin-left: 20px; /* Left margin for buttons */
+  padding: 8px 15px; /* Padding for buttons */
+  font-size: 14px; /* Font size */
 }
-
+/* Media query for screens with a max-width of 768px */
 @media (max-width: 768px) {
   .navbar-nav {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 10px; /* Margin top for navigation links */
     
   }
   
   .navbar-collapse {
-    background: rgba( 217, 255, 207, 0.65 );
-    box-shadow: 0 8px 32px -5px rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 9px );
+    background: rgba( 217, 255, 207, 0.65 ); /* Background color with opacity */
+    box-shadow: 0 8px 32px -5px rgba( 31, 38, 135, 0.37 ); /* Box shadow */
+    backdrop-filter: blur( 9px ); /* Blur effect */
     /* -webkit-backdrop-filter: blur( 9px ); hidden this since the above equivalent of this are already supported in chrome/edge 2/12/24*/
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px; /* Border radius */
+    border-bottom-right-radius: 25px; /* Border radius */
   }
 
   .navbar-nav .nav-link {
     margin-right: 0;
-    margin-bottom: 10px;
+    margin-bottom: 10px; /* Margin bottom for navigation links */
   }
 
   .btns {
-    margin-top: 10px;
-    flex-direction: row;
-    font-size: 14px;
+    margin-top: 10px; /* Margin top for buttons */
+    flex-direction: row; /* Direction of flex items */
+    font-size: 14px; /* Font size for buttons */
   }
 
 
   button {
-      margin-right: 10px;
+      margin-right: 10px; /* Right margin for buttons */
   }
 
 }

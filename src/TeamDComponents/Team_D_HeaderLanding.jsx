@@ -3,8 +3,8 @@ import { Link, NavLink } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import TsukidenLogo from "../TeamDComponents/TeamD_Assets/TsukidenLogo.png";
-import "../TeamDComponents/TeamD_Css/hdrlndng.css";
+import TsukidenLogo from "./TeamD_Assets/TsukidenLogo.png";
+import "./TeamD_Css/hdrlndng.css";
 
 const Team_D_HeaderLanding = () => {
   const [expanded, setExpanded] = useState(false);
@@ -19,16 +19,29 @@ const Team_D_HeaderLanding = () => {
 
   return (
     <Navbar expand="lg">
-      <Navbar.Brand as={Link} to="/TeamCdashboard" onClick={closeNavbar}>
+      <Navbar.Brand as={Link} to="/" onClick={closeNavbar}>
         <img src={TsukidenLogo} alt="Logo" />
       </Navbar.Brand>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" onClick={handleToggle} />
+      <Navbar.Toggle
+        aria-controls="responsive-navbar-nav"
+        onClick={handleToggle}
+      />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link as={NavLink} to="/about" activeClassName="active" onClick={closeNavbar}>
+          <Nav.Link
+            as={NavLink}
+            to="/about"
+            activeClassName="active"
+            onClick={closeNavbar}
+          >
             About
           </Nav.Link>
-          <Nav.Link as={NavLink} to="/verif_nonuser" activeClassName="active" onClick={closeNavbar}>
+          <Nav.Link
+            as={NavLink}
+            to="/verif_nonuser"
+            activeClassName="active"
+            onClick={closeNavbar}
+          >
             Verification
           </Nav.Link>
         </Nav>
@@ -46,4 +59,3 @@ const Team_D_HeaderLanding = () => {
 };
 
 export default Team_D_HeaderLanding;
-

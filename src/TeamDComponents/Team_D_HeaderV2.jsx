@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "./TeamD_Css/navbar.css";
 import TsukidenLogo from "./TeamD_Assets/TsukidenLogo.png";
+import Profile from "./TeamD_Assets/profilepic.jpg";
 import Dropdown from "react-bootstrap/Dropdown";
 import { FaRegUserCircle } from "react-icons/fa";
 import { TbCertificate } from "react-icons/tb";
 import { FiLogOut } from "react-icons/fi";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import Profile from "./TeamD_Assets/profilepic.jpg";
+import ForumF from './../TeamCComponents/pages/ForumF';
 
 const Team_D_HeaderV2 = () => {
   const [clicked, setClicked] = useState(false);
@@ -19,6 +20,10 @@ const Team_D_HeaderV2 = () => {
   const closeMobileNavbar = () => {
     setClicked(false);
     setMyCourseActive(false);
+  };
+
+  const reloadPage = () => {
+    window.location.reload();
   };
 
   // Add or remove the 'no-scroll' class based on the 'clicked' state
@@ -37,11 +42,12 @@ const Team_D_HeaderV2 = () => {
   return (
     <>
       <nav className="navbar_TeamD">
-        <NavLink to="/" onClick={closeMobileNavbar}>
+        <NavLink  onClick={() => { closeMobileNavbar(); reloadPage(); }}>
           <img src={TsukidenLogo} alt="Logo" />
         </NavLink>
         <div>
           <ul id="navbar" className={clicked ? "active" : ""}>
+            {/* Profile Info */}
             <li className="profile_info">
               <span className="profile_info_con">
                 <img src={Profile} alt="Logo" />
@@ -51,6 +57,7 @@ const Team_D_HeaderV2 = () => {
                 </span>
               </span>
             </li>
+            {/* Profile Links */}
             <li className="profile_link">
               <NavLink
                 to="/profile"
@@ -66,13 +73,14 @@ const Team_D_HeaderV2 = () => {
                 activeClassName="active"
                 onClick={closeMobileNavbar}
               >
-                Certificate
+                My Certificate
               </NavLink>
             </li>
             <li className="divider"></li>
+            {/* Navigation Links */}
             <li>
               <NavLink
-                to="/TeamCdashboard"
+                to="/TeamCDashboard"
                 activeClassName="active"
                 onClick={closeMobileNavbar}
               >
@@ -86,16 +94,15 @@ const Team_D_HeaderV2 = () => {
                 menuVariant="dark"
                 className="mycourse_dd"
               >
-                <NavDropdown.Item href="/course" activeClassName="active">
+                <NavDropdown.Item href="course" activeClassName="active">
                   Program Overview
                 </NavDropdown.Item>
-                <NavDropdown.Item href="/assessment" activeClassName="active">
+                <NavDropdown.Item href="assessment" activeClassName="active">
                   Assessment
                 </NavDropdown.Item>
               </NavDropdown>
             </li>
             <li>
-              {/* this is the forum */}
               <NavLink
                 to="/ForumF"
                 activeClassName="active"
@@ -113,8 +120,19 @@ const Team_D_HeaderV2 = () => {
                 Verification
               </NavLink>
             </li>
+            {/* Log Out Link */}
+            <li className="profile_link">
+              <NavLink
+                to="/landing"
+                activeClassName="active"
+                onClick={closeMobileNavbar}
+              >
+                <span className="teamD_LogOut_Btn">Log Out</span>
+              </NavLink>
+            </li>
           </ul>
         </div>
+        {/* Mobile Menu */}
         <div id="mobile" onClick={handleClick}>
           {clicked ? (
             <i className="fas fa-times"></i>
@@ -122,6 +140,7 @@ const Team_D_HeaderV2 = () => {
             <img src={Profile} alt="Logo" className="mobile_profile" />
           )}
         </div>
+        {/* Profile Dropdown */}
         <div className="profile_side">
           <Dropdown>
             <Dropdown.Toggle
@@ -134,11 +153,8 @@ const Team_D_HeaderV2 = () => {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              <Dropdown.Item
-                as={NavLink}
-                to="/profile"
-                onClick={closeMobileNavbar}
-              >
+              {/* Profile Dropdown Items */}
+              <Dropdown.Item href="">
                 <FaRegUserCircle /> Profile
               </Dropdown.Item>
               <Dropdown.Item
@@ -148,7 +164,11 @@ const Team_D_HeaderV2 = () => {
               >
                 <TbCertificate /> My Certificate
               </Dropdown.Item>
-              <Dropdown.Item as={NavLink} to="/" onClick={closeMobileNavbar}>
+              <Dropdown.Item
+                as={NavLink}
+                to="/"
+                onClick={closeMobileNavbar}
+              >
                 <FiLogOut /> Log Out
               </Dropdown.Item>
             </Dropdown.Menu>

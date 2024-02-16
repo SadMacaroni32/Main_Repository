@@ -1,10 +1,10 @@
-package com.teamcid.teamcartifactid;
+package com.teamcid.teamcapplication;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TeamcartifactidApplicationTests {
+class TeamcapplicationApplicationTests {
 
 	@Test
 	void contextLoads() {

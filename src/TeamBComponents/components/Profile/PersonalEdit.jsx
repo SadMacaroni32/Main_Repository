@@ -230,7 +230,7 @@ const PersonalEdit = () => {
                     onMouseLeave={() => setShowTooltipContactNo(false)}
                   />
                   {showTooltipContactNo && (
-                    <div className="absolute top-[-3.5rem] left-10 bg-[#fff] w-[25%] p-1 rounded-lg border-[1px] border-[#EBFFE5]">
+                    <div className="absolute top-[-3.5rem] left-10 bg-[#fff] w-[45%] p-1 rounded-lg border-[1px] border-[#EBFFE5]">
                       <p className="text-[.8rem] text-[#4D4141] text-opacity-[53%]">
                         Must not exceed 10 digits.
                       </p>

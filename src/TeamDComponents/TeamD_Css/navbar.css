@@ -1,16 +1,16 @@
 .btns{
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 10px; /* Horizontal gap between buttons */
 }
 
 .navbar_TeamD {
     display: flex;
     align-items: center;
-    padding: 0 18.33px 0 18.33px;
-    background-color: #D9FFCF;
-    height: 69px !important;
-    justify-content: space-between;
+    padding: 0 18.33px 0 18.33px; /* Padding for the navbar */
+    background-color: #D9FFCF; /* Background color of the navbar */
+    height: 69px !important; /* Height of the navbar */
+    justify-content: space-between; /* Space between elements */
 }
 
 /* nav img {
@@ -29,22 +29,22 @@
 }
 
 #navbar li {
-    list-style: none;
-    padding: 0 20px;
-    position: relative;
+    list-style: none; /* Remove default list styles */
+    padding: 0 20px; /* Horizontal padding for navbar items */
+    position: relative; /* Positioning for dropdown menus */
 }
 
 #navbar li a {
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 600;
-    color: black;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-decoration: none; /* Remove underline from links */
+    font-size: 18px; /* Font size of navbar links */
+    font-weight: 600; /* Font weight of navbar links */
+    color: black; /* Color of navbar links */
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); /* Text shadow effect */
 }
 
 #navbar li a:hover,
 #navbar li a:active {
-    color: #126912;
+    color: #126912; /* Change color on hover or active state */
 }
 
 #navbar li a.active {
@@ -52,120 +52,120 @@
 }
 
 #mobile {
-    display: None;
+    display: None; /* Hide mobile element */
     align-items: center;
 }
 
 .profile_img {
-    border: 1.5px solid #126912;
-    border-radius: 50px;
-    width: 23px;
-    height: 23px;
+    border: 1.5px solid #126912; /* Border style for profile image */
+    border-radius: 50px; /* Border radius for profile image */
+    width: 23px; /* Width of profile image */
+    height: 23px; /* Height of profile image */
 }
 
 .mobile_profile {
-    border: 2px solid #126912;
-    border-radius: 50px;
-    width: 40px;
-    height: 40px;
+    border: 2px solid #126912; /* Border style for mobile profile */
+    border-radius: 50px; /* Border radius for mobile profile */
+    width: 40px; /* Width of mobile profile */
+    height: 40px; /* Height of mobile profile */
 }
 
 .button_profile {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    background-color: white !important;
-    color: #126912 !important;
-    font-weight: 600 !important;
+    display: flex !important; /* Make profile button flex container */
+    align-items: center; /* Align items vertically */
+    justify-content: center; /* Center items horizontally */
+    gap: 10px; /* Gap between items */
+    background-color: white !important; /* Background color of profile button */
+    color: #126912 !important; /* Text color of profile button */
+    font-weight: 600 !important; /* Font weight of profile button */
 }
 
 .dropdown-menu.show {
-    background-color: #D9FFCF;
+    background-color: #D9FFCF; /* Background color of dropdown menu */
 }
 
 
 .dropdown-menu.show {
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400 !important;
-    line-height: normal;
-    left: 0 !important;
-    transform: translateX(-50%);
+    font-size: 18px; /* Font size of dropdown menu */
+    font-style: normal; /* Font style of dropdown menu */
+    font-weight: 400 !important; /* Font weight of dropdown menu */
+    line-height: normal; /* Line height of dropdown menu */
+    left: 0 !important; /* Positioning of dropdown menu */
+    transform: translateX(-50%); /* Translate to center horizontally */
 }
 
 .dropdown-menu.show .dropdown-item {
-    text-align: start;
-    display: flex !important;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 5px;
-    margin-right: 50px;
+    text-align: start; /* Align text to the start */
+    display: flex !important; /* Make dropdown items flex container */
+    align-items: center; /* Align items vertically */
+    justify-content: flex-start; /* Align items to the start */
+    gap: 5px; /* Gap between items */
+    margin-right: 50px; /* Right margin of dropdown items */
 }
 
 .profile_side .dropdown-menu.show .dropdown-item:last-child {
-    color:#BF3131 !important;
+    color:#BF3131 !important; /* Color of last dropdown item */
 }
 
 .profile_side  .dropdown-menu.show .dropdown-item:last-child:hover,
 .profile_side  .dropdown-menu.show .dropdown-item:last-child:active {
-    color:#fd0f0f !important;
+    color:#fd0f0f !important; /* Color of last dropdown item on hover or active state */
 }
 
 .dropdown-menu.show .dropdown-item:hover {
-    background-color: transparent;
-    color: #126912 !important;
+    background-color: transparent; /* Background color on hover */
+    color: #126912 !important; /* Text color on hover */
 }
 
 .dropdown-menu.show .dropdown-item.active {
-    background-color: transparent;
-    color: #126912 !important;
+    background-color: transparent; /* Background color of active item */
+    color: #126912 !important; /* Text color of active item */
 }
 
 .profile_info {
-    display: none;
+    display: none; /* Hide profile information by default */
 }
 
 .profile_link {
-    display: none;
+    display: none; /* Hide profile link by default */
 }
 
-
+/* Media query for screens with a max-width of 769px */
 @media screen and (max-width: 769px) {
     .navbar_TeamD {
-        justify-content: space-between;
+        justify-content: space-between; /* Adjust alignment of navbar items */
     }
     #navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        position: fixed;
-        top: 70px;
-        right: -350px;
-        width: 330px;
-        height: 100vh;
-        padding: 40px 0  0 10px;
-        background: rgba( 217, 255, 207, 0.65 );
-        box-shadow: 0 8px 32px -8px rgba( 31, 38, 135, 0.37 );
-        backdrop-filter: blur( 9px );
+        flex-direction: column; /* Change flex direction to column */
+        align-items: flex-start; /* Align items to the start */
+        justify-content: flex-start; /* Align content to the start */
+        position: fixed; /* Position fixed for navbar */
+        top: 70px; /* Distance from the top */
+        right: -350px; /* Position from the right */
+        width: 330px; /* Width of navbar */
+        height: 100vh; /* Full height of viewport */
+        padding: 40px 0  0 10px; /* Padding */
+        background: rgba( 217, 255, 207, 0.65 ); /* Background color */
+        box-shadow: 0 8px 32px -8px rgba( 31, 38, 135, 0.37 ); /* Box shadow */
+        backdrop-filter: blur( 9px ); /* Blur effect */
     /* -webkit-backdrop-filter: blur( 9px ); hidden this since the above equivalent of this are already supported in chrome/edge 2/12/24*/
-        border-bottom-left-radius: 25px;
-        border-bottom-right-radius: 25px;
-        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        border-bottom-left-radius: 25px; /* Border radius */
+        border-bottom-right-radius: 25px; /* Border radius */
+        border: 1px solid rgba( 255, 255, 255, 0.18 ); /* Border color */
         z-index: 1000;
     }
 
     #navbar.active {
-        right: 0;
+        right: 0; /* Show navbar when active */
     }
 
     #navbar li {
-        margin-bottom: 25px;
+        margin-bottom: 25px; /* Margin between navbar items */
     }
 
     #navbar li a:hover,
     #navbar li a:active {
-        color: #126912;
+        color: #126912; /* Color on hover or active state */
     }
 
     #navbar li a.active {
@@ -174,63 +174,63 @@
     }
 
     #mobile {
-        display: block;
-        color: white;
+        display: block; /* Show mobile element */
+        color: white; /* Text color */
     }
 
     #mobile i {
-        font-size: 24px;
-        cursor: pointer;
-        color: #126912;
+        font-size: 24px; /* Font size */
+        cursor: pointer; /* Cursor type */
+        color: #126912; /* Icon color */
     }
 
     .profile_side {
-        display: none;
+        display: none; /* Hide profile side by default */
     }
 
     .mycourse_dd .dropdown-toggle.show {
-        margin-bottom: 50px;
+        margin-bottom: 50px; /* Margin for dropdown menu */
     }
-
+    /* Styles for profile information */
     .profile_info {
-        display: block;
-        width: 100%;
-        background-color: #BCE8B1;
-        padding: 10px !important;
-        border-radius: 25px;
-        margin-bottom: 10px !important;
+        display: block; /* Show profile information */
+        width: 100%; /* Full width */
+        background-color: #BCE8B1; /* Background color */
+        padding: 10px !important; /* Padding */
+        border-radius: 25px; /* Border radius */
+        margin-bottom: 10px !important; /* Margin bottom */
         /* text-shadow: transparent !important; this is non standard*/
         text-shadow: 0 0 5px rgba(0, 0, 0, 0)!important; /* Transparent shadow current standard 2/12/24*/
     }
     .profile_info img {
-        border: 2px solid #126912;
-        border-radius: 50px;
-        width: 50px;
-        height: 50px;
+        border: 2px solid #126912; /* Border style */
+        border-radius: 50px; /* Border radius */
+        width: 50px; /* Width of profile image */
+        height: 50px; /* Height of profile image */
     }
 
    .profile_info_con {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
+        display: flex; /* Flex container */
+        justify-content: center; /* Center items horizontally */
+        align-items: center; /* Center items vertically */
+        gap: 20px; /* Gap between items */
     }
 
     .profile_info_name {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        line-height: 5px;
-        gap: 10px;
+        display: flex; /* Flex container */
+        flex-direction: column; /* Column direction */
+        justify-content: center; /* Center items vertically */
+        align-items: flex-start; /* Align items to the start */
+        line-height: 5px; /* Line height */
+        gap: 10px; /* Gap between items */
     }
 
     .profile_info_name p {
-        margin: 5px;
+        margin: 5px; /* Margin for paragraphs */
     }
 
     .profile_info_name .profile_fName {
-        font-weight: 600;
+        font-weight: 600; /* Font weight */
     }
 
     .profile_info_name .profile_email {
@@ -248,11 +248,11 @@
         height: 2px;
         background-color: #0e3b03; /* Adjust the color of the divider as needed */
         margin: 0 auto; /* Adjust the margin as needed for spacing */
-        margin-bottom: 20px;
-        width: 80%;
+        margin-bottom: 20px; /* Bottom margin */
+        width: 80%; /* Width of divider */
       }
 
       .profile_link {
-        display: block;
+        display: block; /* Show profile link */
     }
 }

@@ -1,71 +1,72 @@
+/* Styles for the verification container */
 .verification_container {
-    padding: 15px 75px 0 75px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 60px;
+    padding: 15px 75px 0 75px; /* Padding for the container */
+    display: flex; /* Display as flex container */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+    flex-direction: column; /* Arrange items in a column */
+    gap: 60px; /* Spacing between children */
 }
-
+/* Additional styles for the verification container */
 .verification_container {
-    position: relative;
+    position: relative; /* Positioning context for children */
   }
-  
+  /* Styles for the title, search, and table within the verification container */
   .verification_title,
   .verification_search,
   .verification_table {
-    position: absolute;
-    width: 100%;
+    position: absolute; /* Positioning for these elements */
+    width: 100%; /* Full width */
   }
-  
+  /* Styles for the title within the verification container */
   .verification_title {
-    top: 0;
+    top: 0; /* Positioned at the top */
     background-color: #BCE8B1; /* Set your desired background color */
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding-top: 15px;
-    height: 191px;
+    display: flex; /* Display as flex container */
+    align-items: flex-start; /* Align items to the start */
+    justify-content: center; /* Center items horizontally */
+    padding-top: 15px; /* Top padding */
+    height: 191px; /* Fixed height */
   }
-
+/* Styles for the search section within the verification container */
 .verification_search {
-    bottom: -360px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 75%;
-    height: 285px;
-    border-radius: 15px;
+    bottom: -360px; /* Positioned at the bottom */
+    display: flex; /* Display as flex container */
+    flex-direction: row; /* Arrange items in a row */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+    width: 75%; /* Set width */
+    height: 285px; /* Fixed height */
+    border-radius: 15px; /* Rounded corners */
 }
-
+/* Styles for the left side of the search section */
 .left {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    flex-direction: column;
-    background-color: #fff;
-    padding: 30px;
-    width: 50%;
-    height: 100%;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
+    display: flex; /* Display as flex container */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+    gap: 30px; /* Spacing between children */
+    flex-direction: column; /* Arrange items in a column */
+    background-color: #fff; /* Background color */
+    padding: 30px; /* Padding */
+    width: 50%; /* Set width */
+    height: 100%; /* Full height */
+    border-top-left-radius: 15px; /* Rounded top-left corner */
+    border-bottom-left-radius: 15px; /* Rounded bottom-left corner */
 }
-
+/* Styles for the right side of the search section */
 .right {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex-direction: column;
-    background-color: #0E3B03;
-    padding: 30px;
-    width: 50%;
-    height: 100%;
-    color: #fff;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
+    display: flex; /* Display as flex container */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+    gap: 10px; /* Spacing between children */
+    flex-direction: column; /* Arrange items in a column */
+    background-color: #0E3B03; /* Background color */
+    padding: 30px; /* Padding */
+    width: 50%; /* Set width */
+    height: 100%; /* Full height */
+    color: #fff; /* Text color */
+    border-top-right-radius: 15px; /* Rounded top-right corner */
+    border-bottom-right-radius: 15px; /* Rounded bottom-right corner */
 }
 /* added background color for several labels */
 .right .nameVerification .form-control:focus{
@@ -74,20 +75,21 @@
 .right .serialVerification .form-control:focus{
     background-color: #fff;
 }
+/* Styles for the name verification section */
 .nameVerification {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    width: 75%;
+    display: flex; /* Display as flex container */
+    flex-direction: column; /* Arrange items in a column */
+    justify-content: center; /* Center items vertically */
+    align-items: flex-start; /* Align items to the start */
+    width: 75%; /* Set width */
 }
-
+/* Styles for the serial verification section */
 .serialVerification {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    width: 75%;
+    display: flex; /* Display as flex container */
+    flex-direction: column; /* Arrange items in a column */
+    justify-content: center; /* Center items vertically */
+    align-items: flex-start; /* Align items to the start */
+    width: 75%; /* Set width */
     
 }
 /* added background color 2/5/24 */
@@ -172,29 +174,30 @@
         height: 20px;
     } 
   }
-
+  /* Media query for medium-sized screens */
   @media only screen and (max-width: 768px) and (min-width: 425px) {
+    /* Adjustments for the search section */
     .verification_search {
-        bottom: -405px;
-        flex-direction: column;
-        width: 100%;
+        bottom: -405px; /* Adjusted position */
+        flex-direction: column; /* Arrange items in a column */
+        width: 100%; /* Full width */
     }
-
+    /* Adjustments for the left side of the search section */
     .verification_search .left {
-        width: 75%;
-        border-bottom-left-radius: 0;
-        border-top-right-radius: 15px;
-        gap: 10px;
+        width: 75%; /* Set width */
+        border-bottom-left-radius: 0; /* Remove border radius */
+        border-top-right-radius: 15px; /* Rounded top-right corner */
+        gap: 10px; /* Spacing between children */
     }
-
+    /* Adjustments for the right side of the search section */
     .verification_search .right {
-        width: 75%;
-        border-top-right-radius: 0;
-        border-bottom-left-radius: 15px;
-        justify-content: center;
-        align-items: center;
+        width: 75%; /* Set width */
+        border-top-right-radius: 0; /* Remove border radius */
+        border-bottom-left-radius: 15px; /* Rounded bottom-left corner */
+        justify-content: center; /* Center items horizontally */
+        align-items: center; /* Center items vertically */
     }
-
+    /* Adjustments for labels and inputs */
     .verification_search .right .form-label {
         font-size: 12px;
     }
@@ -204,13 +207,13 @@
     }
 
     .verification_search h2 {
-        font-size: 18px;
-        gap: 15px;
+        font-size: 18px; /* Font size */
+        gap: 15px; /* Spacing between elements */
     }
 
     .verification_search .left .form-control {
-        width: 100%;
-        height: 20px;
+        width: 100%; /* Full width */
+        height: 20px; /* Spacing between elements */
     }
 
   }
@@ -227,13 +230,14 @@
   .verification_container .right .error-message img {
     width: 20%;
   }
-
+  /* Media query for large-sized screens */
   @media only screen and (max-width: 1024px) and (min-width: 769px) {
+    /* Adjustments for font size */
     .verification_search .left h2 {
         font-size: 23px;
     }
   }
-
+  /* Media query for extra-large screens */
   @media only screen and (max-width: 1439px) and (min-width: 1025px) {
     .verification_search .left h2 {
         font-size: 28px;

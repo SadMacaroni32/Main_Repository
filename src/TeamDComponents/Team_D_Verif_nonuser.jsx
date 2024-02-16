@@ -1,15 +1,12 @@
 import React, { useState } from "react";
-import "../TeamDComponents/TeamD_Css/verification.css";
+import "./TeamD_Css/verification.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { AiFillSafetyCertificate } from "react-icons/ai";
-import warningErr from "../TeamDComponents/TeamD_Assets/icons8-warning-96.png";
+import warningErr from "./TeamD_Assets/icons8-warning-96.png";
 import Team_D_HeaderLanding from "./Team_D_HeaderLanding";
-import Verification from './../TeamAComponents/components/Verification';
-import "../TeamAComponents/styles/Auth.css";
-import { Link } from "react-router-dom";
 
-const Team_D_Verif_nonuser = () => {
+const Team_D_Verification = () => {
   const [code, setCode] = useState("");
   const [verificationResult, setVerificationResult] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -19,9 +16,8 @@ const Team_D_Verif_nonuser = () => {
   const handleVerify = async () => {
     setLoading(true);
     try {
-      // Replace the URL with your actual API endpoint
       const response = await fetch(
-        `http://localhost:8080/api/certifications/verifyCertificate/${code}`
+        `http://localhost:8080/api/verifications/verifyCertificate/${code}`
       );
       if (response.ok) {
         const data = await response.json();
@@ -60,43 +56,17 @@ const Team_D_Verif_nonuser = () => {
       setLoading(false);
     }
   };
-
   return (
     <div>
-      <nav className="my-navigation">
-        <Link to='/'>
-        <img src="..\src\assets\TeamAassets\companyLogo.png" alt="Logo" />
-        </Link>
-        <ul className="menu-hide">
-          <li>
-            <a href="/verif_nonuser">Verification</a>
-          </li>
-          <li>
-            <a href="About">About us</a>
-          </li>
-          <li>
-          <a href="https://www.tsukiden.com.ph">Contact us</a>
-          </li>
-        
-        </ul>
-        <div className="testing">
-          <Link to="/register">
-            <button id="register">Register</button>
-          </Link>
-          <Link to="/login">
-            <button id="login">Log In</button>
-          </Link>
-        </div>
-      </nav>
+      <Team_D_HeaderLanding />
       <section className="verification_container">
         <div className="verification_title">
           <span></span>
         </div>
         <div className="verification_search">
           <div className="left">
-            {/* added back text weight 2/6/24 */}
-          <div className="font-bold text-[2rem]">
-            <h2>Verify Course Certificate</h2>
+            <div className="font-bold text-[2rem]">
+              <h2>Verify Course Certificate</h2>
             </div>
             <Form.Control
               size="sm"
@@ -104,18 +74,22 @@ const Team_D_Verif_nonuser = () => {
               placeholder="Enter Serial Number"
               value={code}
               onClick={() => {
-                setCode("B55-");
-                setIsValidSerial(false);
+                // Append "B55-" only if the input is empty
+                if (!code) {
+                  setCode("B55-");
+                  setIsValidSerial(false); // Reset isValidSerial on input click
+                }
               }}
               onChange={(e) => {
                 const inputValue = e.target.value
                   .toUpperCase()
-                  .substring(0, 18);
+                  .substring(0, 18); // Limit to 18 characters
                 setCode(inputValue);
-                setIsValidSerial(false);
+                setIsValidSerial(false); // Reset isValidSerial on input change
               }}
               onKeyPress={(e) => {
                 if (e.key === "Enter") {
+                  // Handle the "Enter" key press, e.g., trigger the verification function
                   handleVerify();
                 }
               }}
@@ -125,12 +99,12 @@ const Team_D_Verif_nonuser = () => {
                   : errorMessage
                   ? "#ff0000"
                   : "#ced4da",
-                borderWidth: "1.5px",
+                borderWidth: "1.5px", // Adjust the border width as needed
                 color: isValidSerial
                   ? "#28a745"
                   : errorMessage
                   ? "#ff0000"
-                  : "inherit"
+                  : "inherit", // Set font color to green when certified
               }}
             />
             <Button
@@ -143,45 +117,72 @@ const Team_D_Verif_nonuser = () => {
             </Button>
           </div>
           <div className="right">
-            {!loading && !errorMessage && (
+            {!loading && (
               <>
-                <div className="nameVerification">
-                  <Form.Label>Name</Form.Label>
-                  <Form.Control
-                    size="sm"
-                    type="text"
-                    placeholder={verificationResult ? verificationResult[0].full_name : ""}
-                    readOnly
-                  />
-                </div>
-                <div className="serialVerification">
-                  <div className="flex gap-x-2">
-                    Certificate Serial No.
-                    <AiFillSafetyCertificate className="icon" />
+                {/* Only render the first set of input boxes if verificationResult doesn't exist */}
+                {!verificationResult && !errorMessage && (
+                  <>
+                    <div className="nameVerification">
+                      <Form.Label>Name</Form.Label>
+                      <Form.Control size="sm" type="text" readOnly />
+                    </div>
+                    <div className="serialVerification">
+                      <Form.Label>
+                        Certificate Serial No.{" "}
+                        <AiFillSafetyCertificate className="icon" />
+                      </Form.Label>
+                      <Form.Control size="sm" type="text" readOnly />
+                    </div>
+                    <div className="serialVerification">
+                      <Form.Label>Course Certified</Form.Label>
+                      <Form.Control size="sm" type="text" readOnly />
+                    </div>
+                  </>
+                )}
+                {/* Render the second set of input boxes if verificationResult exists */}
+                {verificationResult && verificationResult.length > 0 && (
+                  <>
+                    <div className="nameVerification">
+                      <Form.Label>Name</Form.Label>
+                      <Form.Control
+                        size="sm"
+                        type="text"
+                        placeholder={verificationResult[0].full_name}
+                        readOnly
+                      />
+                    </div>
+                    <div className="serialVerification">
+                      <Form.Label>
+                        <div className="flex gap-x-2">
+                          Certificate Serial No.
+                          <AiFillSafetyCertificate className="icon" />
+                        </div>
+                      </Form.Label>
+                      <Form.Control
+                        size="sm"
+                        type="text"
+                        placeholder={verificationResult[0].serial_no}
+                        readOnly
+                      />
+                    </div>
+                    <div className="serialVerification">
+                      <Form.Label>Course Certified</Form.Label>
+                      <Form.Control
+                        size="sm"
+                        type="text"
+                        placeholder={verificationResult[0].course_title}
+                        readOnly
+                      />
+                    </div>
+                  </>
+                )}
+                {errorMessage && (
+                  <div className="error-message">
+                    <img src={warningErr} alt="warningErr" />
+                    {errorMessage}
                   </div>
-                  <Form.Control
-                    size="sm"
-                    type="text"
-                    placeholder={verificationResult ? verificationResult[0].serial_no : ""}
-                    readOnly
-                  />
-                </div>
-                <div className="serialVerification">
-                  <Form.Label>Course Certified</Form.Label>
-                  <Form.Control
-                    size="sm"
-                    type="text"
-                    placeholder={verificationResult ? verificationResult[0].course_title : ""}
-                    readOnly
-                  />
-                </div>
+                )}
               </>
-            )}
-            {errorMessage && (
-              <div className="error-message">
-                <img src={warningErr} alt="warningErr" />
-                {errorMessage}
-              </div>
             )}
           </div>
         </div>
@@ -190,4 +191,4 @@ const Team_D_Verif_nonuser = () => {
   );
 };
 
-export default Team_D_Verif_nonuser;
+export default Team_D_Verification;

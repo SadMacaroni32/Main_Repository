@@ -30,7 +30,7 @@ function getUserImageType(profilePicture) {
 }
 
 
-const Profile  = ({ handleClose, handleEditClick }) => {
+const Profile  = ({ handleClose, handleEditClick, handlePasswordChangeClick }) => {
 
   const { isLoggedIn, handleLogout } = useAuth();
   const [userData, setUserData] = useState({});
@@ -133,8 +133,8 @@ const Profile  = ({ handleClose, handleEditClick }) => {
             <Link to="#">
               <button onClick={handleEditClick} className="Prof1-Editbuttons">Edit</button>
             </Link>
-            <Link to="/change">
-              <button className="Prof1-ChangeButton">Change Password</button>
+            <Link to="#">
+              <button onClick={handlePasswordChangeClick} className="Prof1-ChangeButton">Change Password</button>
             </Link>
           </div>
         </div>
