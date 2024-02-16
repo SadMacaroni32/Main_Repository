@@ -6,6 +6,7 @@ import { AiFillSafetyCertificate } from "react-icons/ai";
 import Team_D_HeaderV2 from "./Team_D_HeaderV2";
 import warningErr from "../TeamDComponents/TeamD_Assets/icons8-warning-96.png"
 
+// Team_D_Verification component represents the verification page
 const Team_D_Verification = () => {
   const [code, setCode] = useState("");
   const [verificationResult, setVerificationResult] = useState(null);
@@ -13,6 +14,7 @@ const Team_D_Verification = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isValidSerial, setIsValidSerial] = useState(false);
 
+  // Function to handle verification of the certificate
   const handleVerify = async () => {
     setLoading(true);
     try {
@@ -57,6 +59,7 @@ const Team_D_Verification = () => {
     }
   };
   return (
+    //verification for users
     <div>
       <Team_D_HeaderV2 />
       <section className="verification_container">

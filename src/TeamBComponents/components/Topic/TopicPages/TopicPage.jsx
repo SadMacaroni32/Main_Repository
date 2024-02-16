@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 //2/2/2024 junite, develop edit page
 //2/3/2024 junite, continuation of development, completed
+//2/13-15/2024 junite, API Functionalities
 
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -34,9 +35,7 @@ const TopicPage = () => {
 
   const loadChapters = async () => {
     try {
-      const result = await axios.get(
-       `http://localhost:8080/api/courses/${id}`
-      );
+      const result = await axios.get(`http://localhost:8080/api/courses/${id}`);
 
       // Ensure that result.data is always an array by converting it
       const coursesArray = Array.isArray(result.data)
@@ -47,7 +46,6 @@ const TopicPage = () => {
       console.error("Error loading chapters:", error);
     }
   };
-
 
   //delete modal state
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
@@ -80,6 +78,12 @@ const TopicPage = () => {
     setShowAddTopic(false);
   };
 
+  const [editTopicId, setEditTopicId] = useState(null);
+
+  const deleteTopic = async (topic_id) => {
+    await axios.delete(`http://localhost:8080/api/topics/${topic_id}`);
+  };
+
   return (
     <>
       <Nav />
@@ -103,32 +107,38 @@ const TopicPage = () => {
                 Description
               </p>
             </div>
-            <div>
+            <div className="h-[40vh] overflow-auto TeamB_no-scrollbar pr-3">
               {courses.map((course, idx) => {
                 const { chapter } = course;
                 return (
                   <div key={idx}>
                     {chapter.map((chap, idx) => {
                       const { topic } = chap;
-                      console.log(topic)
+                      console.log(chap);
                       return (
                         <div key={idx}>
                           {topic.map((tops, idx) => {
-                            const { topic_title } = tops;
+                            const { topic_title, topic_id } = tops;
                             console.log(tops);
                             return (
                               <div key={idx}>
                                 <div className="flex items-center justify-between">
                                   <p
-                                    className="cursor-pointer py-2 font-light text-white TeamB_text-shadow text-[1.2rem] 2xl:text-[32px]"
-                                    onClick={showEditHandle}>
-                                    Topic 1: Title
+                                    className=" line-clamp-1 cursor-pointer py-1 font-light text-white TeamB_text-shadow  text-[1.2rem] 2xl:text-[32px]"
+                                    onClick={() => {
+                                      showEditHandle();
+                                      setEditTopicId(topic_id);
+                                    }}>
+                                    {topic_title}
                                   </p>
+                                 
                                   <span
                                     className="text-[1.5rem] text-white cursor-pointer"
-                                    onClick={() =>
-                                      setDeleteModalVisible((prev) => !prev)
-                                    }>
+                                    onClick={() => {
+                                    //  setDeleteModalVisible((prev) => !prev);
+                                      deleteTopic(topic_id);
+                                    }}>
+                                    
                                     <MdDelete />
                                   </span>
                                 </div>
@@ -143,9 +153,7 @@ const TopicPage = () => {
               })}
             </div>
 
-            <div
-              className="flex items-center h-[30%] mt-20 "
-              onClick={showAddHandle}>
+            <div className="flex items-center h-[30%] " onClick={showAddHandle}>
               <div className="text-white text-[2.5rem] pr-2 cursor-pointer">
                 <IoIosAddCircle />
               </div>
@@ -165,9 +173,88 @@ const TopicPage = () => {
             </div>
           </div>
         )}
-        {showCourseDescription && <CourseDescription />}
-        {showAddTopic && <AddTopic />}
-        {showEditTopic && <EditTopic />}
+        <div className="w-[100%]">
+          <div className="">
+            <div>
+              {showCourseDescription && (
+                <div className="">
+                  {courses.map((course, idx) => {
+                    const { course_id } = course;
+                    return (
+                      <div key={idx}>
+                        <CourseDescription courseId={course_id} />
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="">
+            {showAddTopic && (
+              <div className="">
+                {courses.map((course, idx) => {
+                  const { chapter, course_title } = course;
+                  console.log(course_title);
+                  return (
+                    <div key={idx}>
+                      {chapter.map((chap, idx) => {
+                        const { chapter_id, chapter_title } = chap;
+                        console.log(chap);
+                        return (
+                          <div key={idx}>
+                            <AddTopic
+                              chapterId={chapter_id}
+                              courseTitle={course_title}
+                              chapterTitle={chapter_title}
+                            />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+          <div className="">
+            {showEditTopic && (
+              <div className="">
+                {courses.map((course, idx) => {
+                  const { chapter, course_title } = course;
+                  console.log(course_title);
+                  return (
+                    <div key={idx}>
+                      {chapter.map((chap, idx) => {
+                        const { topic, chapter_title, chapter_id } = chap;
+                        return (
+                          <div key={idx}>
+                            {topic.map((topic, idx) => {
+                              const { topic_description, topic_id } = topic;
+                              console.log(topic_description);
+                              return (
+                                <div key={idx}>
+                                  {showEditTopic &&
+                                    editTopicId === topic_id && (
+                                      <EditTopic
+                                        topicId={topic_id}
+                                        courseTitle={course_title}
+                                        chapterTitle={chapter_title}
+                                      />
+                                    )}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </>
   );

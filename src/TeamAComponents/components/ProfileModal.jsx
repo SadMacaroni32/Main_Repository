@@ -2,16 +2,23 @@ import React, { useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import Profile from './Profile';
 import ProfileEdit from './ProfileEdit';
+import ChangePassword from './ChangePassword';
 
 const ProfileModal = ({ showModal, handleClose }) => {
   const [isEditModal, setIsEditModal] = useState(false);
+  const [isChangePasswordModal, setIsChangePasswordModal] = useState(false); // New state for ChangePassword modal
 
   const handleToggleEditModal = () => {
     setIsEditModal((prevIsEditModal) => !prevIsEditModal);
   };
 
+  const handleToggleChangePasswordModal = () => {
+    setIsChangePasswordModal((prevIsChangePasswordModal) => !prevIsChangePasswordModal);
+  };
+
   const handleModalHide = () => {
     setIsEditModal(false);
+    setIsChangePasswordModal(false); // Hide ChangePassword modal when closing
   };
 
   const customModalStyles = {
@@ -44,8 +51,14 @@ const ProfileModal = ({ showModal, handleClose }) => {
         <div style={customModalStyles.modalContent} onClick={(e) => e.stopPropagation()}>
           {isEditModal ? (
             <ProfileEdit handleClose={handleModalHide} />
+          ) : isChangePasswordModal ? (
+            <ChangePassword handleClose={handleModalHide} />
           ) : (
-            <Profile handleClose={handleClose} handleEditClick={handleToggleEditModal} />
+            <Profile
+              handleClose={handleClose}
+              handleEditClick={handleToggleEditModal}
+              handlePasswordChangeClick={handleToggleChangePasswordModal} // New handler for ChangePassword
+            />
           )}
         </div>
       </div>

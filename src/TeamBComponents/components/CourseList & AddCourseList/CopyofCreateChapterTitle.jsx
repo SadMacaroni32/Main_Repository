@@ -5,8 +5,6 @@
 import { useContext, useState } from "react";
 import axios from "axios";
 
-//import course context
-// import { ChapterContext } from "../context/ChapterContext";
 
 const CopyofCreateChapterTitle = ({ courseId, showModal }) => {
   //state for handling course data
@@ -16,9 +14,7 @@ const CopyofCreateChapterTitle = ({ courseId, showModal }) => {
 
 
 
-  //get showcreatecourse hook in coursecontext
-  // const { showCreateChapter, setShowCreateChapter } = useContext(ChapterContext);
-
+ 
   //destructu course
   const { chapter_title } = chapter;
 
@@ -26,29 +22,7 @@ const CopyofCreateChapterTitle = ({ courseId, showModal }) => {
     setChapter({ ...chapter, [e.target.name]: e.target.value });
   };
 
-  // const handleInputChange = (e, /*chapterIndex*/) => {
-  //   const { name, value } = e.target;
 
-  //   // let capitalizedValue = value;
-
-  //   // if (name.startsWith("chapter_title")) {
-  //   //   const updatedChap = [...chap];
-  //   //   updatedChap[chapterIndex] = {
-  //   //     ...updatedChap[chapterIndex],
-  //   //     chapter_title: value.charAt(0).toUpperCase() + value.slice(1),
-  //   //   };
-  //   //   setChapter((prevChapter) => ({
-  //   //     ...prevChapter,
-  //   //     chapters: updatedChap,
-  //   //   }));
-  //   // } else {
-  //   //   capitalizedValue = value.charAt(0).toUpperCase() + value.slice(1);
-  //   //   setChapter((prevChapter) => ({
-  //   //     ...prevChapter,
-  //   //     [name]: capitalizedValue,
-  //   //   }));
-  //   // }
-  // };
 
   const handleSubmit = async (e) => {
     // Assuming your API call is successful, update the state to indicate form submission

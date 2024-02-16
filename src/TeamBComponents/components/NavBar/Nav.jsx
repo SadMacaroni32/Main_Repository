@@ -18,6 +18,8 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 import { NavBarContext } from "../context/NavBarContext";
 
+
+
 const Nav = () => {
   const {
     header,
@@ -55,7 +57,7 @@ const Nav = () => {
             />
             {/* January 30, 2024 - Cedrick - Fixed the style of the nav bar according to the design of team D */}
           </Link>
-          <div className="hidden lg:flex lg:items-end xl:w-[300px] lg:pl-10 lg:min-w-[280px] lg:justify-between">
+          <div className="hidden lg:flex lg:items-end xl:w-[300px] lg:pl-10 lg:min-w-[280px] lg:justify-between gap-5">
             {/* 1/11/2024 */}
             <Link to="/teambdashboard" onClick={showDashBoard}>
               <ul
@@ -66,6 +68,7 @@ const Nav = () => {
                 }>
                 Dashboard
               </ul>
+          
             </Link>
             <Link to="/teambcourselist" onClick={showCourseList}>
               <ul
@@ -75,6 +78,17 @@ const Nav = () => {
                     : "font-bold TeamB_text-shadow   p-1  hover:text-[#116211] hover:bg-opacity-[50%] hover:font-semibold transition-all"
                 }>
                 Course List
+              </ul>
+           
+            </Link>
+            <Link to="/ForumF">
+              <ul
+                className={
+                  dashBoardShow
+                    ? "font-semibold text-[#116211] text-center p-1 TeamB_text-shadow   transition-all"
+                    : "font-bold TeamB_text-shadow   p-1  hover:text-[#116211] transition-all hover:bg-opacity-[50%] hover:font-semibold "
+                }>
+                Forums
               </ul>
             </Link>
           </div>
@@ -86,7 +100,7 @@ const Nav = () => {
             {/* 01/31/2024 - Cedrick - Adjusted the design of nav bar and changed the picture in the profile */}
             {show && <NavSideBar />}
           </div>
-          <div className="drop-shadow-lg shadow-lg  bg-[#ffffff] cursor-pointer lg:text-[1rem] lg:w-[15vw] 2xl:w-[193px] h-[7vh] rounded-md ml-auto hidden border-lime-900 border-[.1rem] lg:flex justify-between items-center p-1 text-[#126912]">
+          <div className="drop-shadow-lg shadow-lg  bg-[#ffffff] absolute right-3 cursor-pointer lg:text-[1rem] lg:w-[15vw] 2xl:w-[193px] h-[7vh] rounded-md ml-auto hidden border-lime-900 border-[.1rem] lg:flex justify-between items-center p-1 text-[#126912]">
             <img
               src={profileLogo}
               alt=""
@@ -96,7 +110,7 @@ const Nav = () => {
             <p
               onClick={() => setShowDropDown((prev) => !prev)}
               className="  text-[2.5vh]">
-              Hi, JMacaballes!
+              Hi, JMacabales!
             </p>
             <span
               onClick={() => setShowDropDown((prev) => !prev)}
@@ -113,7 +127,7 @@ const Nav = () => {
                     className={
                       profileShow
                         ? showDropDown
-                          ? " text-[#116211] rounded-md text-start p-1 transition-all bg-[#D9FFCF]  text-center p-1-shadow  "
+                          ? " text-[#116211] rounded-md text-start p-1 transition-all bg-[#D9FFCF]  text-left p-1-shadow  "
                           : ""
                         : showDropDown
                         ? " text-[#000000] rounded-md text-start p-1  hover:text-[#116211]"
@@ -132,7 +146,7 @@ const Nav = () => {
                     className={
                       profileShow
                         ? showDropDown
-                          ? " text-red-600 hover:text-red-500 text-start transition-all rounded-md text-center p-1  hover:bg-opacity-[50%] "
+                          ? " text-red-600 hover:text-red-500 text-start transition-all rounded-md text-left p-1  hover:bg-opacity-[50%] "
                           : ""
                         : showDropDown
                         ? " text-red-600 rounded-md text-start p-1 bg-[#D9FFCF]  hover:text-red-500"

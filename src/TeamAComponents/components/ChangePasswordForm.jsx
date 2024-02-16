@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 
-function ChangePasswordForm() {
+const ChangePasswordForm = ({ handleClose }) => {
   const navigate = useNavigate();
 
 
@@ -18,6 +19,44 @@ function ChangePasswordForm() {
     const [error, setError] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
+
+    useEffect(() => {
+      // Fetch user data from your backend API
+      const fetchUserData = async () => {
+        try {
+          // Get user ID from local storage
+          const userId = localStorage.getItem('userId');
+  
+          if (!userId) {
+            console.error('User ID not found in local storage');
+            // Handle this case, for example, redirect the user to login
+            return;
+          }
+  
+          const response = await fetch(`http://localhost:8085/api/v1/auth/users/${userId}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+  
+          if (response.ok) {
+            const userData = await response.json();
+            // Set the email in the state or other relevant fields
+            setEmail(userData.email);
+          } else {
+            console.error('Failed to fetch user data', response.status, response.statusText);
+            // Handle this error as needed
+          }
+        } catch (error) {
+          console.error('Unexpected error during user data fetch', error);
+          // Handle unexpected errors
+        }
+      };
+  
+      fetchUserData();
+    }, []);
+    
     const handleFormSubmit = (e) => {
         e.preventDefault();
     
@@ -41,26 +80,15 @@ function ChangePasswordForm() {
         setNewPassword('');
         setConfirmPassword('');
         setError('');
+        handleClose();
       };
+
+      const handleCancel = () => {
+        handleClose();
+      }
     
       return (
         <div className="Change-wrapper">
-           <Link onClick={goBack}>
-        <button className="Change-Backbutton">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            className="bi bi-arrow-left"
-            viewBox="0 0 16 16">
-            <path
-              fill-rule="evenodd"
-              d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"
-            />
-          </svg>
-        </button>
-      </Link>
           <div className="Change-left">
             <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
                 <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z"/>
@@ -121,8 +149,8 @@ function ChangePasswordForm() {
                 <button  className="submit-button" onClick={handleFormSubmit}>
                   Save
                 </button>
-                <Link to="/profile">
-                  <button className="cancel-button">Cancel</button>
+                <Link to="#">
+                  <button onClick={handleCancel} className="cancel-button">Cancel</button>
                 </Link>
               </div>
             </div>

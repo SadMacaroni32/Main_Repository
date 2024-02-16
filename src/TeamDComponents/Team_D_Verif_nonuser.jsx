@@ -9,6 +9,7 @@ import Verification from './../TeamAComponents/components/Verification';
 import "../TeamAComponents/styles/Auth.css";
 import { Link } from "react-router-dom";
 
+// Team_D_Verif_nonuser component represents the verification page for non-users
 const Team_D_Verif_nonuser = () => {
   const [code, setCode] = useState("");
   const [verificationResult, setVerificationResult] = useState(null);
@@ -16,6 +17,7 @@ const Team_D_Verif_nonuser = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isValidSerial, setIsValidSerial] = useState(false);
 
+  // Function to handle verification of the certificate
   const handleVerify = async () => {
     setLoading(true);
     try {
@@ -62,6 +64,7 @@ const Team_D_Verif_nonuser = () => {
   };
 
   return (
+    // verification for 3rd party users
     <div>
       <nav className="my-navigation">
         <Link to='/'>

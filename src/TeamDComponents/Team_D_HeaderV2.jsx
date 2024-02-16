@@ -7,15 +7,43 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { TbCertificate } from "react-icons/tb";
 import { FiLogOut } from "react-icons/fi";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import Profile from "./TeamD_Assets/profilepic.jpg";
+import { useAuth } from "../TeamAComponents/components/AuthContext";
 
-const Team_D_HeaderV2 = () => {
+// Function to get user image type from TeamA
+function getUserImageType(profilePicture) {
+  // Check if profilePicture is defined and not null
+  if (profilePicture && profilePicture.startsWith) {
+    // Check the image type based on the data
+    const isPNG = profilePicture.startsWith('data:image/png;base64,');
+    const isJPEG = profilePicture.startsWith('data:image/jpeg;base64,');
+    
+    if (isPNG) {
+      return 'png';
+    } else if (isJPEG) {
+      return 'jpeg';
+    } else {
+      // Return a default type or handle accordingly
+      return 'unknown'; // You can change this to 'jpeg' or handle as needed
+    }
+  } else {
+    // Return a default type or handle accordingly
+    return 'unknown'; // You can change this to 'jpeg' or handle as needed
+  }
+}
+
+// Team_D_HeaderV2 component represents the header section of the website
+const Team_D_HeaderV2 = ({ onUserDataFetched, openModal }) => { //TeamA added { onUserDataFetched, openModal }
   const [clicked, setClicked] = useState(false);
+  //TeamA addition
+  const [userData, setUserData] = useState({});
+  const { isLoggedIn, handleLogout } = useAuth();
 
+  // Function to handle the click event to toggle mobile navbar
   const handleClick = () => {
     setClicked(!clicked);
   };
 
+  // Function to close the mobile navbar
   const closeMobileNavbar = () => {
     setClicked(false);
     setMyCourseActive(false);
@@ -34,6 +62,63 @@ const Team_D_HeaderV2 = () => {
     };
   }, [clicked]);
 
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const userId = localStorage.getItem("userId");
+        if (!userId) {
+          console.error("User ID not found in local storage");
+          return;
+        }
+
+        const response = await fetch(
+          `http://localhost:8085/api/v1/auth/users/${userId}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        if (response.ok) {
+          const userData = await response.json();
+          setUserData(userData);
+
+          if (
+            userData.profilePicture !== undefined &&
+            userData.profilePicture !== null
+          ) {
+            const base64 = btoa(
+              String.fromCharCode(...new Uint8Array(userData.profilePicture))
+            );
+            const imageType = getUserImageType(userData.profilePicture);
+            const dataUrl = `data:image/${imageType};base64,${base64}`;
+
+            onUserDataFetched({
+              ...userData,
+              profilePicture: dataUrl,
+            });
+          } else {
+            console.error(
+              "Profile picture is undefined or null in user data"
+            );  
+          }
+        } else {
+          console.error(
+            "Failed to fetch user data",
+            response.status,
+            response.statusText
+          );
+        }
+      } catch (error) {
+        console.error("Unexpected error during user data fetch", error);
+      }
+    };
+
+    fetchUserData();
+  }, [onUserDataFetched]);
+
   return (
     <>
       <nav className="navbar_TeamD">
@@ -41,18 +126,20 @@ const Team_D_HeaderV2 = () => {
           <img src={TsukidenLogo} alt="Logo" />
         </NavLink>
         <div>
+          {/* Navbar links */}
           <ul id="navbar" className={clicked ? "active" : ""}>
-            <li className="profile_info">
+          {/*Added connection to fetch profile picture from TeamA*/}
+          <li className="profile_info">
               <span className="profile_info_con">
-                <img src={Profile} alt="Logo" />
+                <img src={`data:image/${getUserImageType(userData.profilePicture)};base64,${userData.profilePicture}`} alt="Logo" />
                 <span className="profile_info_name">
-                  <p className="profile_fName">Joshua Allada</p>
-                  <p className="profile_email">jallada.@tgsi.com.ph</p>
+                  <p className="profile_fName">{userData.firstName}</p>
                 </span>
               </span>
             </li>
+            {/* Profile link */}
             <li className="profile_link">
-              <NavLink
+            <NavLink
                 to="/profile"
                 activeClassName="active"
                 onClick={closeMobileNavbar}
@@ -60,6 +147,7 @@ const Team_D_HeaderV2 = () => {
                 Profile
               </NavLink>
             </li>
+            {/* Certificate link */}
             <li className="profile_link">
               <NavLink
                 to="/certificate"
@@ -70,6 +158,7 @@ const Team_D_HeaderV2 = () => {
               </NavLink>
             </li>
             <li className="divider"></li>
+            {/* Dashboard link */}
             <li>
               <NavLink
                 to="/TeamCdashboard"
@@ -78,6 +167,7 @@ const Team_D_HeaderV2 = () => {
               >
                 Dashboard
               </NavLink>
+              {/* My Course dropdown */}
             </li>
             <li>
               <NavDropdown
@@ -94,6 +184,7 @@ const Team_D_HeaderV2 = () => {
                 </NavDropdown.Item>
               </NavDropdown>
             </li>
+            {/* Forums link */}
             <li>
               {/* this is the forum */}
               <NavLink
@@ -104,6 +195,7 @@ const Team_D_HeaderV2 = () => {
                 Forums
               </NavLink>
             </li>
+            {/* Verification link */}
             <li>
               <NavLink
                 to="/verification"
@@ -115,29 +207,43 @@ const Team_D_HeaderV2 = () => {
             </li>
           </ul>
         </div>
+        {/* Mobile toggle */}
         <div id="mobile" onClick={handleClick}>
           {clicked ? (
             <i className="fas fa-times"></i>
           ) : (
-            <img src={Profile} alt="Logo" className="mobile_profile" />
+            
+            <img
+            src={`data:image/${getUserImageType(userData.profilePicture)};base64,${userData.profilePicture}`}
+            alt="Logo"
+            className="mobile_profile" //Added snippet to fetch profile picture
+          />
           )}
         </div>
+        {/* Profile dropdown */}
         <div className="profile_side">
           <Dropdown>
-            <Dropdown.Toggle
-              variant="success"
-              id="dropdown-basic"
-              className="button_profile"
-            >
-              <img src={Profile} alt="" className="profile_img" />
-              Hi, JALLADA!
-            </Dropdown.Toggle>
+            {/*Added snippet to fetch profile picture*/}
+          <Dropdown.Toggle
+                variant="success"
+                id="dropdown-basic"
+                className="button_profile"
+              >
+                <img
+                  src={`data:image/${getUserImageType(userData.profilePicture)};base64,${userData.profilePicture}`}
+                  alt=""
+                  className="profile_img"
+                />
+                Hi, {userData.firstName}!
+              </Dropdown.Toggle>
 
             <Dropdown.Menu>
               <Dropdown.Item
                 as={NavLink}
-                to="/profile"
-                onClick={closeMobileNavbar}
+                to="#"
+                onClick={() => {
+                  openModal();
+                }}
               >
                 <FaRegUserCircle /> Profile
               </Dropdown.Item>
@@ -159,4 +265,4 @@ const Team_D_HeaderV2 = () => {
   );
 };
 
-export default Team_D_HeaderV2;
+export default Team_D_HeaderV2; // Export the Team_D_HeaderV2 component

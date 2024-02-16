@@ -1,5 +1,6 @@
-//2/3/2024 junite, create AddTopic UI, completed
+/* eslint-disable react/prop-types */
 
+//2/3/2024 junite, create AddTopic UI, completed
 
 import React, { useState } from "react";
 import { FaSave } from "react-icons/fa";
@@ -10,13 +11,14 @@ import quizLink from "../../../../assets/TeamBassests/quizLink.svg";
 //import toastify react
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 //remove close button
 const CloseButton = ({ closeToast }) => (
   <i className="material-icons" onClick={closeToast}></i>
 );
 
-const AddTopic = () => {
+const AddTopic = ({ chapterId, courseTitle, chapterTitle }) => {
   const [videoInputValue, setVideoInputValue] = useState("");
   const [quizInputValue, setQuizInputValue] = useState("");
   const [isVideoPopupOpen, setVideoPopupOpen] = useState(false);
@@ -74,32 +76,64 @@ const AddTopic = () => {
       closeButton: CloseButton,
     });
   };
+
+  //state for topics
+  const [topics, setTopics] = useState({
+    topic_title: "",
+    topic_description: "",
+    topic_file: "",
+    topic_link: "",
+  });
+
+  const { topic_title, topic_description, topic_file, topic_link } = topics;
+  const handleInputChange = (e) => {
+    setTopics({ ...topics, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    // Assuming your API call is successful, update the state to indicate form submission
+
+    try {
+      await axios.post(
+        `http://localhost:8080/api/chapters/${chapterId}/topics`,
+        topics
+      );
+      // showModal(false);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      // Handle error if the API call fails
+    }
+    addToCartNotify();
+  };
+
   return (
     <>
       {/* add topic title */}
-      <div className="h-[100vh] w-full pt-2">
+      <form onSubmit={handleSubmit} className="h-[100vh] w-[100%] pt-2">
         <div className="flex items-center justify-end w-full ">
-          <div
-            className="flex items-center gap-2 pr-5 cursor-pointer"
-            onClick={() => addToCartNotify()}>
+          <button
+            type="submit"
+            className="flex items-center gap-2 pr-5 cursor-pointer">
             <div className="text-[#4c604c] text-[1.5rem]">
               <FaSave />
             </div>
             <span className="text-[#126912] font-semibold">Save</span>
-          </div>
+          </button>
         </div>
         <div className="w-[90%] m-auto mb-5">
           <span className="lg:text-[2rem] 2xl:text-[48px] font-semibold ">
-            Course Title
+            <p>{courseTitle}</p>
           </span>
           <div className="flex items-center ">
             <span className="lg:text-[1.5rem] 2xl:text-[36px] pr-2 text-[#070101] text-opacity-[55%]">
-              Chapter Title:
+              {chapterTitle}:
             </span>
             <input
               required
               type="text"
-              name=""
+              name="topic_title"
+              value={topic_title}
+              onChange={(e) => handleInputChange(e)}
               id=""
               placeholder="Topic Title"
               className="bg-[#BCE8B1] rounded-lg placeholder:text-[#626262] placeholder:pl-2 outline-none pl-2"
@@ -107,11 +141,13 @@ const AddTopic = () => {
           </div>
           <textarea
             required
-            name=""
             id=""
             cols="30"
             rows="10"
-            placeholder=" Lorem ipsum dolor sit amet. Ut labore facere aut dolorem deleniti cum repudiandae delectus aut quam beatae aut aliquam omnis sed harum odio. Eos consectetur placeat sit itaque ipsum qui laudantium autem. Et voluptatum optio At odio amet cum enim dicta sed deleniti adipisci ut maiores perspiciatis. Aut dicta soluta qui sapiente quibusdam ut tempore facilis et ducimus provident. Hic voluptate."
+            name="topic_description"
+            value={topic_description}
+            onChange={(e) => handleInputChange(e)}
+            placeholder="Topic Description"
             className="bg-[#BCE8B1] TeamB_text-shadow resize-none lg:min-w-[100%] 2xl:h-[264px] 2xl:max-w-[1342px] lg:h-[25vh] placeholder:font-medium placeholder:text-center placeholder:p-6
               outline-none rounded-lg placeholder:text-[#070101] placeholder:text-opacity-[55%] mt-5 pl-5"
           />
@@ -147,9 +183,11 @@ const AddTopic = () => {
             <div className="bg-[#EBFFE5] p-8 rounded-lg z-10">
               <p className="mb-4 text-lg font-semibold">Add Topic Link</p>
               <input
+                required
                 type="text"
-                value={videoInputValue}
-                onChange={handleVideoInputChange}
+                name="topic_file"
+                value={topic_file}
+                onChange={(e) => handleInputChange(e)}
                 className="w-[724px] bg-[#BCE8B1] p-2 border border-gray-300 rounded-md mb-4"
                 placeholder="https://www"
               />
@@ -175,9 +213,11 @@ const AddTopic = () => {
             <div className="bg-[#EBFFE5] p-8 rounded-lg z-10">
               <p className="mb-4 text-lg font-semibold">Add Quiz Link</p>
               <input
+                required
                 type="text"
-                value={quizInputValue}
-                onChange={handleQuizInputChange}
+                name="topic_link"
+                value={topic_link}
+                onChange={(e) => handleInputChange(e)}
                 className="w-[724px] bg-[#BCE8B1] p-2 border border-gray-300 rounded-md mb-4"
                 placeholder="https://www"
               />
@@ -200,7 +240,7 @@ const AddTopic = () => {
         <div className="">
           <Footer />
         </div>
-      </div>
+      </form>
     </>
   );
 };

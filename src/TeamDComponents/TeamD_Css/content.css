@@ -1,3 +1,4 @@
+/* Styling for the content of Team D */
 .TeamD_content {
     display: flex;
     padding: 0 75px;
@@ -12,32 +13,33 @@
 .modal-content .btn-close {
     background-image: url('data:image/svg+xml,%3csvg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"%3e%3cpath d="M4.293 4.293a1 1 0 0 1 1.414 0L8 6.586l2.293-2.293a1 1 0 1 1 1.414 1.414L9.414 8l2.293 2.293a1 1 0 0 1-1.414 1.414L8 9.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L6.586 8 4.293 5.707a1 1 0 0 1 0-1.414z"/%3e%3c/svg%3e');
 }
-
+/* Styling for a container with a search bar */
 .withSearchBar {
     display: flex;
     flex-direction: row;
     width: 100%;
     align-items: center;
     justify-content: space-between;
-    gap: 500px;
+    gap: 500px; /* Initial gap between elements */
 }
-
+/* Styling for the input group within the search bar */
 .withSearchBar .input-group {
-    width: 35% !important;
+    width: 35% !important; /* Adjusting width of input group */
     height: 30px;
 }
 /* temporary fix until teamc fixed theirs */
 .withSearchBar .form-control:focus{
     background-color: #fff;
 }
+/* Styling for the form control within the search bar */
 .withSearchBar .form-control {
     height: 30px;
 }
-
+/* Styling for the success button within the search bar */
 .withSearchBar .input-group .btn-success{
     height: 30px;
 }
-
+/* Styling for the heading within the TeamD_content */
 .TeamD_content h1 {
     color: #5e665b;
     text-align: center;
@@ -47,13 +49,13 @@
     font-weight: 600;
     line-height: normal;
 }
-
+/* Styling for horizontal rule within TeamD_content */
 .TeamD_content .hr {
     width: 100%;
     height: 1.5px;
     background-color: #5e665b;
 }
-
+/* Styling for certificates container */
 .certificates {
     margin-top: 50px;
     padding: 0 75px;
@@ -63,9 +65,9 @@
     align-items: center;
     justify-content: center;
     background: #EBFFE5;
-    gap: 40px;
+    gap: 40px; /* Gap between certificate elements */
 }
-
+/* Styling for individual certificates */
 .cert {
     display: flex;
     flex-direction: column;
@@ -78,7 +80,7 @@
 .cert img {
     border-radius: 15px;
 }
-
+/* Styling for overlay on hover */
 .overlay {
     position: absolute;
     top: 0;
@@ -98,13 +100,13 @@
   .cert:hover .overlay {
     opacity: 1;
   }
-  
+  /* Styling for buttons within certificates */
   .buttons button {
     margin: 5px;
     padding: 8px 16px;
     border: none;
     cursor: pointer;
-    width: 70px;
+    width: 70px; /* Width of buttons */
   }
   .buttons .view {
     background-color: #3498db;
@@ -132,6 +134,7 @@
     color: #16A765;
     border: 2px solid #16A765;
   }
+/* Styling for certificate thumbnails */
 .cert img {
     width: 329px;
     height: 200px;
@@ -164,17 +167,17 @@
     color: #16A765;
     border: 2px solid #16A765;
 }
-
+/* Styling for certificate thumbnails container */
 .certificate_thumbnail {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-
+/* Media queries for responsive design */
 @media only screen and (max-width: 1024px){
     .withSearchBar{
-        gap: 200px;
+        gap: 200px; /* Adjusting gap for smaller screens */
     }
 }
 
@@ -185,23 +188,23 @@
         margin-bottom: 25px;
     }
     #viewTooltip, #downloadTooltip{
-        display: none;
+        display: none; /* Hiding certain elements on smaller screens */
     }
 }
 
 @media only screen and (max-width: 600px) {
     .TeamD_content {
-        align-items: center;
+        align-items: center; /* Centering content */
     }
 
     .TeamD_content h1 {
-        font-size: 35px;
+        font-size: 35px; /* Adjusting font size */
     }
 
     .certificates {
         padding: 0 25px;
         padding-bottom: 25px;
-        gap: 25px;    
+        gap: 25px; /* Adjusting gap for smaller screens */
         margin-top: 35px;
     }
 
@@ -211,15 +214,15 @@
     }
 
     .withSearchBar {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 25px;
+        flex-direction: column; /* Change the direction of flex items to column */
+        justify-content: center; /* Center align items vertically */
+        align-items: center; /* Center align items horizontally */
+        margin-bottom: 25px; /* Add margin at the bottom */
     }
     
     .withSearchBar .input-group {
-        width: 100% !important;
-        height: 25px;
+        width: 100% !important; /* Set width of input group to 100% of its container */
+        height: 25px; /* Set height of input group */
     }
     #viewTooltip, #downloadTooltip{
         display: none;
@@ -229,16 +232,17 @@
 @media only screen and (max-width: 390px) {
     
     .TeamD_content {
-        padding: 0 35px;
+        padding: 0 35px; /* Adjust padding of TeamD_content */
     }
     .TeamD_content h1 {
-        font-size: 35px;
+        font-size: 35px; /* Adjust font size of h1 within TeamD_content */
     }
 
     .withSearchBar .input-group {
-        width: 100% !important;
-        height: 25px;
+        width: 100% !important; /* Set width of input group to 100% of its container */
+        height: 25px; /* Set height of input group */
     }
+    /* Hide elements with IDs viewTooltip and downloadTooltip */
     #viewTooltip, #downloadTooltip{
         display: none;
     }

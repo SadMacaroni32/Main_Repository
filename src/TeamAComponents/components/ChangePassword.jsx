@@ -2,34 +2,19 @@
 /* eslint-disable react/no-unknown-property */
 import React from 'react';
 import ChangePasswordForm from './ChangePasswordForm'; // Correct import statement
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from "./AuthContext";
 import "../styles/Auth.css";
 
 
-function ChangePassword() { // Corrected function name
+const ChangePassword = ({ handleClose }) => { // Corrected function name
+  const { isLoggedIn, handleLogout } = useAuth();
+  const navigate = useNavigate(); //  
   return (
     <div>
-      <nav className="Change-navbar">
-      <div className="home-header">
-        <Link to='/'>
-        <img
-           src="..\src\assets\TeamAassets\companyLogo.png"
-          alt="Logo"
-          className="Qlogo"
-          />
-          </Link>
-        </div>
-        <ul className="Change-nav-list">
-          <li>
-            <Link to="/">
-            <button className='login-button'>Home</button>
-            </Link>
-          </li>
-        </ul>
-      </nav>
       <div className="Change-content">
         <div className="Change-sign">
-          <ChangePasswordForm />
+          <ChangePasswordForm handleClose={handleClose}/>
         </div>
       </div>
     </div>

@@ -75,8 +75,9 @@ const CopyofCreateNewCourse = () => {
   return (
     <>
         {!formSubmitted && (
-      <div className="w-[100%] h-[100vh] pt-[3rem]  2xl:pt-[8rem] backdrop-blur-[.1rem] ">
-          <div className=" flex border-[.01rem] drop-shadow-2xl shadow-lg border-black rounded-lg m-auto bg-[#EBFFE5] lg:max-w-[550px] 2xl:max-h-[672px] 2xl:max-w-[724px] ">
+      <div className="fixed inset-0 backdrop-blur-sm ">
+        <div className="w-[100%] h-[100vh] flex justify-center items-center ">
+          <div className=" flex border-[.01rem] drop-shadow-2xl shadow-lg border-black rounded-lg m-auto bg-[#EBFFE5] md:w-[500px] lg:w-[550px] 2xl:w-h-[672px] 2xl:w-[724px] ">
             <form onSubmit={handleSubmit} className="w-[80%] m-auto py-2 ">
               <div className="flex items-center py-1 text-black lg:font-bold lg:text-3xl lg:py-0">
                 <p className=" lg:font-bold TeamB_text-shadow   text-[24px] pb-2">
@@ -147,6 +148,7 @@ const CopyofCreateNewCourse = () => {
                 </div>
               </div>
             </form>
+          </div>
           </div>
       </div>
         )}

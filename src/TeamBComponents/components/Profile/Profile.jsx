@@ -32,12 +32,12 @@ const Profile = () => {
         <div>
           {/* Use react icon instead of word back */}
           <div
-            className="flex items-center mt-3 cursor-pointer w-[10%]"
+            className="flex items-center mt-3 cursor-pointer px-5 w-[10%]"
             onClick={goBack}>
             <span className="text-[2.5rem]">
               <IoArrowBackCircle />
             </span>
-            <span className="text-[1rem] pl-1">Back</span>
+           
           </div>
         </div>
         {/* 1/11/2024 fix nav */}

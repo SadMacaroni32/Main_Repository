@@ -4,6 +4,7 @@
 //2/1/2024 junite, UI modifications and functionalities, mockdata inserted and used for UI test
 //2/2/2024 junite, UI modifications add background color for edit modal
 //2/5/2024 junite, fixed UI spacing
+//2/13-15/2024 junite, API Functionalities
 
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { IoAdd } from "react-icons/io5";
@@ -80,6 +81,13 @@ const CourseListCard = () => {
     left: "50%",
   });
 
+  const [searchQuery, setSearchQuery] = useState("");
+
+  //Search
+  const filteredCourses = currentCourse.filter((course) =>
+    course.course_title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <>
       {/* 1/12/2024 UI development and Mobile responsiveness */}
@@ -96,9 +104,12 @@ const CourseListCard = () => {
               <div className="relative  flex items-center lg:w-[300px] 2xl:w-[544px] h-[35px] 2xl:h-[53px]  bg-white outline-none rounded-md border-b-[.1rem] border-black">
                 <input
                   type="text"
-                  className="outline-none font-normal pl-2 text-[1.3rem] lg:w-[300px] 2xl:w-[544px] h-[35px] 2xl:h-[53px] rounded-md"
-                  name=""
-                  id=""
+
+                  className="outline-none placeholder:font-thin placeholder:text-[1.2rem] font-normal pl-2 text-[1rem] lg:w-[300px] 2xl:w-[544px] h-[35px] 2xl:h-[53px] rounded-md"
+                  placeholder="Search"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+
                 />
                 <div className="absolute top-1 right-2">
                   <IoSearchSharp className="text-[1.5rem]" />
@@ -107,7 +118,7 @@ const CourseListCard = () => {
             </div>
             <div className="flex flex-col h-full gap-y-5">
               {/* change to currentCourse for API connection */}
-              {currentCourse.map((course, idx) => {
+              {filteredCourses.map((course, idx) => {
                 return (
                   <div key={idx} className="w-[60vw] rounded-md shadow-md">
                     <div className=" relative flex px-0 py-0 rounded-md xl:h-[115px]  ">
@@ -120,7 +131,7 @@ const CourseListCard = () => {
 
                       <Link
                         to={`/teambcourseoverview/${course.course_id}`}
-                        className="text-white TeamB_text-shadow  lg:font-bold text-[.8rem] py-1 lg:py-0 lg:text-[1.2rem] w-full flex justify-center items-center
+                        className="text-white TeamB_text-shadow lg:font-bold text-[.8rem] py-1 lg:py-0 lg:text-[1.2rem] w-full flex justify-left px-3 items-center
                             rounded-r-sm lg:rounded-r-md 	bg-[#126912]  ">
                         {/* change to course_title for api connection */}
                         {course.course_title}
@@ -138,10 +149,10 @@ const CourseListCard = () => {
                         <div className="fixed top-0 left-0 z-10 h-full lg:w-full">
                           <div className="w-[100%]">
                             <CourseTitleModal
-                              courseId={editCourseId}
                               //  past courseTitle as props to set the value of input in CourseTitleModal
 
-                              courseTitle={course.course_title}
+                              editTitle={setShowEditTitle}
+                              courseId={course.course_id}
                             />
                           </div>
                         </div>
@@ -151,10 +162,7 @@ const CourseListCard = () => {
                 );
               })}
             </div>
-
-            {courses.length < 4 ? (
-              <></>
-            ) : (
+            {filteredCourses.length > 0 && searchQuery === "" && (
               <Stack spacing={2} className="">
                 <Pagination
                   count={npage}
