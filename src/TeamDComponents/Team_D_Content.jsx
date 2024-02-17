@@ -1,9 +1,7 @@
-// Import React and necessary hooks and components
 import React, { useState, useEffect } from "react";
-
 import "./TeamD_Css/content.css";
 import { pdfjs } from "react-pdf";
-import { Alert } from "react-bootstrap";
+import { Alert, Dropdown } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
@@ -14,35 +12,41 @@ import { Link } from "react-router-dom";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import { FaArrowUp } from "react-icons/fa";
+import NoCert from "./TeamD_Assets/undraw_learning_re_32qv.svg";
 import Team_D_HeaderV2 from "./Team_D_HeaderV2";
 
-
+// Set up PDF.js worker source
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
-// Defining the Team_D_Content component
+// Team_D_Content functional component
 const Team_D_Content = () => {
-  // Setting initial values for state variables using useState hook
-  const pdfPath = "public/PDF/Sample.pdf"; // Path to the PDF file
-  const [data, setData] = useState({ // State variable for PDF data
-    id: "1",
-    pdfName: "Sample.pdf",
-    courseTitle: "HTML and CSS",
-  });
-  const [thumbnailUrl, setThumbnailUrl] = useState(null); // State variable for thumbnail URL
-  const [showNotification, setShowNotification] = useState(false); // State variable for notification visibility
-  const [disableDownloadButton, setDisableDownloadButton] = useState(false); // State variable for disabling download button
-  const [enableButtonClick, setEnableButtonClick] = useState(true); // State variable for enabling button click
-  const [overlayVisible, setOverlayVisible] = useState(false); // State variable for overlay visibility
-  const [disableViewButton, setDisableViewButton] = useState(false); // State variable for disabling view button
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 769); // State variable for detecting mobile view
+  // State declarations
+  const [pdfFileNames, setPdfFileNames] = useState([]); // State to store the array of PDF file names fetched from API
+  const [thumbnails, setThumbnails] = useState([]);
+  const [showNotification, setShowNotification] = useState(false);
+  const [disableDownloadButtons, setDisableDownloadButtons] = useState([]);
+  const [enableViewButtons, setEnableViewButtons] = useState([]);
+  const [overlayVisibilities, setOverlayVisibilities] = useState([]);
+  const [disableViewButtons, setDisableViewButtons] = useState([]);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 769); // Check if the viewport width is less than 769
+  
+  // State to store the search term
+  const [searchTerm, setSearchTerm] = useState(
+    localStorage.getItem("searchTerm") || ""
+  );
 
-  // Function to handle window resize
+  // State to store the filtered certificates based on the search term
+  const [filteredCertificates, setFilteredCertificates] = useState([]);
+
+  // Handle window resize
   const handleResize = () => {
-    setIsMobile(window.innerWidth < 769); // Update isMobile state based on window width
+    setIsMobile(window.innerWidth < 769);
   };
 
-  // useEffect hook to handle side effects
+  // Effect to fetch PDF file names from API and handle window resize
   useEffect(() => {
+    // Fetch PDF file names from API
+    fetchPdfFileNamesFromApi();
     // Add event listener to track window resize
     window.addEventListener("resize", handleResize);
 
@@ -50,118 +54,153 @@ const Team_D_Content = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []); // Empty dependency array ensures the effect runs only once during mount and unmount
+  }, []); // Empty dependency array ensures the effect runs only once during mount
 
-  // Function to handle mouse enter event
-  const handleMouseEnter = () => {
-    // Check if not in mobile view
-    if (!isMobile) {
-      setOverlayVisible(true); // Show the overlay
-      setDisableViewButton(true); // Disable the view button when overlay is visible
-    }
-  };
-
-  // Function to handle mouse leave event
-  const handleMouseLeave = () => {
-    // Check if not in mobile view
-    if (!isMobile) {
-      setOverlayVisible(false); // Hide the overlay
-      setTimeout(() => {
-        setDisableViewButton(false); // Enable the view button when overlay is not visible
-      }, 0);
-    }
-  };
-
-  // useEffect hook to handle side effects
-  useEffect(() => {
-    // Function to fetch thumbnail of the PDF
-    const fetchThumbnail = async () => {
-      try {
-        // Load the PDF document
-        const loadingTask = pdfjs.getDocument(pdfPath);
-        const pdf = await loadingTask.promise;
-        const page = await pdf.getPage(1); // Get the first page of the PDF
-
-        // Get the viewport of the page
-        const viewport = page.getViewport({ scale: 0.5 });
-        const canvas = document.createElement("canvas"); // Create a canvas element
-        const context = canvas.getContext("2d");
-        canvas.width = viewport.width; // Set canvas width
-        canvas.height = viewport.height; // Set canvas height
-
-        // Set up rendering context
-        const renderContext = {
-          canvasContext: context,
-          viewport: viewport,
-        };
-
-        // Render the page content onto the canvas
-        await page.render(renderContext).promise;
-
-        // Convert canvas content to data URL (thumbnail)
-        const dataUrl = canvas.toDataURL();
-        setThumbnailUrl(dataUrl); // Set the thumbnail URL
-      } catch (error) {
-        console.error("Error loading PDF:", error); // Log error if loading fails
+  // Fetch PDF file names from API
+  const fetchPdfFileNamesFromApi = async () => {
+    try {
+      // Replace 'apiEndpoint' with your actual API endpoint to fetch PDF file names
+      const response = await fetch(
+        "http://localhost:8080/api/certifications/myCertification/3"
+      );
+      const data = await response.json();
+      if (data) {
+        setPdfFileNames(data);
       }
+    } catch (error) {
+      console.error("Error fetching PDF file names:", error);
+    }
+  };
+
+  // Function to handle the search based on the current search term
+  const handleSearch = () => {
+    // Convert the search term to lowercase for case-insensitive comparison
+    const searchTermLower = searchTerm.toLowerCase();
+
+    // Filter certificates based on the search term
+    const filtered = pdfFileNames.filter((cert) =>
+      cert.quizTaken.quiz.course.title.toLowerCase().includes(searchTermLower)
+    );
+
+    // Set the filtered certificates in the state
+    setFilteredCertificates(filtered);
+  };
+
+  // Effect hook to update the filtered certificates when the search term changes
+  useEffect(() => {
+    // Filter certificates based on the search term
+    const filtered =
+      searchTerm.trim() === ""
+        ? pdfFileNames // If search term is empty, display all certificates
+        : pdfFileNames.filter((pdfFile) =>
+            pdfFile.quizTaken.quiz.course.title
+              .toLowerCase()
+              .includes(searchTerm.toLowerCase())
+          );
+
+    // Set the filtered certificates in the state
+    setFilteredCertificates(filtered);
+  }, [searchTerm, pdfFileNames]);
+
+
+  // Effect to load thumbnails for PDF files
+  useEffect(() => {
+    const fetchThumbnails = async () => {
+      const newThumbnails = [];
+      const newDisableDownloadButtons = [];
+      const newEnableViewButtons = [];
+      const newOverlayVisibilities = [];
+      const newDisableViewButtons = [];
+
+      for (let i = 0; i < pdfFileNames.length; i++) {
+        const pdfPath = `/PDF/${pdfFileNames[i].certificate_file}`; // Assuming certificate_file contains the path to the PDF
+        try {
+          const loadingTask = pdfjs.getDocument(pdfPath);
+          const pdf = await loadingTask.promise;
+          const page = await pdf.getPage(1);
+
+          const viewport = page.getViewport({ scale: 0.5 });
+          const canvas = document.createElement("canvas");
+          const context = canvas.getContext("2d");
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+
+          const renderContext = {
+            canvasContext: context,
+            viewport: viewport
+          };
+
+          await page.render(renderContext).promise;
+
+          const dataUrl = canvas.toDataURL();
+          newThumbnails.push(dataUrl);
+          newDisableDownloadButtons.push(false);
+          newEnableViewButtons.push(true);
+          newOverlayVisibilities.push(false);
+          newDisableViewButtons.push(false);
+        } catch (error) {
+          console.error("Error loading PDF:", error);
+        }
+      }
+
+      setThumbnails(newThumbnails);
+      setDisableDownloadButtons(newDisableDownloadButtons);
+      setEnableViewButtons(newEnableViewButtons);
+      setOverlayVisibilities(newOverlayVisibilities);
+      setDisableViewButtons(newDisableViewButtons);
     };
 
-    // Call the fetchThumbnail function
-    fetchThumbnail();
-  }, [pdfPath]);
+    fetchThumbnails();
+  }, [pdfFileNames]);
 
-  // useEffect hook to handle online/offline events
+  // Effect to handle online/offline status
   useEffect(() => {
-    // Function to handle online event
     const handleOnline = () => {
-      // Show info notification when back online
       setShowNotification({
         type: "info",
-        message: "You are back online! You can now download certificates.",
+        message: "You are back online! You can now download certificates."
       });
 
-      // Hide notification after 5 seconds
       setTimeout(() => {
         setShowNotification(null);
       }, 5000);
     };
 
-    // Function to handle offline event
     const handleOffline = () => {
-      // Show danger notification when offline
       setShowNotification({
         type: "danger",
-        message: "You are currently offline. Please connect to the internet.",
+        message: "You are currently offline. Please connect to the internet."
       });
 
-      // Hide notification after 5 seconds
       setTimeout(() => {
         setShowNotification(null);
       }, 5000);
     };
 
-    // Add event listeners for online/offline events
     window.addEventListener("online", handleOnline);
     window.addEventListener("offline", handleOffline);
 
-    // Clean up by removing event listeners when component unmounts
     return () => {
       window.removeEventListener("online", handleOnline);
       window.removeEventListener("offline", handleOffline);
     };
   }, []);
 
-  // Function to handle download button click
-  const handleDownloadClick = () => {
-    // If overlay is not visible, reset button states and return
-    if (!overlayVisible) {
-      setDisableDownloadButton(false);
-      setEnableButtonClick(true);
+  // Handle download button click
+  const handleDownloadClick = (index) => () => {
+    // If overlay is not visible, toggle overlay visibility and return
+    if (!overlayVisibilities[index]) {
+      setDisableDownloadButtons((prevButtons) =>
+        prevButtons.map((button, idx) => (idx === index ? false : button))
+      );
+      setEnableViewButtons((prevButtons) =>
+        prevButtons.map((button, idx) => (idx === index ? true : button))
+      );
       return;
     }
 
-    // If download button is disabled or download is not enabled, return
-    if (disableDownloadButton || !enableButtonClick) {
+    // If download button is disabled or view button is not enabled, return
+    if (disableDownloadButtons[index] || !enableViewButtons[index]) {
       return;
     }
 
@@ -170,77 +209,96 @@ const Team_D_Content = () => {
       setShowNotification({
         type: "danger",
         message:
-          "You are currently offline. Please connect to the internet and try again.",
+          "You are currently offline. Please connect to the internet and try again."
       });
       setTimeout(() => {
         setShowNotification(null);
       }, 5000);
       return;
     }
-    // Create a link element for downloading the PDF
+
+    // Construct PDF path
+    const pdfPath = `/PDF/${pdfFileNames[index].certificate_file}`; // Assuming certificate_file contains the path to the PDF
     const link = document.createElement("a");
     link.href = pdfPath;
     link.download = "Certificate.pdf";
 
-    // Event listeners for download errors
+    // Event listeners for download events
     link.addEventListener("abort", () => {
       setShowNotification({
         type: "danger",
-        message: "Download aborted. Please try again.",
+        message: "Download aborted. Please try again."
       });
     });
 
     link.addEventListener("error", () => {
       setShowNotification({
         type: "danger",
-        message: "Error during download. Please try again.",
+        message: "Error during download. Please try again."
       });
     });
 
-    link.click(); // Simulate a click on the link to trigger download
+    // Trigger download
+    link.click();
 
-    // Show success notification
+    // Show download success notification
     setShowNotification({
       type: "success",
-      message: "Download successful!",
+      message: "Download successful!"
     });
 
-    // Disable download button temporarily and reset button states after 5 seconds
-    setDisableDownloadButton(true);
+    // Disable download button temporarily and reset state after 5 seconds
+    setDisableDownloadButtons((prevButtons) =>
+      prevButtons.map((button, idx) => (idx === index ? true : button))
+    );
     setTimeout(() => {
-      setDisableDownloadButton(false);
+      setDisableDownloadButtons((prevButtons) =>
+        prevButtons.map((button, idx) => (idx === index ? false : button))
+      );
       setShowNotification(null);
     }, 5000);
 
-    // Disable button click temporarily
-    setEnableButtonClick(false);
+    // Disable view button temporarily
+    setEnableViewButtons((prevButtons) =>
+      prevButtons.map((button, idx) => (idx === index ? false : button))
+    );
     setTimeout(() => {
-      setEnableButtonClick(true);
+      setEnableViewButtons((prevButtons) =>
+        prevButtons.map((button, idx) => (idx === index ? true : button))
+      );
     }, 0);
 
-    // Hide overlay
+    // Hide overlay after download
     setTimeout(() => {
-      setOverlayVisible(false);
+      setOverlayVisibilities((prevVisibilities) =>
+        prevVisibilities.map((visibility, idx) =>
+          idx === index ? false : visibility
+        )
+      );
     }, 0);
   };
 
-  // Function to handle view button click
-  const handleViewClick = () => {
-    // If overlay is not visible, reset button states and return
-    if (!overlayVisible) {
-      setEnableButtonClick(true);
-      setDisableViewButton(false);
+  // Handle view button click
+  const handleViewClick = (index) => () => {
+    // If overlay is not visible, toggle overlay visibility and return
+    if (!overlayVisibilities[index]) {
+      setEnableViewButtons((prevButtons) =>
+        prevButtons.map((button, idx) => (idx === index ? true : button))
+      );
+      setDisableViewButtons((prevButtons) =>
+        prevButtons.map((button, idx) => (idx === index ? false : button))
+      );
       return;
     }
 
-    // If view button is not enabled or disable view button is set, return
-    if (!enableButtonClick || disableViewButton) {
+    // If view button is not enabled or view is disabled, return
+    if (!enableViewButtons[index] || disableViewButtons[index]) {
       return;
     }
 
-    // Temporarily disable pointer events for view link and button
-    const link = document.getElementById("viewLink");
-    const viewButton = document.getElementById("viewButton");
+    // Disable link and view button temporarily
+    const link = document.getElementById(`viewLink_${index}`);
+    const viewButton = document.getElementById(`viewButton_${index}`);
 
     if (link) {
       link.style.pointerEvents = "none";
@@ -250,15 +308,17 @@ const Team_D_Content = () => {
       viewButton.style.pointerEvents = "none";
     }
 
-    // Show info notification
+    // Show notification about disabled view
     setShowNotification({
       type: "info",
-      message: "Viewing is disabled for 5 seconds.",
+      message: "Viewing is disabled for 5 seconds."
     });
 
-    setDisableViewButton(true);
+    // Disable view button temporarily and reset state after 5 seconds
+    setDisableViewButtons((prevButtons) =>
+      prevButtons.map((button, idx) => (idx === index ? true : button))
+    );
     setTimeout(() => {
-      // Enable pointer events for view link and button after a short delay
       if (link) {
         link.style.pointerEvents = "auto";
       }
@@ -266,13 +326,14 @@ const Team_D_Content = () => {
       if (viewButton) {
         viewButton.style.pointerEvents = "auto";
       }
-      // Reset disableViewButton and hide notification
-      setDisableViewButton(false);
+      setDisableViewButtons((prevButtons) =>
+        prevButtons.map((button, idx) => (idx === index ? false : button))
+      );
       setShowNotification(null);
     }, 0);
   };
 
-  // Function to handle scroll to top button click
+  // Handle scroll to top button click
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -284,245 +345,157 @@ const Team_D_Content = () => {
     <Tooltip id="downloadTooltip">Download Certificate</Tooltip>
   );
 
+  // Determine whether to show scroll to top button based on scroll position
   const shouldShowScrollToTop = window.scrollY > 200;
 
+  // JSX rendering
   return (
     <div>
-      <Team_D_HeaderV2 />
+      <Team_D_HeaderV2 /> {/* Render Team_D_HeaderV2 component */}
       <section className="TeamD_content">
+        {/* Section containing search bar */}
         <section className="withSearchBar">
-          <h1>Certificate</h1>
+          <h1>Certificates</h1>
+
           <InputGroup expand="lg" size="sm" className="float-right">
+            {/* Search input form */}
             <Form.Control
-              placeholder="Search"
+              placeholder="Search..."
               aria-label="Recipient's username"
               aria-describedby="basic-addon2"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  // Handle the "Enter" key press, e.g., trigger the verification function
+                  handleSearch();
+                }
+              }}
             />
-            <Button variant="success" id="button-addon2">
+            <Button variant="success" id="button-addon2" onClick={handleSearch}>
               <FiSearch className="TeamD_icon search_icon" />
             </Button>
           </InputGroup>
         </section>
-        <div className="hr"></div>
+        <div className="hr"></div> {/* Horizontal rule */}
       </section>
+      {/* Section for displaying certificates */}
       <section className="certificates">
-        <div
-          className="certificate_thumbnail"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          <div className="cert">
-            {isMobile && thumbnailUrl ? (
-              <Link to="/viewCert" state={{ data: data }}>
-                <div className="overlay"></div>
-                <img src={thumbnailUrl} alt="PDF Thumbnail"/>
-              </Link>
-            ) : !isMobile && thumbnailUrl ? (
-              <img src={thumbnailUrl} alt="PDF Thumbnail" />
-            ) : (
-              <p>Loading thumbnail...</p>
-            )}
+        {/* Conditionally render certificates or no certificates message */}
+        {filteredCertificates.length > 0 ? (
+          filteredCertificates.map((pdfFile, index) => (
+            <div
+              className="certificate_thumbnail"
+              key={index}
+              onMouseEnter={() =>
+                setOverlayVisibilities((prevVisibilities) =>
+                  prevVisibilities.map((visibility, idx) =>
+                    idx === index ? true : visibility
+                  )
+                )
+              }
+              onMouseLeave={() =>
+                setOverlayVisibilities((prevVisibilities) =>
+                  prevVisibilities.map((visibility, idx) =>
+                    idx === index ? false : visibility
+                  )
+                )
+              }
+            >
+              {/* Render certificate thumbnail */}
+              <div className="cert">
+                {isMobile && thumbnails[index] ? (
+                  <Link
+                    to="/viewCert"
+                    state={{
+                      pdfName: pdfFile.certificate_file,
+                      courseTitle: pdfFile.quizTaken.quiz.course.title
+                    }}
+                    id={`viewLink_${index}`}
+                  >
+                    <div className="overlay"></div>
+                    <img src={thumbnails[index]} alt="PDF Thumbnail" />
+                  </Link>
+                ) : !isMobile && thumbnails[index] ? (
+                  <img src={thumbnails[index]} alt="PDF Thumbnail" />
+                ) : (
+                  <p>Loading thumbnail...</p>
+                )}
 
-            {!isMobile && (
-              <div className={`overlay${overlayVisible ? " visible" : ""}`}>
-                {thumbnailUrl && (
-                  <div className="buttons">
-                    <Link id="viewLink" to="/viewCert" state={{ data: data }}>
-                      <OverlayTrigger placement="top" overlay={viewTooltip}>
-                        <button
-                          id="viewButton"
-                          className="view"
-                          style={{
-                            pointerEvents: overlayVisible ? "auto" : "none",
+                {/* Render overlay with view and download buttons */}
+                {!isMobile && (
+                  <div
+                    className={`overlay${
+                      overlayVisibilities[index] ? " visible" : ""
+                    }`}
+                  >
+                    {thumbnails[index] && (
+                      <div className="buttons">
+                        {/* View button */}
+                        <Link
+                          id={`viewLink_${index}`}
+                          to="/viewCert"
+                          state={{
+                            pdfName: pdfFile.certificate_file,
+                            courseTitle: pdfFile.quizTaken.quiz.course.title
                           }}
-                          onClick={handleViewClick}
                         >
-                          <BiFileFind className="TeamD_icon view_icon" />
-                        </button>
-                      </OverlayTrigger>
-                    </Link>
-                    <OverlayTrigger placement="top" overlay={downloadTooltip}>
-                      <button
-                        className="download"
-                        style={{
-                          pointerEvents: overlayVisible ? "auto" : "none",
-                        }}
-                        onClick={handleDownloadClick}
-                        disabled={!enableButtonClick || disableDownloadButton}
-                      >
-                        <MdOutlineFileDownload className="TeamD_icon download_icon" />
-                      </button>
-                    </OverlayTrigger>
+                          <OverlayTrigger placement="top" overlay={viewTooltip}>
+                            <button
+                              id={`viewButton_${index}`}
+                              className="view"
+                              style={{
+                                pointerEvents: overlayVisibilities[index]
+                                  ? "auto"
+                                  : "none"
+                              }}
+                              onClick={handleViewClick(index)}
+                            >
+                              <BiFileFind className="TeamD_icon view_icon" />
+                            </button>
+                          </OverlayTrigger>
+                        </Link>
+                        {/* Download button */}
+                        <OverlayTrigger
+                          placement="top"
+                          overlay={downloadTooltip}
+                        >
+                          <button
+                            className="download"
+                            style={{
+                              pointerEvents: overlayVisibilities[index]
+                                ? "auto"
+                                : "none"
+                            }}
+                            onClick={handleDownloadClick(index)}
+                            disabled={
+                              !enableViewButtons[index] ||
+                              disableDownloadButtons[index]
+                            }
+                          >
+                            <MdOutlineFileDownload className="TeamD_icon download_icon" />
+                          </button>
+                        </OverlayTrigger>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
-            )}
+              {/* Display course title */}
+              <p style={{ textTransform: "capitalize" }}>
+                {pdfFile.quizTaken.quiz.course.title}
+              </p>
+            </div>
+          ))
+        ) : (
+          <div className="no-certificates">
+            {/* Render no certificates message */}
+            <img src={NoCert} alt="No certification yet" /> No certificate
+            available.
           </div>
-          <p>Course Title</p>
-        </div>
-        <div
-          className="certificate_thumbnail"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          <div className="cert">
-            {isMobile && thumbnailUrl ? (
-              <Link to="/viewCert" state={{ data: data }}>
-                <div className="overlay"></div>
-                <img src={thumbnailUrl} alt="PDF Thumbnail" />
-              </Link>
-            ) : !isMobile && thumbnailUrl ? (
-              <img src={thumbnailUrl} alt="PDF Thumbnail" />
-            ) : (
-              <p>Loading thumbnail...</p>
-            )}
-
-            {!isMobile && (
-              <div className={`overlay${overlayVisible ? " visible" : ""}`}>
-                {thumbnailUrl && (
-                  <div className="buttons">
-                    <Link id="viewLink" to="/viewCert" state={{ data: data }}>
-                      <OverlayTrigger placement="top" overlay={viewTooltip}>
-                        <button
-                          id="viewButton"
-                          className="view"
-                          style={{
-                            pointerEvents: overlayVisible ? "auto" : "none",
-                          }}
-                          onClick={handleViewClick}
-                        >
-                          <BiFileFind className="TeamD_icon view_icon" />
-                        </button>
-                      </OverlayTrigger>
-                    </Link>
-                    <OverlayTrigger placement="top" overlay={downloadTooltip}>
-                      <button
-                        className="download"
-                        style={{
-                          pointerEvents: overlayVisible ? "auto" : "none",
-                        }}
-                        onClick={handleDownloadClick}
-                        disabled={!enableButtonClick || disableDownloadButton}
-                      >
-                        <MdOutlineFileDownload className="TeamD_icon download_icon" />
-                      </button>
-                    </OverlayTrigger>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-          <p>Course Title</p>
-        </div>
-        <div
-          className="certificate_thumbnail"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          <div className="cert">
-            {isMobile && thumbnailUrl ? (
-              <Link to="/viewCert" state={{ data: data }}>
-                <div className="overlay"></div>
-                <img src={thumbnailUrl} alt="PDF Thumbnail" />
-              </Link>
-            ) : !isMobile && thumbnailUrl ? (
-              <img src={thumbnailUrl} alt="PDF Thumbnail" />
-            ) : (
-              <p>Loading thumbnail...</p>
-            )}
-
-            {!isMobile && (
-              <div className={`overlay${overlayVisible ? " visible" : ""}`}>
-                {thumbnailUrl && (
-                  <div className="buttons">
-                    <Link id="viewLink" to="/viewCert" state={{ data: data }}>
-                      <OverlayTrigger placement="top" overlay={viewTooltip}>
-                        <button
-                          id="viewButton"
-                          className="view"
-                          style={{
-                            pointerEvents: overlayVisible ? "auto" : "none",
-                          }}
-                          onClick={handleViewClick}
-                        >
-                          <BiFileFind className="TeamD_icon view_icon" />
-                        </button>
-                      </OverlayTrigger>
-                    </Link>
-                    <OverlayTrigger placement="top" overlay={downloadTooltip}>
-                      <button
-                        className="download"
-                        style={{
-                          pointerEvents: overlayVisible ? "auto" : "none",
-                        }}
-                        onClick={handleDownloadClick}
-                        disabled={!enableButtonClick || disableDownloadButton}
-                      >
-                        <MdOutlineFileDownload className="TeamD_icon download_icon" />
-                      </button>
-                    </OverlayTrigger>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-          <p>Course Title</p>
-        </div>
-        <div
-          className="certificate_thumbnail"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          <div className="cert">
-            {isMobile && thumbnailUrl ? (
-              <Link to="/viewCert" state={{ data: data }}>
-                <div className="overlay"></div>
-                <img src={thumbnailUrl} alt="PDF Thumbnail" />
-              </Link>
-            ) : !isMobile && thumbnailUrl ? (
-              <img src={thumbnailUrl} alt="PDF Thumbnail" />
-            ) : (
-              <p>Loading thumbnail...</p>
-            )}
-
-            {!isMobile && (
-              <div className={`overlay${overlayVisible ? " visible" : ""}`}>
-                {thumbnailUrl && (
-                  <div className="buttons">
-                    <Link id="viewLink" to="/viewCert" state={{ data: data }}>
-                      <OverlayTrigger placement="top" overlay={viewTooltip}>
-                        <button
-                          id="viewButton"
-                          className="view"
-                          style={{
-                            pointerEvents: overlayVisible ? "auto" : "none",
-                          }}
-                          onClick={handleViewClick}
-                        >
-                          <BiFileFind className="TeamD_icon view_icon" />
-                        </button>
-                      </OverlayTrigger>
-                    </Link>
-                    <OverlayTrigger placement="top" overlay={downloadTooltip}>
-                      <button
-                        className="download"
-                        style={{
-                          pointerEvents: overlayVisible ? "auto" : "none",
-                        }}
-                        onClick={handleDownloadClick}
-                        disabled={!enableButtonClick || disableDownloadButton}
-                      >
-                        <MdOutlineFileDownload className="TeamD_icon download_icon" />
-                      </button>
-                    </OverlayTrigger>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-          <p>Course Title</p>
-        </div>
+        )}
       </section>
+      {/* Render notification */}
       {showNotification && (
         <Alert
           variant={showNotification.type}
@@ -532,12 +505,13 @@ const Team_D_Content = () => {
             position: "fixed",
             top: "10px",
             right: "10px",
-            zIndex: 1000,
+            zIndex: 1000
           }}
         >
           {showNotification.message}
         </Alert>
       )}
+      {/* Render scroll to top button */}
       <div
         className={`scroll-to-top${shouldShowScrollToTop ? " visible" : ""}`}
         onClick={handleScrollToTop}
@@ -551,7 +525,7 @@ const Team_D_Content = () => {
           borderRadius: "100px",
           border: "1px solid #ccc",
           background: "#fff",
-          padding: "15px",
+          padding: "15px"
         }}
       >
         <FaArrowUp />

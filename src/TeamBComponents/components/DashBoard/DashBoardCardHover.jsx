@@ -1,57 +1,71 @@
-import React, { useContext, useEffect, useState} from "react";
+/* eslint-disable react/prop-types */
+import React, { useContext, useEffect, useState } from "react";
 import { DashBoardContext } from "../context/DashBoardContext";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { IoMdClose } from "react-icons/io";
 
-const DashBoardCardHover = () => {
-  const { setDashBoardHover } = useContext(DashBoardContext);
-  const [courses, setCourses] = useState([]);
-  const { id } = useParams();
+const DashBoardCardHover = ({ courseId, closeDashHover }) => {
+  //state for topics
+  const [courses, setCourses] = useState({
+    course_title: "",
+    course_description: "",
+  });
+
+  const { course_title, course_description } = courses;
+  const handleInputChange = (e) => {
+    setCourses({ ...courses, [e.target.name]: e.target.value });
+  };
 
   useEffect(() => {
     loadCourses();
-  }, [id]);
+  }, []);
 
-  const loadCourses = async () => {
+  const handleSubmit = async (e) => {
+    // Assuming your API call is successful, update the state to indicate form submission
+
     try {
-      const result = await axios.get(`http://localhost:8080/api/courses/${id}`);
-      setCourses(result.data);
+      await axios.put(`http://localhost:8080/api/courses/${courseId}`, courses);
+      // showModal(false);
     } catch (error) {
-      console.error("Error loading courses:", error);
+      console.error("Error submitting form:", error);
+      // Handle error if the API call fails
     }
+  };
+  const loadCourses = async () => {
+    const result = await axios.get(
+      `http://localhost:8080/api/courses/${courseId}`
+    );
+    setCourses(result.data);
+  };
+
+  const handleCancel = () => {
+    // Implement your cancel logic here
+    closeDashHover((prev) => !prev);
   };
 
   return (
     <div className="">
-      <div className="flex justify-center backdrop-blur-[.1rem]">
-        <div className="h-[85vh] md:w-[500px] lg:w-[550px] 2xl:w-h-[672px] 2xl:w-[724px]  bg-[#BCE8B1] rounded-lg">
-            <span>
-              <IoMdClose />
-            </span>
-          </div>
-
-          <div className="flex flex-col items-center justify-center w-full">
-
-            <p className="text-[2rem] font-bold">SQL</p>
-            <div className="p-10 ">
-              <p className="bg-[#87D275] p-5 rounded-lg text-justify">
-                In a Structured Query Language (SQL) querying workshop,
-                participants delve into fundamental concepts such as syntax,
-                database design, and optimization, empowering them with
-                practical skills to write efficient queries.
-                <p className="pt-3">With 3 Chapters and 2 topic each</p>
-                <p className="pt-2">
-                  Get a certificate for passing the course by passing 80% of
-                  quiz and assessment
-                </p>
+      <div className="flex justify-center items-center backdrop-blur-[.3rem] w-[100vw] h-[150vh]  mt-7">
+        <div className="h-[70vh] md:w-[500px] lg:w-[800px] 2xl:h-[500px] 2xl:w-[1000px]  bg-[#BCE8B1] rounded-2xl shadow-2xl mt-7"> {/*light green */}
+          <div className="flex flex-col w-full h-full px-10 pb-10">
+            <div className="pt-2 h-[50%]">
+              <div
+                onClick={handleCancel}
+                className="flex justify-end w-full pt-2 pr-2 cursor-pointer">
+                <IoMdClose className="text-[1.5rem]" />
+              </div>
+              <p className="flex text-[2rem] font-bold pl-5 justify-center items-center">{course_title}</p>
+            </div>
+            <div className="w-[100%] bg-[#87D275] h-[50vh] overflow-auto rounded-2xl "> {/**dark green */}
+              <p className="py-3  px-3 text-justify rounded-lg ">
+                {course_description}
               </p>
             </div>
-
           </div>
         </div>
       </div>
-    
+    </div>
   );
 };
 

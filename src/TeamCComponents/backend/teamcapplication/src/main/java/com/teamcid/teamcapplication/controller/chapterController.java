@@ -9,7 +9,6 @@ import com.teamcid.teamcapplication.repository.chapterRepository;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.teamcid.teamcapplication.model.chapter;
 
@@ -20,7 +19,7 @@ public class chapterController {
         @Autowired
         private chapterRepository ChapterRepository;
 
-        @GetMapping("/chapter")
+        @GetMapping("/chapter")                                                                                                                                                             
         public List<chapter> getChapter(){
             return ChapterRepository.findAll();
         }

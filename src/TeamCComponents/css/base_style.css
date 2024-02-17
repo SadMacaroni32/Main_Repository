@@ -1,288 +1,283 @@
 .btn-view-course:hover {
-    background-color: #145304;
+    background-color: #145304; /* Changes background color on hover */
 }
 
 #c_dashboard_header {
-    background-color: #BCE8B1;
+    background-color: #BCE8B1; /* Sets background color for dashboard header */
 }
 
 .c_chapter_cardmain:hover {
-    filter: drop-shadow(0 0 1em #484848);
+    filter: drop-shadow(0 0 1em #484848); /* Applies drop shadow on hover */
 }
 
 .buttonReturn:hover .c_chapter_return {
-    transform: scale(1.1);
+    transform: scale(1.1); /* Scales up chapter return button on hover */
 }
 
 #c_course_itemcontainer:hover {
-    filter: drop-shadow(0 0 1em #126912);
+    filter: drop-shadow(0 0 1em #126912); /* Applies drop shadow to course item container on hover */
 }
 
 /* CARD POSITIONING */
 #c_cardpreview_cardouter {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    max-height: 100%;
-    box-sizing: border-box;
+    display: flex; /* Changes display to flex layout */
+    flex-direction: row; /* Arranges items in a row */
+    justify-content: center; /* Aligns items to the center */
+    max-height: 100%; /* Sets maximum height to 100% */
+    box-sizing: border-box; /* Includes border and padding in the element's total width and height */
 }
 
-/* CARD SPACING */
-#c_cardview_sql,
-#c_cardview_svn,
-#c_cardview_html {
-    margin: 10px;
-}
 
 #c_preview_headerTitle {
-    font-size: 2.5rem;
+    font-size: 2.5rem; /* Sets the font size of the header title */
 }
 
 #c_preview_headerSub {
-    font-size: 2.3rem;
+    font-size: 2.3rem; /* Sets the font size of the header subtitle */
 }
 
 #c_preview_headerSub {
-    font-size: 1.5rem;
+    font-size: 1.5rem; /* Overrides the font size of the header subtitle (Note: This rule will override the previous one for the same selector) */
 }
 
 #c_assessment_sql:hover,
 #c_assessment_svn:hover,
 #c_assessment_html:hover {
-    filter: drop-shadow(0 0 1em #126912);
+    filter: drop-shadow(0 0 1em #126912); /* Applies drop shadow effect on hover for SQL, SVN, and HTML assessments */
 }
 
 #enrollButton1,
 #enrollButton2,
 #enrollButton3 {
-    display: 'flex';
-    align-items: 'center';
-    justify-content: 'center';
-    height: '30px';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px; /* Styles enroll buttons 1, 2, and 3 with flexbox properties and a fixed height of 30px */
 }
 
 #c_course_maincontainer {
-    margin-left: 5rem;
-    margin-right: 5rem;
+    margin-left: 5rem; /* Sets left margin of course main container */
+    margin-right: 5rem; /* Sets right margin of course main container */
 }
 
 #c_course_tag {
-    margin-top: 0.5rem;
-    margin-right: 0.5rem;
-    width: 7rem;
-    height: 4rem;
-    background-color: #BCE8B1;
-    border-radius: 0.5rem;
-    border: 2px solid #126912;
+    margin-top: 0.5rem; /* Adds top margin to the course tag */
+    margin-right: 0.5rem; /* Adds right margin to the course tag */
+    width: 7rem; /* Sets the width of the course tag */
+    height: 4rem; /* Sets the height of the course tag */
+    background-color: #BCE8B1; /* Sets the background color of the course tag */
+    border-radius: 0.5rem; /* Sets the border radius of the course tag */
+    border: 2px solid #126912; /* Sets a solid border with color for the course tag */
 }
 
 #c_course_seemoretext {
-    position: relative;
-    color: #0e3b03;
-    cursor: pointer;
+    position: relative; /* Sets the position of the course see more text */
+    color: #0e3b03; /* Sets the color of the course see more text */
+    cursor: pointer; /* Changes the cursor to pointer on hover */
 }
 
 #c_course_seemoretext:hover {
-    color: #126912;
+    color: #126912; /* Changes the color of the course see more text on hover */
 }
 
 #c_course_tagtext,
 #c_course_cardbody {
-    font-size: 1rem;
+    font-size: 1rem; /* Sets the font size for the course tag text and card body */
 }
 
+
 #c_course_cardmain {
-    margin-top: 10px;
-    will-change: filter;
-    transition: filter 300ms;
-    background-color: red;
-    border-radius: 1rem;
+    margin-top: 10px; /* Adds top margin to the course card main */
+    will-change: filter; /* Indicates that the 'filter' property will be changed */
+    transition: filter 300ms; /* Sets a transition effect for the 'filter' property with a duration of 300 milliseconds */
+    background-color: red; /* Sets the background color of the course card main to red */
+    border-radius: 1rem; /* Sets the border radius of the course card main */
 }
 
 #c_maincontent_maincontainer {
-    text-align: left;
-    align-items: left;
-    font-size: 2.5rem;
-
+    text-align: left; /* Aligns the text within the main content container to the left */
+    align-items: left; /* Aligns items within the main content container to the left */
+    font-size: 2.5rem; /* Sets the font size of the main content container to 2.5rem */
 }
 
 #c_maincontent_textcontainer {
-    color: #0e3b03;
-    background-color: #D9FFCF;
-    text-align: center;
-    overflow: visible;
-    border: 2px solid;
-    border-color: #0e3b03;
+    color: #0e3b03; /* Sets the text color of the text container to dark green */
+    background-color: #D9FFCF; /* Sets the background color of the text container to a light green */
+    text-align: center; /* Aligns the text within the text container to the center */
+    overflow: visible; /* Allows content to overflow the text container */
+    border: 2px solid; /* Sets a solid border with default color for the text container */
+    border-color: #0e3b03; /* Sets the border color of the text container to dark green */
 }
 
 #c_maincontent_textdesc {
-    font-size: 1.3rem;
+    font-size: 1.3rem; /* Sets the font size of the text description to 1.3rem */
 }
 
 #c_maincontent_mainlayout {
-    margin-top: 1.5rem;
-    margin-left: 10rem;
-    margin-right: 10rem;
+    margin-top: 1.5rem; /* Adds top margin to the main content layout */
+    margin-left: 10rem; /* Adds left margin to the main content layout */
+    margin-right: 10rem; /* Adds right margin to the main content layout */
 }
+
 
 #c_maincontent_buttoncontainer {
     /* D-GRID */
-    display: grid;
-    gap: 0.5rem;
-    margin: 10px;
+    display: grid; /* Uses CSS grid layout */
+    gap: 0.5rem; /* Sets the gap between grid items to 0.5rem */
+    margin: 10px; /* Sets margin around the button container */
 
     /* GAP-2 */
     >* {
-        margin-top: 0.5rem;
-        margin-bottom: 0.5rem;
+        margin-top: 0.5rem; /* Sets top margin for direct children of the button container */
+        margin-bottom: 0.5rem; /* Sets bottom margin for direct children of the button container */
     }
 
     /* D-MD-FLEX */
-    display: flex;
+    display: flex; /* Changes the display to flex layout */
 
     /* JUSTIFY-CONTENT-MD-END */
-    justify-content: flex-end;
+    justify-content: flex-end; /* Aligns flex items to the end of the container */
 }
+
 
 
 /* LARGE DESKTOP */
+/* For screens with a maximum width of 1024px */
 @media only screen and (max-width: 1024px) {
-
     #c_course_cardbody {
-        background-color: #126912;
-        border-radius: 1rem;
+        background-color: #126912; /* Changes background color of course card body */
+        border-radius: 1rem; /* Applies border radius to course card body */
     }
 
     #c_course_tagtext,
     #c_course_cardbody {
-        font-size: 1rem;
+        font-size: 1rem; /* Adjusts font size of course tag text and card body */
     }
 
     #c_course_tag {
-        width: 7rem;
-        height: 4rem;
+        width: 7rem; /* Sets width of course tag */
+        height: 4rem; /* Sets height of course tag */
     }
 
     #c_maincontent_textcontainer {
-        font-size: 18px;
+        font-size: 18px; /* Adjusts font size of text container in main content */
     }
 }
 
-/* TYPICAL LAPTOP */
+/* For typical laptops with a maximum width of 992px */
 @media only screen and (max-width: 992px) {
     #c_cardpreview_cardouter {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        max-height: 100%;
+        display: flex; /* Changes display to flex layout */
+        flex-direction: column; /* Arranges items in a column */
+        align-items: center; /* Aligns items to the center */
+        max-height: 100%; /* Sets maximum height to 100% */
     }
 
     #c_course_cardbody {
-        background-color: #126912;
-        border-radius: 1rem;
+        background-color: #126912; /* Changes background color of course card body */
+        border-radius: 1rem; /* Applies border radius to course card body */
     }
 
     #c_course_tagtext,
     #c_course_cardbody {
-        font-size: 1rem;
+        font-size: 1rem; /* Adjusts font size of course tag text and card body */
     }
 
     #c_course_tag {
-        width: 7rem;
-        height: 4rem;
+        width: 7rem; /* Sets width of course tag */
+        height: 4rem; /* Sets height of course tag */
     }
 }
+
 
 /* TYPICAL TABLET */
 @media only screen and (max-width: 768px) {
     #c_cardpreview_cardouter {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        max-height: 100%;
+        display: flex; /* Changes display to flex layout */
+        flex-direction: column; /* Arranges items in a column */
+        align-items: center; /* Aligns items to the center */
+        max-height: 100%; /* Sets maximum height to 100% */
     }
 
     #c_course_cardbody {
-        background-color: #126912;
-        border-radius: 1rem;
+        background-color: #126912; /* Changes background color of course card body */
+        border-radius: 1rem; /* Applies border radius to course card body */
     }
 
     #c_course_tagtext,
     #c_course_cardbody {
-        font-size: 0.8rem;
-        justify-content: center;
+        font-size: 0.8rem; /* Adjusts font size of course tag text and card body */
+        justify-content: center; /* Aligns content to the center */
     }
 
     #c_course_tag {
-        width: 7rem;
-        height: 4rem;
+        width: 7rem; /* Sets width of course tag */
+        height: 4rem; /* Sets height of course tag */
     }
 
     #c_maincontent_maincontainer {
-        text-align: center;
-        align-items: left;
-        font-size: 2.5rem;
+        text-align: center; /* Aligns text to the center */
+        align-items: left; /* Aligns items to the left */
+        font-size: 2.5rem; /* Adjusts font size of main container */
     }
-
 }
 
 /* TYPICAL SMARTPHONE */
 @media only screen and (max-width: 480px) {
     #c_cardpreview_cardouter {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        max-height: 100%;
+        display: flex; /* Changes display to flex layout */
+        flex-direction: column; /* Arranges items in a column */
+        align-items: center; /* Aligns items to the center */
+        max-height: 100%; /* Sets maximum height to 100% */
     }
 
     #c_course_cardbody {
-        background-color: #126912;
-        border-radius: 1rem;
+        background-color: #126912; /* Changes background color of course card body */
+        border-radius: 1rem; /* Applies border radius to course card body */
     }
 
     #c_course_tagtext,
     #c_course_cardbody {
-        font-size: 0.5rem;
-        justify-content: center;
+        font-size: 0.5rem; /* Adjusts font size of course tag text and card body */
+        justify-content: center; /* Aligns content to the center */
     }
 
     #c_course_tag {
-        width: 4rem;
-        height: 2rem;
+        width: 4rem; /* Sets width of course tag */
+        height: 2rem; /* Sets height of course tag */
     }
 
     #c_maincontent_textcontainer {
-        width: 20rem;
+        width: 20rem; /* Sets width of text container */
     }
 
     #c_maincontent_maincontainer {
-        text-align: left;
-        font-size: 1.5rem;
+        text-align: left; /* Aligns text to the left */
+        font-size: 1.5rem; /* Adjusts font size of main container */
     }
 
     #c_maincontent_mainlayout {
-        margin-top: 1.5rem;
-        margin-left: 0rem;
-        margin-right: 0rem;
+        margin-top: 1.5rem; /* Sets top margin */
+        margin-left: 0rem; /* Sets left margin */
+        margin-right: 0rem; /* Sets right margin */
     }
 
     #c_maincontent_buttoncontainer {
         /* D-GRID */
-        display: center;
-        gap: 0.5rem;
-        margin: 10px;
+        display: center; /* Aligns items to the center */
+        gap: 0.5rem; /* Sets gap between items */
+        margin: 10px; /* Sets margin */
 
         /* GAP-2 */
         >* {
-            margin-top: 0.5rem;
-            margin-bottom: 0.5rem;
+            margin-top: 0.5rem; /* Sets top margin */
+            margin-bottom: 0.5rem; /* Sets bottom margin */
         }
 
         /* D-MD-FLEX */
-        display: flex;
+        display: flex; /* Changes display to flex layout */
 
         /* JUSTIFY-CONTENT-MD-END */
-        justify-content: flex-end;
+        justify-content: flex-end; /* Aligns content to the end */
     }
-
 }

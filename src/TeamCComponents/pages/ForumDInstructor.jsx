@@ -5,21 +5,19 @@ import { MdOutlineReply } from "react-icons/md";
 import { FaArrowLeft } from "react-icons/fa";
 import { BsThreeDots } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import Team_D_HeaderV2 from "../../TeamDComponents/Team_D_HeaderV2";
+import Nav from "../../TeamBComponents/components/NavBar/Nav";
 
-const ForumD = () => {
+const ForumDInstructor = () => {
   // const [likeCount, setLikeCount] = useState(0);
   // const [dislikeCount, setDislikeCount] = useState(0);
   const [likeCount, setLikeCount] = useState(0); //2.12.24
-  const [dislikeCount, setDislikeCount] = useState(0); //2.12.24
-  const [liked, setLiked] = useState(false); //2.12.24
-  const [disliked, setDisliked] = useState(false); //2.12.24
+  const [dislikeCount, setDislikeCount] = useState(0);//2.12.24
+  const [liked, setLiked] = useState(false);//2.12.24
+  const [disliked, setDisliked] = useState(false);//2.12.24
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [replying, setReplying] = useState(false); //2.8.24
   const [replyContent, setReplyContent] = useState(""); //2.8.24
   const [replies, setReplies] = useState([]); //2.8.24
-  // State variables for managing dropdowns in reply containers 2.15.24
-  const [dropdownOpen, setDropdownOpen] = useState({});
-  const [replyDropdownOpen, setReplyDropdownOpen] = useState({});
   //const [editing, setEditing] = useState(false);
   //const [editedContent, setEditedContent] = useState("");
   //const [textareaRows, setTextareaRows] = useState(3); // Adjust the number of rows based on content length
@@ -33,6 +31,7 @@ const ForumD = () => {
   // };
 
   //try
+  
 
   const handleLike = () => {
     if (!liked) {
@@ -99,6 +98,10 @@ const ForumD = () => {
     //document.getElementById("discussionContent").innerText = content;
   }, []);
 
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  }; //2.7.24
+
   const handleEditClick = () => {
     // Close the dropdown
     setDropdownOpen(false);
@@ -147,13 +150,6 @@ const ForumD = () => {
     }
   }; //2.7.24
 
-  const handleDeleteClicktwo = (replyId) => {
-    // Filter out the reply with the matching id
-    const updatedReplies = replies.filter((reply) => reply.id !== replyId);
-    // Update the state with the filtered replies
-    setReplies(updatedReplies);
-  };
-
   const handleReplyClick = () => {
     setReplying(!replying);
   };
@@ -174,37 +170,18 @@ const ForumD = () => {
     }
   }; //2.8.24
 
-  // Function to toggle dropdown in main post
-  const toggleDropdown = () => {
-    setDropdownOpen((prevState) => !prevState);
-  };
-
-  // Function to toggle dropdown in reply container
-  const toggleReplyDropdown = (replyId) => {
-    setReplyDropdownOpen((prevState) => ({
-      ...prevState,
-      [replyId]: !prevState[replyId],
-    }));
-  };
-
-  useEffect(() => {
-    // Set dropdowns to closed initially
-    setDropdownOpen(false);
-    setReplyDropdownOpen({});
-  }, []);
-  
   return (
     <>
-      <Team_D_HeaderV2 />
+      <Nav />
       <div className="ForumDSpace">
-        <Link
-          to="/ForumF"
-          id="TeamCReturnButtonFf"
-          className="btn btn-secondary"
-        >
-          <FaArrowLeft />
-        </Link>
         <div className="ForumC_ForumDcontainer">
+          <Link
+            to="/ForumF"
+            id="TeamCReturnButtonFf"
+            className="btn btn-secondary"
+          >
+            <FaArrowLeft />
+          </Link>
           <div className="TeamCForumC_Forumcard">
             <div className="TeamCCardBody">
               <div className="TeamCFlex d-flex justify-content-between align-items-center mb-2">
@@ -213,7 +190,9 @@ const ForumD = () => {
                   <p
                     id="post-time"
                     className="TeamC_ForumD text-muted small mb-0"
-                  ></p>
+                  >
+                    {new Date().toLocaleString()}
+                  </p>
                 </div>
                 <div className="TeamForum_Drop dropdown position-absolute top-0 end-0 three-dots">
                   <button
@@ -256,20 +235,39 @@ const ForumD = () => {
                 quam velit, vulputate eu pharetra nec, mattis ac neque.
               </p>
               <div className="TeamCFlex d-flex justify-content-start">
+                {/* <a
+                  href="#!"
+                  className="TeamCFlex d-flex align-items-center me-3 reaction-button"
+                  onClick={() => handleReaction("like")}
+                >
+                  <AiOutlineLike />
+                  <span className="reaction-counter">{likeCount}</span>
+                </a>
+                <a
+                  href="#!"
+                  className="TeamCFlex d-flex align-items-center me-3 reaction-button"
+                  onClick={() => handleReaction("dislike")}
+                >
+                  <AiOutlineDislike />
+                  <span className="reaction-counter">{dislikeCount}</span>
+                </a> */}
+
                 <div
                   onClick={handleLike}
                   className="TeamCFlex d-flex align-items-center me-3"
                 >
-                  <AiOutlineLike />
+                  <AiOutlineLike />{/*2.12.24 */}
                   <div className="like-counter">{likeCount}</div>
-                </div>
+                </div> {/*2.12.24 */}
+
                 <div
                   onClick={handleDislike}
                   className="TeamCFlex d-flex align-items-center me-3"
                 >
-                  <AiOutlineDislike />
+                  <AiOutlineDislike />{/*2.12.24 */}
                   <div className="dislike-counter">{dislikeCount}</div>
-                </div>
+                </div>{/*2.12.24 */}
+
                 <a
                   href="#!"
                   className="TeamCFlex d-flex align-items-center me-3 reply-button"
@@ -296,50 +294,24 @@ const ForumD = () => {
                     Post
                   </button>
                 </div>
-              )}
+              )}{" "}
+              {/*2.8.24*/}
               <div id="commentsSection" className="mt-3">
                 {replies.map((reply) => (
                   <div key={reply.id} className="reply-container">
                     <div className="TeamC_inside">
-                      <div className="TeamForum_Droptwo dropdown position-absolute top-0 end-0 three-dots">
-                        <button
-                          className="TeamC_forum_linktwo"
-                          onClick={() => toggleReplyDropdown(reply.id)}
-                          aria-expanded={
-                            replyDropdownOpen[reply.id] ? "true" : "false"
-                          }
-                        >
-                          <BsThreeDots className="TeamCdotstwo bx bx-dots-horizontal-rounded" />
-                        </button>
-                        <ul
-                          className={`dropdown-menu${
-                            replyDropdownOpen[reply.id] ? " show" : ""
-                          }`}
-                          aria-labelledby="dropdownMenuLink"
-                        >
-                          <li>
-                            <Link
-                              to="#"
-                              className="dropdown-item"
-                              onClick={() => handleDeleteClicktwo(reply.id)}
-                            >
-                              Delete
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
                       <div className="TeamCFlex d-flex justify-content-between align-items-center mb-2">
                         <div>
                           <h6 className="nameUSerfw-bold text-success mb-1">
                             @User
                           </h6>
-
                           <p className="TeamC_ForumD text-muted small mb-0">
                             {reply.time}
                           </p>
                         </div>
                       </div>
-                      <p className="TeamC_ForumD mb-0 pb-1">{reply.content}</p>
+                      <p className="TeamC_ForumD mb-0 pb-1">{reply.content}</p>{" "}
+                      {/* 2.12.24 adjusted the mb and pb */}
                     </div>
                   </div>
                 ))}
@@ -352,4 +324,4 @@ const ForumD = () => {
   );
 };
 
-export default ForumD;
+export default ForumDInstructor;

@@ -1,36 +1,49 @@
+/* Media queries for responsiveness */
 @media (max-width: 767px), (min-width: 768px) and (max-width: 1023px), (min-width: 1024px) {
-.ForumDSpace {
+/* Forum Discussion Space Styles */
+  .ForumDSpace {
   background-color: #ebffe5;
   margin: 0;
   margin-bottom: 20px;
 }
 
+/* Styles for user names and TeamC_ForumD */
 .nameUser,
 .TeamC_ForumD {
   color: black;
 }
 
+/* TeamC_discSec Styles */
 .TeamC_discSec {
   color: #165207;
   font-size: x-large;
 }
 
+/* TeamCarrow Styles */
 .TeamCarrow {
   margin-top: 10px;
   margin-right: 10px;
   color: #165207;
 }
 
+/* TeamCdots Styles */
   .TeamCdots {
     margin-top: 20px;
     margin-right: 15px;
     color: #165207;
   }
+  .TeamCdotstwo{
+    margin-top: 20px;
+    margin-right: 15px;
+    color: #165207;
+  }
 
+  /* TeamCFlex Styles */
   .TeamCFlex {
     color: #165207;
   }
 
+  /* TeamCFlex Hover Styles */
   .TeamCFlex:hover {
     color: #5c974e;
   }
@@ -40,9 +53,17 @@
     color: #5c974e;
   }
 
+  .TeamForum_Droptwo{
+    color: #5c974e;
+  }
+
+  .TeamC_forum_linktwo{
+    color: #5c974e;
+  }
+
   /* Adjusted color for textarea focus */
   .TeamC_controlForm:focus {
-    border-color: 1px solid #165207;
+    border-color: 1px solid #165207; /* other styles */
     box-shadow: 0 0 0 0.25rem rgba(22, 82, 7, 0.25);
     display: block;
     width: 100%;
@@ -57,11 +78,13 @@
     border-radius: 0.25rem;
   }
 
+  /* TeamCForumBtnPrime Styles */
   .TeamCForumBtnPrime {
     background-color: #165207;
     border-color: #165207;
   }
 
+  /* TeamCForumBtnPrime Hover Styles */
   .TeamCForumBtnPrime:hover {
     background-color: #5c974e;
     border-color: #5c974e;
@@ -69,10 +92,12 @@
 
   /* Center-aligned container */
   .ForumC_ForumDcontainer {
+    position: sticky;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    padding:10px;
     height: 100vh;
     /*margin: 20px; deleted: 2/5/24*/
   }
@@ -94,8 +119,10 @@
   border-radius: .25rem;/*2/7/24*/
 }
 
+/* TeamCCardBody Styles */
   .TeamCCardBody {
     padding: 20px;
+    padding-bottom: 10px;
     border-style: solid; /*Temporary change 2/5/24*/
   }
 
@@ -116,6 +143,7 @@
     color: #165207;
   }
 
+  /* Hover styles for Like/Dislike/Reply buttons */
   .like-button:hover,
   .dislike-button:hover,
   .reply-button:hover {
@@ -167,11 +195,14 @@
 
   /* Style for the return button */
   #TeamCReturnButtonFf {
-    position: fixed;
-    bottom: 15px;
-    left: 15px;
+    position: relative;
+    margin-top: 10px;
+    margin-left:5px;
     font-size: 24px;
     width: 55px;
     background-color: #165207;
   }
+
+
 }
+

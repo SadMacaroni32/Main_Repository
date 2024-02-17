@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import "../TeamDComponents/TeamD_Css/verification.css";
+import "./TeamD_Css/verification.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { AiFillSafetyCertificate } from "react-icons/ai";
 import Team_D_HeaderV2 from "./Team_D_HeaderV2";
-import warningErr from "../TeamDComponents/TeamD_Assets/icons8-warning-96.png"
+import warningErr from "./TeamD_Assets/icons8-warning-96.png";
 
-// Team_D_Verification component represents the verification page
 const Team_D_Verification = () => {
   const [code, setCode] = useState("");
   const [verificationResult, setVerificationResult] = useState(null);
@@ -14,12 +13,11 @@ const Team_D_Verification = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isValidSerial, setIsValidSerial] = useState(false);
 
-  // Function to handle verification of the certificate
   const handleVerify = async () => {
     setLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:8080/api/certifications/verifyCertificate/${code}`
+        `http://localhost:8080/api/verifications/verifyCertificate/${code}`
       );
       if (response.ok) {
         const data = await response.json();
@@ -58,9 +56,10 @@ const Team_D_Verification = () => {
       setLoading(false);
     }
   };
+
   return (
-    //verification for users
     <div>
+      {/* Team D header component */}
       <Team_D_HeaderV2 />
       <section className="verification_container">
         <div className="verification_title">
@@ -69,17 +68,20 @@ const Team_D_Verification = () => {
         <div className="verification_search">
           <div className="left">
             <div className="font-bold text-[2rem]">
-            <h2>Verify Course Certificate</h2>
+              <h2>Verify Course Certificate</h2>
             </div>
+            {/* Serial number input field */}
             <Form.Control
               size="sm"
               type="text"
               placeholder="Enter Serial Number"
               value={code}
               onClick={() => {
-                // Append "B55-" when the input field is clicked
-                setCode("B55-");
-                setIsValidSerial(false); // Reset isValidSerial on input click
+                // Append "B55-" only if the input is empty
+                if (!code) {
+                  setCode("B55-");
+                  setIsValidSerial(false); // Reset isValidSerial on input click
+                }
               }}
               onChange={(e) => {
                 const inputValue = e.target.value
@@ -105,9 +107,10 @@ const Team_D_Verification = () => {
                   ? "#28a745"
                   : errorMessage
                   ? "#ff0000"
-                  : "inherit" // Set font color to green when certified
+                  : "inherit", // Set font color to green when certified
               }}
             />
+            {/* Verify button */}
             <Button
               variant="primary"
               className="verify"
@@ -120,19 +123,19 @@ const Team_D_Verification = () => {
           <div className="right">
             {!loading && (
               <>
-                {/* Only render the first set of input boxes if verificationResult doesn't exist */}
+                {/* Render certificate information */}
                 {!verificationResult && !errorMessage && (
                   <>
+                    {/* Render input boxes if verificationResult doesn't exist */}
                     <div className="nameVerification">
                       <Form.Label>Name</Form.Label>
                       <Form.Control size="sm" type="text" readOnly />
                     </div>
                     <div className="serialVerification">
                       <Form.Label>
-                        {/* used tailwind to realign icon 2/5/24 */}
                         <div className="flex gap-x-2">
-                        Certificate Serial No.
-                        <AiFillSafetyCertificate className="icon" />
+                          Certificate Serial No.
+                          <AiFillSafetyCertificate className="icon" />
                         </div>
                       </Form.Label>
                       <Form.Control size="sm" type="text" readOnly />
@@ -143,7 +146,7 @@ const Team_D_Verification = () => {
                     </div>
                   </>
                 )}
-                {/* Render the second set of input boxes if verificationResult exists */}
+                {/* Render certificate information if verificationResult exists */}
                 {verificationResult && verificationResult.length > 0 && (
                   <>
                     <div className="nameVerification">
@@ -178,6 +181,7 @@ const Team_D_Verification = () => {
                     </div>
                   </>
                 )}
+                {/* Render error message if any */}
                 {errorMessage && (
                   <div className="error-message">
                     <img src={warningErr} alt="warningErr" />

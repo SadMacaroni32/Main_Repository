@@ -3,14 +3,19 @@ import { useLocation, Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function TeamC_MainContent() {
+  // Extracting current pathname from the URL
   const { pathname } = useLocation();
+
+  // Variables to hold dynamic content based on the current pathname
   let layoutTitle = '';
   let subTitle = '';
   let descText = '';
   let urlReturn = '';
   let urlQuiz = '';
 
+  // Switch case to determine content based on the current pathname
   switch (pathname) {
+    // Cases for different courses and chapters
     /* COURSE 1 */
     case '/course1_sql':
       layoutTitle = 'CHAPTER 1';
@@ -95,8 +100,10 @@ function TeamC_MainContent() {
       break;
   }
 
+  // JSX rendering for the main content
   return (
     <>
+       {/* Return button linking back to the specified URL */}
       <Link to={urlReturn} className="buttonReturn d-flex align-items-center c_chapter_returncontainer" style={{ textDecoration: 'none', color: 'black', width: 'fit-content', }}>
         <div className="d-flex align-items-center" style={{ marginTop: '1rem' }}>
           <div>
@@ -107,7 +114,9 @@ function TeamC_MainContent() {
           </div>
           <span className="returnTitle c_chapter_returnText" style={{ marginLeft: '0.5rem', color: '#126912', fontSize: '1.5rem', marginTop: '0rem', }}>Back</span>
         </div>
+         {/* Return button contents */}
       </Link>
+
       {/* Main layout */}
       <main id="c_maincontent_mainlayout">
 
@@ -115,6 +124,7 @@ function TeamC_MainContent() {
         <div id="topic0" className="c_maincontent_parentcontainer">
 
           <div className="container" id="c_maincontent_maincontainer" >
+            {/* Displaying dynamic content based on the current pathname */}
             <p style={{ fontWeight: 'bold' }}>{layoutTitle}</p>
             <p>{subTitle}</p>
             <div style={{ backgroundColor: '#EBFFE5' }}>
@@ -155,6 +165,7 @@ function TeamC_MainContent() {
       {/* End of Topic Container */}
       {/* End of Main Layout */}
 
+       {/* Modals for quiz and resource download */}              
       <div className="modal fade modalMain" id="mainId" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
         <div className="modal-dialog">
           <div className="modal-content" style={{ backgroundColor: '#D9FFCF' }}>
@@ -172,9 +183,11 @@ function TeamC_MainContent() {
             </div>
           </div>
         </div>
+        {/* Modal contents for quiz */}
       </div>
 
       <div className="modal fade modalSub" id="subId" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+        {/* Modal contents for resource download */}
         <div className="modal-dialog">
           <div className="modal-content" style={{ backgroundColor: '#D9FFCF' }}>
             <div className="modal-header">

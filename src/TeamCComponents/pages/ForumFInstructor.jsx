@@ -2,16 +2,15 @@ import React, { useState, useEffect } from "react";
 import "../css/ffront.css";
 import { IoIosSearch } from "react-icons/io";
 import DiscussionPosts from "./DiscussionPosts";
-import Team_D_HeaderV2 from "../../TeamDComponents/Team_D_HeaderV2";
+import Nav from "../../TeamBComponents/components/NavBar/Nav";;
 
-const ForumF = () => {
+const ForumFInstructor = () => {
   const [isSearchButtonDisabled, setIsSearchButtonDisabled] = useState(true);
   const [showDiscussionForm, setShowDiscussionForm] = useState(false);
-  
-  const [searchTerm, setSearchTerm] = useState("");
-  const [discussionTitle, setDiscussionTitle] = useState('');
-  const [discussionContent, setDiscussionContent] = useState('');
   const [discussionPosts, setDiscussionPosts] = useState([]);
+  const [discussionTitle, setDiscussionTitle] = useState("");
+  const [discussionContent, setDiscussionContent] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const toggleDiscussionForm = () => {
     setShowDiscussionForm(!showDiscussionForm);
@@ -32,83 +31,68 @@ const ForumF = () => {
     setDiscussionPosts(updatedDiscussionPosts);
   };
 
-  // function postDiscussion() { 2/14/24
-  //   var discussionTitleInput = document.getElementById("discussionTitle");
-  //   var discussionContentInput = document.getElementById("discussionContent");
+  function postDiscussion() {
+    var discussionTitleInput = document.getElementById("discussionTitle");
+    var discussionContentInput = document.getElementById("discussionContent");
 
-  //   // Retrieve the input values
-  //   var discussionTitle = discussionTitleInput.value.trim();
-  //   var discussionContent = discussionContentInput.value.trim();
+    // Retrieve the input values
+    var discussionTitle = discussionTitleInput.value.trim();
+    var discussionContent = discussionContentInput.value.trim();
 
-  //   // Validate discussion title length
-  //   if (discussionTitle.length > 200) {
-  //     alert("Discussion title must not exceed 200 characters!");
-  //     return;
-  //   }
-
-  //   // Validate special characters in the discussion title using a regular expression
-  //   var specialCharacters = /[!@#$%^&*(),.?":{}|<>]/;
-  //   if (specialCharacters.test(discussionTitle)) {
-  //     alert("Special characters are not allowed in the discussion title!");
-  //     return;
-  //   }
-
-  //   // Validate if both title and content are provided
-  //   if (discussionTitle === "" || discussionContent === "") {
-  //     alert("Discussion title and content are required!");
-  //     return;
-  //   }
-
-  //   // Add an event listener to the discussion title for redirection
-  //   var discussionTitleElement = newDiscussionCard.querySelector(
-  //     `#discussionTitle_${Date.now()}`
-  //   );
-  //   discussionTitleElement.addEventListener("click", function () {
-  //     redirectToDiscussionDetails(discussionTitle, discussionContent);
-  //   });
-
-  //   // Insert the new discussion card before the first post
-  //   var existingDiscussions = document.getElementById("discussionPosts");
-  //   existingDiscussions.insertBefore(
-  //     newDiscussionCard,
-  //     existingDiscussions.firstChild
-  //   );
-
-  //   // Reset the input fields and hide the form using state-setting functions
-  //   setDiscussionTitle("");
-  //   setDiscussionContent("");
-  //   setShowDiscussionForm(false);
-
-  //   // Show modal and set timeout to close it after 1 second
-  //   var myModal = new bootstrap.Modal(document.getElementById("niceModal"));
-  //   myModal.show();
-
-  //   setTimeout(function () {
-  //     myModal.hide();
-  //   }, 1000); // Close the modal after 1 second
-  // }
-
-  // const redirectToDiscussionDetails = (title, content) => {
-  //   const urlTitle = title.replace(/\s+/g, "-").toLowerCase();
-  //   const url = `/discussion_detail/${urlTitle}/${encodeURIComponent(content)}`;
-  //   //navigate("/"); // Use useNavigate instead of history.push
-  // };
-
-  const postDiscussion = () => {
-    if (!discussionTitle || !discussionContent) {
-      // Handle case where title or content is empty
+    // Validate discussion title length
+    if (discussionTitle.length > 200) {
+      alert("Discussion title must not exceed 200 characters!");
       return;
     }
 
-    const newDiscussion = {
-      title: discussionTitle,
-      content: discussionContent
-    };
+    // Validate special characters in the discussion title using a regular expression
+    var specialCharacters = /[!@#$%^&*(),.?":{}|<>]/;
+    if (specialCharacters.test(discussionTitle)) {
+      alert("Special characters are not allowed in the discussion title!");
+      return;
+    }
 
-    setDiscussionPosts([...discussionPosts, newDiscussion]);
-    setDiscussionTitle('');
-    setDiscussionContent('');
+    // Validate if both title and content are provided
+    if (discussionTitle === "" || discussionContent === "") {
+      alert("Discussion title and content are required!");
+      return;
+    }
+
+    // Add an event listener to the discussion title for redirection
+    var discussionTitleElement = newDiscussionCard.querySelector(
+      `#discussionTitle_${Date.now()}`,
+    );
+    discussionTitleElement.addEventListener("click", function () {
+      redirectToDiscussionDetails(discussionTitle, discussionContent);
+    });
+
+    // Insert the new discussion card before the first post
+    var existingDiscussions = document.getElementById("discussionPosts");
+    existingDiscussions.insertBefore(
+      newDiscussionCard,
+      existingDiscussions.firstChild,
+    );
+
+    // Reset the input fields and hide the form using state-setting functions
+    setDiscussionTitle("");
+    setDiscussionContent("")
+    setShowDiscussionForm(false);
+
+    // Show modal and set timeout to close it after 1 second
+    var myModal = new bootstrap.Modal(document.getElementById("niceModal"));
+    myModal.show();
+
+    setTimeout(function () {
+      myModal.hide();
+    }, 1000); // Close the modal after 1 second
+  }
+
+  const redirectToDiscussionDetails = (title, content) => {
+    const urlTitle = title.replace(/\s+/g, "-").toLowerCase();
+    const url = `/discussion_detail/${urlTitle}/${encodeURIComponent(content)}`;
+    //navigate("/"); // Use useNavigate instead of history.push
   };
+
   // Add event listener to prevent Enter key from submitting the form
   document.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
@@ -141,7 +125,7 @@ const ForumF = () => {
 
   return (
     <>
-      <Team_D_HeaderV2 />
+      <Nav />
       <div className="ForumFSpace">
         <div className="container stretch-forum">
           <div className="row justify-content-center">
@@ -151,7 +135,8 @@ const ForumF = () => {
                 <br />
                 <div className="c_forum_adjustm col-lg-9mx-auto">
                   {/*30/24*/}
-                  <div className="row text-left mb-5">
+                  
+                  <div className="row text-left mb-5 mt-20">
                     <div className="col-lg-6">
                       <button
                         className="c_forum_btngr btn btn-lg btn-success py-2 px-4 mb-3 bg-op-6 roboto-bold"
@@ -285,4 +270,4 @@ const ForumF = () => {
   );
 };
 
-export default ForumF;
+export default ForumFInstructor;

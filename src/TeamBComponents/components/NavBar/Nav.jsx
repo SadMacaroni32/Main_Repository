@@ -35,6 +35,9 @@ const Nav = () => {
     showDashBoard,
     showProfile,
     showCourseList,
+    showForum,
+            forumShow,
+            setForumShow,
   } = useContext(NavBarContext);
 
   return (
@@ -48,7 +51,7 @@ const Nav = () => {
           }>
           <Link to="/teambdashboard">
             <img
-              className="  ml-10 xl:w-[171.67px] xl:h-[50px] lg:h-[5rem] xl:ml-[95px] py-3 xl:py-1"
+              className="m-auto xl:w-[171.67px] xl:h-[50px] lg:h-[5rem] xl:ml-[95px] py-3 xl:py-1"
               src={logo}
               alt="tsukidenLogo"
               width={171.67}
@@ -81,10 +84,10 @@ const Nav = () => {
               </ul>
            
             </Link>
-            <Link to="/ForumF">
+            <Link to="/ForumInstructor"  onClick={showForum}>
               <ul
                 className={
-                  dashBoardShow
+                  forumShow
                     ? "font-semibold text-[#116211] text-center p-1 TeamB_text-shadow   transition-all"
                     : "font-bold TeamB_text-shadow   p-1  hover:text-[#116211] transition-all hover:bg-opacity-[50%] hover:font-semibold "
                 }>
@@ -138,7 +141,7 @@ const Nav = () => {
                   </p>
                 </Link>
                 <Link
-                  to="/dashboard"
+                  to="/"
                   src="CgProfile"
                   onClick={showLogout}
                   className="w-full text-center ">
@@ -166,4 +169,4 @@ const Nav = () => {
 };
 
 export default Nav;
-//1/24/2024
+

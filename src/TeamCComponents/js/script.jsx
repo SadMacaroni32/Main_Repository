@@ -74,7 +74,33 @@ const getOptionText = (index, question) => {
 };
 
 
+let buttonCounter = 1;
+let modalCounter = 1;
+
+function incrementAttributes() {
+  const newButtonId = `enrollButton${buttonCounter}`;
+  const newModalId = `modal_seemore${modalCounter}`;
+  const newButtonTarget = `#modal${buttonCounter}`;
+
+  // Update enroll button attributes
+  const enrollButton = document.getElementById("enrollButton");
+  if (enrollButton) {
+    enrollButton.id = newButtonId;
+    enrollButton.setAttribute("data-bs-target", newButtonTarget);
+  }
+
+  // Update modal see more attributes
+  const modalSeeMore = document.getElementById("modal_seemore");
+  if (modalSeeMore) {
+    modalSeeMore.id = newModalId;
+  }
+
+  // Increment counters
+  buttonCounter++;
+  modalCounter++;
+}
+
 
 
 // Exporting all functions and hooks
-export { showNextTopic, hideAllTopics, enroll, redirectToGoogle, useToggleChoices, getOptionText };
+export { showNextTopic, hideAllTopics, enroll, redirectToGoogle, useToggleChoices, getOptionText, incrementAttributes};

@@ -10,8 +10,14 @@ const ChapterModal = ({ chapterId, editTitle }) => {
   });
 
   const { chapter_title } = chapters;
+  // const handleInputChange = (e) => {
+  //   setChapters({ ...chapters, [e.target.name]: e.target.value });
+  // };
+
   const handleInputChange = (e) => {
-    setChapters({ ...chapters, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    const capitalizedValue = value.charAt(0).toUpperCase() + value.slice(1); // Capitalize first letter
+    setChapters({ ...chapters, [name]: capitalizedValue });
   };
 
   useEffect(() => {
@@ -57,7 +63,7 @@ const ChapterModal = ({ chapterId, editTitle }) => {
             </div>
             <input
               type="text"
-              className="TeamB_input-style bg-[#BCE8B1] opacity-[50%] uppercase p-2"
+              className="TeamB_input-style bg-[#BCE8B1] opacity-[50%] p-2"
               name="chapter_title"
               value={chapter_title}
               onChange={(e) => handleInputChange(e)}

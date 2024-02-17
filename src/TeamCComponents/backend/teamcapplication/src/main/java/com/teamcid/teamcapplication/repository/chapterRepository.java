@@ -5,6 +5,6 @@ import com.teamcid.teamcapplication.model.chapter;
 
 
 
-public interface chapterRepository extends JpaRepository<chapter, Long>{
+public interface chapterRepository extends JpaRepository<chapter, Integer>{
 
 }

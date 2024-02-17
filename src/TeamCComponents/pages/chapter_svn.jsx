@@ -8,6 +8,7 @@ import ChapterList from "../components/chapter_list";
 function TeamC_ChapterSvn() {
   return (
     <>
+    {/*Navbar Component*/}
       <Team_D_HeaderV2 />
       <ChapterList />
     </>

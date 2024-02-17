@@ -135,8 +135,8 @@ const TopicPage = () => {
                                   <span
                                     className="text-[1.5rem] text-white cursor-pointer"
                                     onClick={() => {
-                                    //  setDeleteModalVisible((prev) => !prev);
-                                      deleteTopic(topic_id);
+                                     setDeleteModalVisible((prev) => !prev);
+                                      // deleteTopic(topic_id);
                                     }}>
                                     
                                     <MdDelete />

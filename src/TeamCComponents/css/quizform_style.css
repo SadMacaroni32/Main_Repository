@@ -1,7 +1,9 @@
+/* Styles for the quiz item list container */
 .quizItemList ul {
     margin-top: 1rem;
 }
 
+/* Styles for each quiz item in the list */
 .quizItemList ul li {
     display: flex;
     align-items: center;
@@ -14,10 +16,12 @@
     cursor: pointer;
 }
 
+/* Styles for final answers container list items */
 #finalAnswersContainer ul li {
     height: fit-content;
 }
 
+/* Styles for the button within the quiz item list */
 .quizItemList button {
     margin: auto;
     width: 2rem;
@@ -30,6 +34,7 @@
     cursor: pointer;
 }
 
+/* Styles for the selected quiz item */
 .quizItemList li.selected {
     background-color: #0e3b03;
     color: #fff;

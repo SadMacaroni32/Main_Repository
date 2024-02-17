@@ -1,45 +1,43 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Link } from "react-router-dom";  
 import Team_D_HeaderV2 from "../../TeamDComponents/Team_D_HeaderV2";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import '../css/base_style.css';
+import axios from "axios";
 
 {/* This function is to see the title of the assessment and the status of it.*/}
 function TeamC_Assessments() {
+  const [chapters, setChapters] = useState([]);
+
+  useEffect(() => {
+    const fetchChapters = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/chapter");
+        setChapters(response.data);
+      } catch (error) {
+        console.error("Error fetching chapters:", error);
+      }
+    };
+
+    fetchChapters();
+  }, []);
+
   return (
     <Fragment>
       <Team_D_HeaderV2 />
       <div className="container mt-5 mx-auto">
         <p className="text-left mb-4" style={{ fontSize: '2rem' }}>ASSESSMENTS</p>
-
+        {chapters.map((chapter, index) => (
         <Link to='/assessment_sql'>
         <div className="card mb-3" id="c_assessment_sql" style={{ borderRadius: '15px', backgroundColor: '#bce8b1' }}>
           <div className="card-body d-flex justify-content-between" >
-            <p style={{ color: '#0e3b03' }} className="h4"><b>The SQL Programming</b></p>
+            <p style={{ color: '#0e3b03' }} className="h4"><b>{chapter.chapterTitle}</b></p>
             <small id="subText" style={{ fontStyle: 'italic', alignSelf: 'center', color: '#0e3b03' }}>-STATUS-</small>
           </div>
         </div>
         </Link>
-
-        <Link to='/assessment_svn'>
-        <div className="card mb-3" id="c_assessment_svn" style={{ borderRadius: '15px', backgroundColor: '#bce8b1' }}>
-          <div className="card-body d-flex justify-content-between" >
-            <p style={{ color: '#0e3b03' }} className="h4"><b>Version Control: Subversion</b></p>
-            <small style={{ fontStyle: 'italic', alignSelf: 'center', color: '#0e3b03' }}>-STATUS-</small>
-          </div>
-        </div>
-        </Link>
-
-        <Link to='/assessment_html'>
-        <div className="card mb-3" id="c_assessment_html" style={{ borderRadius: '15px', backgroundColor: '#bce8b1' }}>
-          <div className="card-body d-flex justify-content-between" >
-            <p style={{ color: '#0e3b03' }} className="h4"><b>HTML Programming</b></p>
-            <small style={{ fontStyle: 'italic', alignSelf: 'center', color: '#0e3b03' }}>-STATUS-</small>
-          </div>
-        </div>
-        </Link>
-      
+        ))}
       </div>
       
 

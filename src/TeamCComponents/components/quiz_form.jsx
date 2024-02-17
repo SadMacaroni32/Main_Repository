@@ -248,43 +248,50 @@ function TeamC_QuizForm_Component() {
       {/* End of Topic Container */}
       {/* End of Main Layout */}
 
-      <div className="modal fade modalMain" id="mainId" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-        <div className="modal-dialog">
-          <div className="modal-content" style={{ backgroundColor: '#D9FFCF' }}>
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">Take the quiz?</h5>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div className="modal-body text-center">
-              <p>You will be redirected to Google Form's website. Please keep your notes and answer the Quiz honestly.</p><p>Good luck trainee!</p>
-            </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSf6_s-EAisyl3bXEn1QB1IrIRnYppAQjGkk_rsO4Gvfn7PGqw/viewform', '_blank')} style={{ backgroundColor: '#0e3b03', color: '#ffffff', borderRadius: '20px', fontSize: '15px', width: '100px' }}>Yes</button>
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" style={{ backgroundColor: '#0e3b03', color: '#ffffff', borderRadius: '20px', fontSize: '15px', width: '100px' }}>Cancel</button>
-
-            </div>
+      {/* Modal for taking the quiz */}
+      <div className="modal fade modalMain" id="mainId" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog">
+              <div className="modal-content" style={{ backgroundColor: '#D9FFCF' }}>
+                  <div className="modal-header">
+                      <h5 className="modal-title" id="exampleModalLabel">Take the quiz?</h5>
+                      <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div className="modal-body text-center">
+                      <p>You will be redirected to Google Form's website. Please keep your notes and answer the Quiz honestly.</p>
+                      <p>Good luck trainee!</p>
+                  </div>
+                  <div className="modal-footer">
+                      {/* Button to proceed to the quiz */}
+                      <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSf6_s-EAisyl3bXEn1QB1IrIRnYppAQjGkk_rsO4Gvfn7PGqw/viewform', '_blank')} style={{ backgroundColor: '#0e3b03', color: '#ffffff', borderRadius: '20px', fontSize: '15px', width: '100px' }}>Yes</button>
+                      {/* Button to cancel */}
+                      <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" style={{ backgroundColor: '#0e3b03', color: '#ffffff', borderRadius: '20px', fontSize: '15px', width: '100px' }}>Cancel</button>
+                  </div>
+              </div>
           </div>
-        </div>
       </div>
 
-      <div className="modal fade modalSub" id="subId" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-        <div className="modal-dialog">
-          <div className="modal-content" style={{ backgroundColor: '#D9FFCF' }}>
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">Take the quiz?</h5>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div className="modal-body text-center">
-              <p>You will be downloading a resource file.</p><p>Do you wish to Proceed?</p>
-            </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-primary" data-bs-dismiss="modal" style={{ backgroundColor: '#0e3b03', color: '#ffffff', borderRadius: '20px', fontSize: '15px', width: '100px' }}>Proceed</button>
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" style={{ backgroundColor: '#0e3b03', color: '#ffffff', borderRadius: '20px', fontSize: '15px', width: '100px' }}>Cancel</button>
-
-            </div>
+      {/* Modal for downloading resource file */}
+      <div className="modal fade modalSub" id="subId" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog">
+              <div className="modal-content" style={{ backgroundColor: '#D9FFCF' }}>
+                  <div className="modal-header">
+                      <h5 className="modal-title" id="exampleModalLabel">Take the quiz?</h5>
+                      <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div className="modal-body text-center">
+                      <p>You will be downloading a resource file.</p>
+                      <p>Do you wish to Proceed?</p>
+                  </div>
+                  <div className="modal-footer">
+                      {/* Button to proceed with downloading */}
+                      <button type="button" className="btn btn-primary" data-bs-dismiss="modal" style={{ backgroundColor: '#0e3b03', color: '#ffffff', borderRadius: '20px', fontSize: '15px', width: '100px' }}>Proceed</button>
+                      {/* Button to cancel */}
+                      <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" style={{ backgroundColor: '#0e3b03', color: '#ffffff', borderRadius: '20px', fontSize: '15px', width: '100px' }}>Cancel</button>
+                  </div>
+              </div>
           </div>
-        </div>
       </div>
+
     </>
   )
 }

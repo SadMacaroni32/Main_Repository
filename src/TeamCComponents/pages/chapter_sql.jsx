@@ -10,7 +10,7 @@ import ChapterList from "../components/chapter_list";
 function TeamC_ChapterSql() {
   return (
     <>
-      {/* Render the Team_D_HeaderV2 component */}
+    {/*Navbar Component*/}
       <Team_D_HeaderV2 />
       <ChapterList />
     </>

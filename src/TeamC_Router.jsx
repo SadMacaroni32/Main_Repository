@@ -4,7 +4,6 @@ import { Route, Routes } from 'react-router-dom';
 import TeamC_Dashboard from '../src/TeamCComponents/pages/dashboard';
 import TeamC_Course from '../src/TeamCComponents/pages/course';
 import TeamC_Assessments from '../src/TeamCComponents/pages/assessment';
-import TeamC_Forum from './TeamCComponents/pages/Forum';
 
 /* COURSE LISTS */
 import TeamC_ChapterSvn from '../src/TeamCComponents/pages/chapter_svn';
@@ -36,7 +35,6 @@ function TeamC_Router() {
           <Route path="/" element={<TeamC_Dashboard />} />
           <Route path="/assessment" element={<TeamC_Assessments />} />
           <Route path="/course" element={<TeamC_Course />} />
-          <Route path="/forum" element={<TeamC_Forum />} />
 
           {/* COURSE 1 */}
           <Route path="/course1_svn/*" element={<><TeamC_Sidebar /><TeamC_CourseSvn1 /></>}

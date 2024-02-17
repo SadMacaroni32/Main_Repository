@@ -20,6 +20,8 @@ const Profile = () => {
   const goBack = () => {
     navigate(-1);
   };
+  
+  
 
   //destructure profile context
   const { showPersonalInfo, showAccDetails, showPInfo, showADetails } =
@@ -73,7 +75,7 @@ const Profile = () => {
           </div>
           <div>
             {/* Place your Component here */}
-            {showPersonalInfo && <PersonalInfo />}
+            {showPersonalInfo && <PersonalInfo/>}
             {showAccDetails && <AccDetails />}
             {/* /* Place AccDetails Component here */}
             {/* <AccDetails/> */}

@@ -19,6 +19,8 @@ public class chapter {
     @Column(name = "chapter_title")
     private String chapterTitle;
 
+    @Column(name = "chapter_description")
+    private String chapterDescription;
 
     public int getChapterId() {
         return this.chapterId;
@@ -36,5 +38,12 @@ public class chapter {
         this.chapterTitle = chapterTitle;
     }
 
+    public String getChapterDescription() {
+        return this.chapterDescription;
+    }
+
+    public void setChapterDescription(String chapterDescription) {
+        this.chapterDescription = chapterDescription;
+    }
 
 }

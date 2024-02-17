@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/no-unknown-property */
 //january 12 2024
 import axios from "axios";
@@ -9,7 +10,7 @@ import profilePic from "../../../assets/TeamBassests/Registration.png";
 import Footer from "../Footer";
 import PersonalEdit from "./PersonalEdit";
 
-const PersonalInfo = () => {
+const PersonalInfo = ({ intructorName }) => {
   const [instructors, setInstructors] = useState([]);
 
   const [instructor, setInstructor] = useState({
@@ -70,7 +71,7 @@ const PersonalInfo = () => {
                   <label
                     htmlFor="firstName"
                     className=" text-[#4D4141] text-opacity-[53%] absolute z-10 top-0 left-2 text-[.8rem] xl:text-[16px]  ">
-                    First Name <span className="text-[#FF2626]">*</span>
+                    First Name
                   </label>
 
                   {/* FIRSTNAME INPUT */}
@@ -90,7 +91,7 @@ const PersonalInfo = () => {
                   <label
                     htmlFor="lastName"
                     className=" text-[#4D4141] text-opacity-[53%] absolute z-10 top-0 left-2 text-[.8rem] xl:text-[16px] ">
-                    Last Name <span className="text-[#FF2626]">*</span>
+                    Last Name
                   </label>
 
                   {/* LASTNAME INPUT */}
@@ -128,7 +129,7 @@ const PersonalInfo = () => {
                       <label
                         htmlFor="Email"
                         className=" text-[#4D4141] text-opacity-[53%] absolute   z-10 top-0 left-2 text-[.8rem] xl:text-[16px]">
-                        Contact Number <span className="text-[#FF2626]">*</span>
+                        Contact Number
                       </label>
                       {/* CONTACT NUMBER INPUT */}
 
@@ -159,7 +160,7 @@ const PersonalInfo = () => {
           </div>
         </div>
       )}
-      {updatePersonalInfo && <PersonalEdit />}
+      {updatePersonalInfo && <PersonalEdit hideUpdatePersonalInfo={showEdit} />}
     </>
   );
 };

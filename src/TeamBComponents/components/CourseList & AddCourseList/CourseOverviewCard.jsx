@@ -56,7 +56,6 @@ const CourseOverviewCard = ({ courseTitle }) => {
                 <span className="text-[2.5rem] px-5">
                   <IoArrowBackCircle />
                 </span>
-               
               </div>
               <div className="lg:font-bold lg:text-[2rem] w-full flex justify-center">
                 <p className="lg:font-bold TeamB_text-shadow">
@@ -65,11 +64,8 @@ const CourseOverviewCard = ({ courseTitle }) => {
               </div>
             </div>
             <div className="w-full lg:max-w-[800px]">
-
-
-
               <div className="flex items-center justify-center">
-                <CourseOverviewById />
+                <CourseOverviewById courseTitle={courseTitle} />
               </div>
             </div>
 

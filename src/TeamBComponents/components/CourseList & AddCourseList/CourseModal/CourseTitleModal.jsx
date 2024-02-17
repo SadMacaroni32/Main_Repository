@@ -11,9 +11,13 @@ const CourseTitleModal = ({ courseId, editTitle }) => {
   });
 
   const { course_title } = courses;
-  const handleInputChange = (e) => {
-    setCourses({ ...courses, [e.target.name]: e.target.value });
-  };
+  
+ const handleInputChange = (e) => {
+   const { name, value } = e.target;
+   const capitalizedValue = value.charAt(0).toUpperCase() + value.slice(1); // Capitalize first letter
+   setCourses({ ...courses, [name]: capitalizedValue });
+ };
+
 
   useEffect(() => {
     loadCourses();
@@ -54,7 +58,7 @@ const CourseTitleModal = ({ courseId, editTitle }) => {
             </div>
             <input
               type="text"
-              className="TeamB_input-style bg-[#BCE8B1] opacity-[50%] uppercase p-2"
+              className="TeamB_input-style bg-[#BCE8B1] opacity-[50%] p-2"
               required
               name="course_title"
               value={course_title}

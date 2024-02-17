@@ -653,6 +653,15 @@ input::placeholder{
   margin-top: 20px; /* Add space between panels */
 }
 
+.home-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+
 .verification-image {
   width: 100%;
   max-width: 400px; /* Adjust the image max-width as needed */
