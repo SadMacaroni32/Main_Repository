@@ -211,8 +211,11 @@ const handleInputChange = (e, isFile = false) => {
 
   return (
     <div className="Prof2-wrapper">
+      {/* Container for the left side of the profile editing interface */}
       <div className="Prof2-left">
+        {/* Label for the profile picture input */}
         <label htmlFor="profilePicture">Profile Picture</label>
+        {/* Button for choosing a file */}
         <button className="TeamA-button" onClick={handleChooseFileClick}>
           Choose File
         </button>
@@ -239,11 +242,14 @@ const handleInputChange = (e, isFile = false) => {
       <div className="Prof2-right">
         {userData && Object.keys(userData).length > 0 && ( // Check if userData is not null and not an empty object
           <div className="Prof2-info">
+            {/* Heading for profile information */}
             <h3>Profile Information</h3>
+            {/* Form for updating profile information */}
             <form onSubmit={handleSubmit} className="Prof2-info_data">
               {/* Existing form fields */}
               <div className="Prof2-data">
                 <label htmlFor="firstName">First Name</label>
+                {/* Input field for first name */}
                 <input
                   type="text"
                   id="firstName"
@@ -252,13 +258,17 @@ const handleInputChange = (e, isFile = false) => {
                   onChange={handleInputChange}
                   placeholder="Enter your first name"
                 />
-                <label htmlFor="email">Email</label>
+                {/* Label for the email field */}
+                <label htmlFor="email">Email</label> 
                 <div className="data">
+                  {/* Display the email from the userData if available */}
                   {userData && <p>{userData.email}</p>}
                 </div>
               </div>
               <div className="Prof2-data">
+                {/* Label for the last name input field */}
                 <label htmlFor="lastName">Last Name</label>
+                {/* Input field for the last name */}
                 <input
                   type="text"
                   id="lastName"
@@ -279,7 +289,7 @@ const handleInputChange = (e, isFile = false) => {
               </div>
               {/* Update and Cancel buttons */}
               <div className="Prof2-buttons">
-                <button className="submit-button" type="submit">
+                <button className="submit-button">
                   Update
                 </button>
                 <Link to="#">

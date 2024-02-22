@@ -51,12 +51,15 @@ const UserNavigation = ({ onUserDataFetched, openModal }) => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
+        // Retrieve user ID from local storage
         const userId = localStorage.getItem("userId");
+         // Check if user ID is available
         if (!userId) {
           console.error("User ID not found in local storage");
           return;
         }
 
+        // Fetch user data using the user ID
         const response = await fetch(
           `http://localhost:8085/api/v1/auth/users/${userId}`,
           {
@@ -67,7 +70,9 @@ const UserNavigation = ({ onUserDataFetched, openModal }) => {
           }
         );
 
+        // Check if response is successful
         if (response.ok) {
+          // Parse response data as JSON
           const userData = await response.json();
           setUserData(userData);
 
@@ -75,22 +80,30 @@ const UserNavigation = ({ onUserDataFetched, openModal }) => {
             userData.profilePicture !== undefined &&
             userData.profilePicture !== null
           ) {
+
+            // Convert binary data to base64 string
             const base64 = btoa(
               String.fromCharCode(...new Uint8Array(userData.profilePicture))
             );
+            // Determine the image type
             const imageType = getUserImageType(userData.profilePicture);
+           // Create data URL using base64 string
             const dataUrl = `data:image/${imageType};base64,${base64}`;
 
             onUserDataFetched({
               ...userData,
               profilePicture: dataUrl,
             });
-          } else {
+          }
+          // Log an error message if the profile picture is undefined or null in the user data
+          else {
             console.error(
               "Profile picture is undefined or null in user data"
             );  
           }
-        } else {
+        }
+        // Log an error message if there is a failure fetching user data from the server
+        else {
           console.error(
             "Failed to fetch user data",
             response.status,
@@ -105,10 +118,13 @@ const UserNavigation = ({ onUserDataFetched, openModal }) => {
     fetchUserData();
   }, [onUserDataFetched]);
 
+  // Add event listener to handle overflow state of the body based on the value of 'clicked' variable
   useEffect(() => {
     if (clicked) {
+       // Disable scrolling when 'clicked' is true
       document.body.style.overflow = "hidden";
     } else {
+      // Enable scrolling when 'clicked' is false
       document.body.style.overflow = "";
     }
 
@@ -120,7 +136,9 @@ const UserNavigation = ({ onUserDataFetched, openModal }) => {
   return (
     <>
       <nav className="navbar_TeamD">
+        {/* NavLink to navigate to the home page, with an onClick event handler to close the mobile navbar */}
         <NavLink to="/" onClick={closeMobileNavbar}>
+         {/* Image element for the logo, with a class name "teamDimg" and alt text */} 
           <img className="teamDimg" src={TsukidenLogo} alt="Logo" />
         </NavLink>
         <div>
@@ -134,6 +152,7 @@ const UserNavigation = ({ onUserDataFetched, openModal }) => {
               </span>
             </li>
             <li className="profile_link">
+              {/* NavLink to navigate to the profile page, with an onClick event handler to close the mobile navbar */}
               <NavLink
                 to="/profile"
                 activeClassName="active"
@@ -143,6 +162,7 @@ const UserNavigation = ({ onUserDataFetched, openModal }) => {
               </NavLink>
             </li>
             <li className="profile_link">
+              {/* NavLink to navigate to the certificate page, with an onClick event handler to close the mobile navbar */}
               <NavLink
                 to="/certificate"
                 activeClassName="active"
@@ -153,6 +173,7 @@ const UserNavigation = ({ onUserDataFetched, openModal }) => {
             </li>
             <li className="divider"></li>
             <li>
+               {/* NavLink to navigate to the dashboard page, with an onClick event handler to close the mobile navbar */}
               <NavLink
                 to="/dashboard"
                 activeClassName="active"
@@ -162,6 +183,7 @@ const UserNavigation = ({ onUserDataFetched, openModal }) => {
               </NavLink>
             </li>
             <li>
+              {/* NavDropdown component to display a dropdown menu for "My Course" */}
               <NavDropdown
                 id="nav-dropdown-dark-example"
                 title="My Course"
@@ -171,6 +193,7 @@ const UserNavigation = ({ onUserDataFetched, openModal }) => {
                 <NavDropdown.Item href="/course" activeClassName="active">
                   Problem Overview
                 </NavDropdown.Item>
+                {/* NavLink for Assessment route */}
                 <NavDropdown.Item href="/assessment" activeClassName="active">
                   Assessment
                 </NavDropdown.Item>
@@ -187,6 +210,7 @@ const UserNavigation = ({ onUserDataFetched, openModal }) => {
               </NavLink>
             </li>
             <li>
+              {/* NavLink for Verification route */}
               <NavLink
                 to="/verification"
                 activeClassName="active"
@@ -198,6 +222,7 @@ const UserNavigation = ({ onUserDataFetched, openModal }) => {
           </ul>
         </div>
         <div id="mobile" onClick={handleClick}>
+          {/* Conditionally render different icons based on 'clicked' state */}
           {clicked ? (
             <i className="fas fa-times"></i>
           ) : (
@@ -224,17 +249,21 @@ const UserNavigation = ({ onUserDataFetched, openModal }) => {
                 Hi, {userData.firstName}!
               </Dropdown.Toggle>
 
+              {/* Dropdown menu */}
               <Dropdown.Menu>
+                 {/* Profile dropdown item */}
                 <Dropdown.Item href="#" onClick={openModal}>
                   <FaRegUserCircle /> Profile
                 </Dropdown.Item>
+                {/* Certificate dropdown item */}
                 <Dropdown.Item
-                  as={NavLink}
-                  to="/certificate"
-                  onClick={closeMobileNavbar}
+                  as={NavLink} /* Render as NavLink for routing */
+                  to="/certificate"  /* Link to certificate page */
+                  onClick={closeMobileNavbar} /* Close mobile navbar onClick */
                 >
                   <TbCertificate /> My Certificate
                 </Dropdown.Item>
+                {/* Log out dropdown item */}
                 <Dropdown.Item as={NavLink} to="/" onClick={handleLogout}>
                   <FiLogOut /> Log Out
                 </Dropdown.Item>
@@ -242,10 +271,13 @@ const UserNavigation = ({ onUserDataFetched, openModal }) => {
             </Dropdown>
           ) : (
             <>
-              <Link to="/register">
+              {/* Register button */}
+              <Link to="/register"> {/* Link to register page */}
                 <button id="register">Register</button>
               </Link>
-              <Link to="/login">
+
+              {/* Log in button */}
+              <Link to="/login">  {/* Link to login page */}
                 <button id="login">Log In</button>
               </Link>
             </>

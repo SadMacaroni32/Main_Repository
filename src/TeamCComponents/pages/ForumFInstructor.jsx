@@ -3,6 +3,8 @@ import "../css/ffront.css";
 import { IoIosSearch } from "react-icons/io";
 import DiscussionPosts from "./DiscussionPosts";
 import Nav from "../../TeamBComponents/components/NavBar/Nav";;
+import DiscussionPostsInstructor from './DiscussionPostsInstructor';
+import Footer from "../../TeamBComponents/components/Footer";
 
 const ForumFInstructor = () => {
   const [isSearchButtonDisabled, setIsSearchButtonDisabled] = useState(true);
@@ -129,17 +131,17 @@ const ForumFInstructor = () => {
       <div className="ForumFSpace">
         <div className="container stretch-forum">
           <div className="row justify-content-center">
-            <div className="c_forum_adjustm col-lg-12 mb-3">
+            <div className="mb-3 c_forum_adjustm col-lg-12">
               {/*30/24*/}
-              <div className="row text-left mb-5">
+              <div className="mb-5 text-left row">
                 <br />
                 <div className="c_forum_adjustm col-lg-9mx-auto">
                   {/*30/24*/}
                   
-                  <div className="row text-left mb-5 mt-20">
+                  <div className="mt-20 mb-5 text-left row">
                     <div className="col-lg-6">
                       <button
-                        className="c_forum_btngr btn btn-lg btn-success py-2 px-4 mb-3 bg-op-6 roboto-bold"
+                        className="px-4 py-2 mb-3 c_forum_btngr btn btn-lg btn-success bg-op-6 roboto-bold"
                         onClick={toggleDiscussionForm}
                       >
                         {/*30/24*/}
@@ -219,7 +221,7 @@ const ForumFInstructor = () => {
                     </div>
                   )}
                 </div>
-                <div>{showForm && <DiscussionPosts />}</div>
+                <div>{showForm && <DiscussionPostsInstructor />}</div>
               </div>
             </div>
           </div>
@@ -265,6 +267,7 @@ const ForumFInstructor = () => {
             </div>
           </div>
         </div>
+        <Footer/>
       </div>
     </>
   );

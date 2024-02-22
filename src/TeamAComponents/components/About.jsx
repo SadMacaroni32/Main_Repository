@@ -7,13 +7,18 @@ import { Link } from "react-router-dom";
 import "../styles/Auth.css";
 import card1 from "../../assets/card 1.svg";
 import card2 from "../../assets/card 2.svg";
+
+// About component
 const About = () => {
   return (
     <>
+       {/* Navigation bar */}
       <nav className="my-navigation">
         <Link to="/">
+           {/* Logo image */}
           <img src="..\src\assets\TeamAassets\companyLogo.png" alt="Logo" />
         </Link>
+        {/* Navigation menu */}
         <ul className="menu-hide">
           <li>
             <a href="/verif_nonuser">Verification</a>
@@ -25,6 +30,7 @@ const About = () => {
             <a href="https://www.tsukiden.com.ph">Contact us</a>
           </li>
         </ul>
+        {/* Registration and login buttons */}
         <div className="testing">
           <Link to="/register">
             <button id="register">Register</button>
@@ -38,11 +44,13 @@ const About = () => {
       {/* className="home-content" old css */}   
       <div className="flex flex-col TeamB_text-shadow">
         <div className="flex flex-col pr-[6rem] pl-[6rem] pt-[2rem] pb-[2rem] p leading-6">
-            {/* className="about-container" old css */}
+    
+          {/* About Tsukiden Section */}
             <h1 className="mt-[15px] text-center font-bold text-[2rem]">
               About Tsukiden{" "}
             </h1>
             <p className=" text-center">
+              {  /* Tsukiden Global Solutions introduction */}
               Tsukiden Global Solutions, Inc.<i>YOUR RELIABLE IT PARTNER </i>
               That's who <i>WE</i> are. For more than 30 years now, Team
               Tsukiden has always been the trusted reliable IT partner of its
@@ -61,22 +69,26 @@ const About = () => {
             </p>
             {/* Include the PhotoSection component here */}
         </div>
-        {/* className="about-mv" old css classname*/}
+       {/* Mission and Vision Section */}
         <div className=" flex flex-row leading-6">
             <div className="border w-[50%] text-center pl-[6rem] pr-[1rem]">
+              {/* Mission Section */}
               <h1 className=" font-bold text-[2rem] ">Mission</h1>
               We aim to... provide excellent quality service to our{" "}
               <i>CLIENTS </i>, foster professional growth and care to our{" "}
               <i>EMPLOYEES</i> & develop innovative solutions dedicated for the
               welfare of our <i>COMMUNITY & SOCIETY.</i>
               <div className="pt-[1.5rem]">
+                 {/* Image for Mission */}
               <img src={card1} alt="" width={500}/>
               </div>
             </div>
             <div className="border w-[50%] pr-[6rem] pl-[1rem]">
             <div className="pb-[1.5rem] ">
+              {/* Image for Vision */}
             <img src={card2} alt="" width={500}/>
             </div>
+              {/* Vision Section */}
               <h1 className="text-center font-bold text-[2rem] ">Vision</h1>
               <div className="text-center">
                 <i>TGSI</i> is committed to be{" "}
@@ -86,6 +98,7 @@ const About = () => {
             </div>
         </div>
       </div>
+      {/* Footer */}
       <div>
         <footer className="flex justify-center p-5  bottom-0 w-full ">
           <div>

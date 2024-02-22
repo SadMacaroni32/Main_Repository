@@ -5,7 +5,7 @@
 
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { IoArrowBackCircle } from "react-icons/io5";
+import { IoArrowBackCircle, IoArrowForwardCircle } from "react-icons/io5";
 import { IoIosAddCircle } from "react-icons/io";
 
 import { MdDelete } from "react-icons/md";
@@ -17,6 +17,7 @@ import CourseDescription from "./CourseDescription";
 import Nav from "../../NavBar/Nav";
 import { CourseContext } from "../../context/CourseContext";
 import axios from "axios";
+import Footer from "../../Footer";
 
 const TopicPage = () => {
   const navigate = useNavigate();
@@ -65,16 +66,19 @@ const TopicPage = () => {
     setShowCourseDescription(true);
     setShowAddTopic(false);
     setShowEditTopic(false);
+    setSideBarShow(false);
   };
   const showAddHandle = () => {
     setShowAddTopic(true);
     setShowCourseDescription(false);
+    setSideBarShow(false);
     setShowEditTopic(false);
   };
 
   const showEditHandle = () => {
     setShowEditTopic(true);
     setShowCourseDescription(false);
+    setSideBarShow(false);
     setShowAddTopic(false);
   };
 
@@ -84,12 +88,15 @@ const TopicPage = () => {
     await axios.delete(`http://localhost:8080/api/topics/${topic_id}`);
   };
 
+  //for sm sidebar react state
+  const [sideBarShow, setSideBarShow] = useState(false);
+
   return (
     <>
       <Nav />
-      <div className="flex mt-[80px] lg:h-[100vh] 2xl:h-[1011px]">
-        {/* sidebar */}
-        <div className="h-full flex flex-col items-center lg:w-[250px] 2xl:w-[375px] bg-[#126912]">
+      <div className="flex mt-[80px] md:h-[100vh] 2xl:h-[1011px]">
+        {/* sidebar for md */}
+        <div className="h-full hidden md:flex flex-col items-center lg:w-[250px] 2xl:w-[375px] bg-[#126912]">
           <div
             className="flex justify-start  pt-3 pb-8 cursor-pointer w-[90%]"
             onClick={goBack}>
@@ -131,14 +138,13 @@ const TopicPage = () => {
                                     }}>
                                     {topic_title}
                                   </p>
-                                 
+
                                   <span
                                     className="text-[1.5rem] text-white cursor-pointer"
                                     onClick={() => {
-                                     setDeleteModalVisible((prev) => !prev);
+                                      setDeleteModalVisible((prev) => !prev);
                                       // deleteTopic(topic_id);
                                     }}>
-                                    
                                     <MdDelete />
                                   </span>
                                 </div>
@@ -153,17 +159,105 @@ const TopicPage = () => {
               })}
             </div>
 
-            <div className="flex items-center h-[30%] " onClick={showAddHandle}>
-              <div className="text-white text-[2.5rem] pr-2 cursor-pointer">
+            <div
+              className="flex items-center justify-center h-[30%] "
+              onClick={showAddHandle}>
+              <div className="text-white text-[4rem] lg:text-[2.5rem] pr-2 cursor-pointer">
                 <IoIosAddCircle />
               </div>
-              <span className="font-medium text-white cursor-pointer text-[1rem] 2xl:text-[24px]">
+              <span className="hidden lg:flex font-medium text-white cursor-pointer text-[1rem] 2xl:text-[24px]">
                 Add New Topic
               </span>
             </div>
           </div>
         </div>
 
+        {/* sidebar for sm */}
+        {sideBarShow ? (
+          <div className="fixed md:hidden z-20 flex justify-start  pt-3  cursor-pointer w-[90%]">
+            <span
+              className="text-[2.1rem] text-white"
+              onClick={() => setSideBarShow((prev) => !prev)}>
+              <IoArrowBackCircle />
+            </span>
+          </div>
+        ) : (
+          <div className="fixed z-20 md:hidden flex justify-start  pt-3  cursor-pointer w-[90%]">
+            <span
+              className="text-[2.1rem] text-black"
+              onClick={() => setSideBarShow((prev) => !prev)}>
+              <IoArrowForwardCircle />
+            </span>
+          </div>
+        )}
+        {sideBarShow && (
+          <div className="h-full fixed z-10 md:hidden flex-col items-center w-[70%] bg-[#126912] rounded-r-lg">
+            <div className="h-[70%] w-[1005] mt-[60px] pl-2">
+              <div>
+                <p
+                  className="relative z-10 cursor-pointer font-light pb-3 text-white TeamB_text-shadow text-[1.3rem] 2xl:text-[32px]"
+                  onClick={showDescriptionHandle}>
+                  Description
+                </p>
+              </div>
+              <div className="h-[40vh] overflow-auto TeamB_no-scrollbar pr-3">
+                {courses.map((course, idx) => {
+                  const { chapter } = course;
+                  return (
+                    <div key={idx}>
+                      {chapter.map((chap, idx) => {
+                        const { topic } = chap;
+                        console.log(chap);
+                        return (
+                          <div key={idx}>
+                            {topic.map((tops, idx) => {
+                              const { topic_title, topic_id } = tops;
+                              console.log(tops);
+                              return (
+                                <div key={idx}>
+                                  <div className="flex items-center justify-between">
+                                    <p
+                                      className=" line-clamp-1 cursor-pointer py-1 font-light text-white TeamB_text-shadow  text-[1.2rem] 2xl:text-[32px]"
+                                      onClick={() => {
+                                        showEditHandle();
+                                        setEditTopicId(topic_id);
+                                      }}>
+                                      {topic_title}
+                                    </p>
+
+                                    <span
+                                      className="text-[1.5rem] text-white cursor-pointer"
+                                      onClick={() => {
+                                        setDeleteModalVisible((prev) => !prev);
+                                        // deleteTopic(topic_id);
+                                      }}>
+                                      <MdDelete />
+                                    </span>
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div
+                className="flex items-center h-[30%] justify-center"
+                onClick={showAddHandle}>
+                <div className="text-white text-[2.5rem] pr-2 cursor-pointer">
+                  <IoIosAddCircle />
+                </div>
+                <span className="font-medium text-white cursor-pointer text-[1rem] 2xl:text-[24px]">
+                  Add New Topic
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
         {/* Delete Modal Section */}
 
         {deleteModalVisible && (
@@ -194,23 +288,17 @@ const TopicPage = () => {
             {showAddTopic && (
               <div className="">
                 {courses.map((course, idx) => {
-                  const { chapter, course_title } = course;
-                  console.log(course_title);
+                  const { course_title } = course;
+                  {
+                    /* console.log(course_title); */
+                  }
                   return (
                     <div key={idx}>
-                      {chapter.map((chap, idx) => {
-                        const { chapter_id, chapter_title } = chap;
-                        console.log(chap);
-                        return (
-                          <div key={idx}>
-                            <AddTopic
-                              chapterId={chapter_id}
-                              courseTitle={course_title}
-                              chapterTitle={chapter_title}
-                            />
-                          </div>
-                        );
-                      })}
+                      <AddTopic
+                        // chapterId={chapter_id}
+                        courseTitle={course_title}
+                        // chapterTitle={chapter_title}
+                      />
                     </div>
                   );
                 })}
@@ -256,6 +344,7 @@ const TopicPage = () => {
           </div>
         </div>
       </div>
+      
     </>
   );
 };

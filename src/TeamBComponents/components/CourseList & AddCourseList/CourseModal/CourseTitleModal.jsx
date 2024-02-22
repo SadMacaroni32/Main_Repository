@@ -11,29 +11,28 @@ const CourseTitleModal = ({ courseId, editTitle }) => {
   });
 
   const { course_title } = courses;
-  
- const handleInputChange = (e) => {
-   const { name, value } = e.target;
-   const capitalizedValue = value.charAt(0).toUpperCase() + value.slice(1); // Capitalize first letter
-   setCourses({ ...courses, [name]: capitalizedValue });
- };
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    const capitalizedValue = value.charAt(0).toUpperCase() + value.slice(1); // Capitalize first letter
+    setCourses({ ...courses, [name]: capitalizedValue });
+  };
 
   useEffect(() => {
     loadCourses();
   }, []);
 
- const handleSubmit = async (e) => {
-   // Assuming your API call is successful, update the state to indicate form submission
+  const handleSubmit = async (e) => {
+    // Assuming your API call is successful, update the state to indicate form submission
 
-   try {
-     await axios.put(`http://localhost:8080/api/courses/${courseId}`, courses);
-     // showModal(false);
-   } catch (error) {
-     console.error("Error submitting form:", error);
-     // Handle error if the API call fails
-   }
- };
+    try {
+      await axios.put(`http://localhost:8080/api/courses/${courseId}`, courses);
+      // showModal(false);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      // Handle error if the API call fails
+    }
+  };
   const loadCourses = async () => {
     const result = await axios.get(
       `http://localhost:8080/api/courses/${courseId}`
@@ -43,16 +42,18 @@ const CourseTitleModal = ({ courseId, editTitle }) => {
 
   const handleCancel = () => {
     // Implement your cancel logic here
-    editTitle(prev => !prev)
+    editTitle((prev) => !prev);
   };
 
   return (
     <>
-      <div className="w-[100%] h-[100vh] pt-[11.8rem]  2xl:pt-[20rem] backdrop-blur-[.1rem]">
-        <div className="  flex m-auto w-[100%]  border-[.01rem] drop-shadow-2xl shadow-lg border-black rounded-lg bg-[#EBFFE5] lg:max-w-[550px] 2xl:max-h-[672px] 2xl:max-w-[724px] ">
-          <form onSubmit={handleSubmit} className="w-[80%] m-auto py-2 ">
+      <div className="w-[100%] h-[100vh] pt-[11.8rem] 2xl:pt-[20rem] backdrop-blur-[.1rem] fixed inset-0">
+        <div className="flex m-auto w-[90%] md:w-[550px]  border-[.01rem] drop-shadow-2xl shadow-lg border-black rounded-lg bg-[#EBFFE5] lg:max-w-[550px] 2xl:max-h-[672px] 2xl:max-w-[724px] ">
+          <form
+            onSubmit={handleSubmit}
+            className="w-[90%] lg:w-[80%] m-auto py-2 ">
             <div className="flex items-center py-1 text-black lg:font-bold lg:text-3xl lg:py-0">
-              <p className=" pb-5 lg:font-bold TeamB_text-shadow lg:text-[1.2rem]  xl:text-[24px] mt-5">
+              <p className=" lg:pb-5 pb-3 lg:font-bold TeamB_text-shadow text-[1.5rem] lg:text-[1.2rem]  xl:text-[24px] lg:mt-5">
                 Rename Course Title
               </p>
             </div>
@@ -64,16 +65,15 @@ const CourseTitleModal = ({ courseId, editTitle }) => {
               value={course_title}
               onChange={(e) => handleInputChange(e)}
             />
-            <div className="pt-8 lg:w-full lg:flex lg:justify-end">
+            <div className="flex justify-end w-full pt-8">
               <div className="flex gap-x-5">
                 <button
                   className="xl:text-[24px]  lg:text-[1rem]"
                   onClick={handleCancel}>
                   Cancel
                 </button>
-
                 <button
-                  className="drop-shadow-md TeamB_text-shadow   lg:w-[90px] lg:h-[40px] lg:rounded-[80px] lg:text-[1rem] xl:w-[114px] xl:h-[58px] xl:rounded-[100px] bg-[#126912] xl:text-[24px] text-[#FFFFFF]  font-bold"
+                  className="drop-shadow-md TeamB_text-shadow px-3 py-1 rounded-full   lg:w-[90px] lg:h-[40px] lg:rounded-[80px] lg:text-[1rem] xl:w-[114px] xl:h-[58px] xl:rounded-[100px] bg-[#126912] xl:text-[24px] text-[#FFFFFF]  font-bold"
                   type="submit">
                   <p>Done</p>
                 </button>

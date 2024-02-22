@@ -101,27 +101,41 @@ const Profile  = ({ handleClose, handleEditClick, handlePasswordChangeClick }) =
           alt="Profile"
           className="Profile-picture"
         />
+          {/* Render user's first and last names */}
           <h4>{userData.firstName} {userData.lastName}</h4>
+         {/* Render user's position name */}
           <p>Position name</p>
         </div>
         <div className="Prof1-right">
+    {/* Container for profile information */}
           <div className="Prof1-info">
+            {/* Heading for profile information */}
             <h3>Profile Information</h3>
+            {/* Container for profile data */}
             <div className="Prof1-info_data">
+             {/* Container for each row of data */}
               <div className="Prof1-data_row">
+                {/* Label for email */}
                 <h4>Email</h4>
+                {/* Display user's email */}
                 <p>{userData.email}</p>
               </div>
               <div className="Prof1-data_row">
+               {/* Label for username */}
                 <h4>Username</h4>
+                {/* Display user's username */}
                 <p>{userData.username}</p>
               </div>
               <div className="Prof1-data_row">
+                {/* Label for first name */}
                 <h4>First Name</h4>
+                {/* Display user's first name */}
                 <p>{userData.firstName}</p>
               </div>
               <div className="Prof1-data_row">
+                {/* Label for last name */}
                 <h4>Last Name</h4>
+                 {/* Display user's last name */}
                 <p>{userData.lastName}</p>
               </div>
             </div>
@@ -130,9 +144,11 @@ const Profile  = ({ handleClose, handleEditClick, handlePasswordChangeClick }) =
           {/* Add content for earned badges */}
         </div>
           <div className="Prof1-buttons">
+            {/* Button to trigger editing */}
             <Link to="#">
               <button onClick={handleEditClick} className="Prof1-Editbuttons">Edit</button>
             </Link>
+             {/* Button to trigger password change */}
             <Link to="#">
               <button onClick={handlePasswordChangeClick} className="Prof1-ChangeButton">Change Password</button>
             </Link>

@@ -1,38 +1,40 @@
 /* Media queries for responsiveness */
-@media (max-width: 767px), (min-width: 768px) and (max-width: 1023px), (min-width: 1024px) {
-/* Forum Discussion Space Styles */
+@media (max-width: 767px),
+  (min-width: 768px) and (max-width: 1023px),
+  (min-width: 1024px) {
+  /* Forum Discussion Space Styles */
   .ForumDSpace {
-  background-color: #ebffe5;
-  margin: 0;
-  margin-bottom: 20px;
-}
+    background-color: #ebffe5;
+    margin: 0;
+    margin-bottom: 20px;
+  }
 
-/* Styles for user names and TeamC_ForumD */
-.nameUser,
-.TeamC_ForumD {
-  color: black;
-}
+  /* Styles for user names and TeamC_ForumD */
+  .nameUser,
+  .TeamC_ForumD {
+    color: black;
+  }
 
-/* TeamC_discSec Styles */
-.TeamC_discSec {
-  color: #165207;
-  font-size: x-large;
-}
+  /* TeamC_discSec Styles */
+  .TeamC_discSec {
+    color: #165207;
+    font-size: x-large;
+  }
 
-/* TeamCarrow Styles */
-.TeamCarrow {
-  margin-top: 10px;
-  margin-right: 10px;
-  color: #165207;
-}
+  /* TeamCarrow Styles */
+  .TeamCarrow {
+    margin-top: 10px;
+    margin-right: 10px;
+    color: #165207;
+  }
 
-/* TeamCdots Styles */
+  /* TeamCdots Styles */
   .TeamCdots {
     margin-top: 20px;
     margin-right: 15px;
     color: #165207;
   }
-  .TeamCdotstwo{
+  .TeamCdotstwo {
     margin-top: 20px;
     margin-right: 15px;
     color: #165207;
@@ -53,11 +55,11 @@
     color: #5c974e;
   }
 
-  .TeamForum_Droptwo{
+  .TeamForum_Droptwo {
     color: #5c974e;
   }
 
-  .TeamC_forum_linktwo{
+  .TeamC_forum_linktwo {
     color: #5c974e;
   }
 
@@ -97,36 +99,36 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    padding:10px;
+    padding: 10px;
     height: 100vh;
     /*margin: 20px; deleted: 2/5/24*/
   }
 
-/* Card style */
-.TeamCForumC_Forumcard {
-  width: 100%;
-  max-width: 600px;
-  margin-top: 10px;
-  /* Adjust the maximum width as needed */
-  background-color: #f3f8f2;
-  position:relative; /*2/7/24*/
-  display: flex;/*2/7/24*/
-  flex-direction: column;/*2/7/24*/
-  min-width: 0;/*2/7/24*/
-  word-wrap: break-word;/*2/7/24*/
-  background-clip: border-box;/*2/7/24*/
-  border: 1px solid rgba(0, 0, 0, .125);/*2/7/24*/
-  border-radius: .25rem;/*2/7/24*/
-}
+  /* Card style */
+  .TeamCForumC_Forumcard {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 10px;
+    /* Adjust the maximum width as needed */
+    background-color: #f3f8f2;
+    position: relative; /*2/7/24*/
+    display: flex; /*2/7/24*/
+    flex-direction: column; /*2/7/24*/
+    min-width: 0; /*2/7/24*/
+    word-wrap: break-word; /*2/7/24*/
+    background-clip: border-box; /*2/7/24*/
+    border: 1px solid rgba(0, 0, 0, 0.125); /*2/7/24*/
+    border-radius: 0.25rem; /*2/7/24*/
+  }
 
-/* TeamCCardBody Styles */
+  /* TeamCCardBody Styles */
   .TeamCCardBody {
     padding: 20px;
     padding-bottom: 10px;
     border-style: solid; /*Temporary change 2/5/24*/
   }
 
-  .TeamC_inside{
+  .TeamC_inside {
     padding-bottom: 1px;
   }
 
@@ -197,12 +199,22 @@
   #TeamCReturnButtonFf {
     position: relative;
     margin-top: 10px;
-    margin-left:5px;
+    margin-left: 5px;
     font-size: 24px;
     width: 55px;
     background-color: #165207;
   }
 
+  #TeamBReturnButtonFf {
+    position: fixed;
+    top: 80px;
+    left: 20px;
+    font-size: 24px;
+    width: 55px;
+    background-color: #165207;
+  }
 
+  .dropdown-menu.show {
+    transform: translateX(-89%);
+  }
 }
-

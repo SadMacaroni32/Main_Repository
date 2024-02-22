@@ -47,8 +47,11 @@ const ProfileModal = ({ showModal, handleClose }) => {
 
   return (
     <Modal show={showModal} onHide={() => { handleClose(); handleModalHide(); }}>
+      {/* Overlay */}
       <div style={customModalStyles.overlay} onClick={handleClose}>
+       {/* Modal content */}
         <div style={customModalStyles.modalContent} onClick={(e) => e.stopPropagation()}>
+          {/* Conditional rendering based on the state of isEditModal and isChangePasswordModal */}
           {isEditModal ? (
             <ProfileEdit handleClose={handleModalHide} />
           ) : isChangePasswordModal ? (

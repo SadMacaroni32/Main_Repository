@@ -117,17 +117,19 @@ const CourseOverviewById = ({ courseTitle }) => {
 
   return (
     <>
-      <div className="w-full h-full ">
-        <div className=" m-0 lg:max-w-[1080px] lg:flex lg:flex-col  lg:justify-center">
-          <div className="h-full">
-            <div className="w-full lg:max-w-[800px]">
-              <div className="text-black  w-full lg:font-bold text-[.8rem]  lg:py-0 lg:text-[2rem]  flex justify-between items-center">
-                <p className="lg:font-bold TeamB_text-shadow">{courseTitle}</p>
+      <div className="w-full h-full">
+        <div className=" m-0 lg:max-w-[1920px] lg:flex lg:flex-col lg:justify-center">
+          <div className="">
+            <div className="w-full md:max-w-[1024px] lg:max-w-[1280px] xl:max-w-[1536px] 2xl:max-w-[2560px] ">
+              <div className="text-black w-[100%] lg:font-bold text-[.8rem]  lg:text-[2rem]  lg:flex lg:items-center flex flex-row justify-between">
+                <p className="hidden lg:flex lg:font-bold TeamB_text-shadow lg:text-[2.5rem] text-[1.3rem]">
+                  {courseTitle}
+                </p>
 
-                <div className="relative  flex items-center lg:max-w-[300px] 2xl:w-[544px] h-[35px] 2xl:h-[53px]  bg-white outline-none rounded-md border-b-[.1rem] border-black">
+                <div className="relative flex items-center h-full w-[100%] lg:w-[300px] 2xl:w-[544px] 2xl:h-[53px] bg-white outline-none rounded-md border-b-[.1rem] border-black">
                   <input
                     type="text"
-                    className="outline-none font-normal placeholder:font-thin placeholder:text-[1.2rem] pl-2 text-[1rem] lg:w-[300px] 2xl:w-[544px] h-[35px] 2xl:h-[53px] rounded-md"
+                    className="outline-none w-[100%]   placeholder:font-thin placeholder:text-[1.2rem] font-normal pl-2 text-[1rem] lg:w-[300px] 2xl:w-[544px] h-[35px] 2xl:h-[53px] rounded-md"
                     placeholder="Search"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
@@ -136,6 +138,7 @@ const CourseOverviewById = ({ courseTitle }) => {
                   <div className="absolute top-1 right-2">
                     <IoSearchSharp className="text-[1.5rem]" />
                   </div>
+
                   {hideSearch && (
                     <div
                       ref={searchContainerRef}
@@ -178,13 +181,21 @@ const CourseOverviewById = ({ courseTitle }) => {
                   )}
                 </div>
               </div>
-              <div className="lg:max-w-[1000px] bg-[#BCE8B1] h-[2vh] items-center lg:rounded-lg">
-                <div className="max-w-[30%] bg-[#126912] h-[2vh] lg:rounded-lg"></div>
+              <div className="lg:text-[2rem] w-full flex justify-center">
+                <p className="flex lg:hidden 2xl:text-[48px]  text-[20px] font-bold TeamB_text-shadow p-3">
+                  Course Overview
+                </p>
               </div>
-              <div className="w-[98%] font-medium text-[1.4rem] 2xl:text-[36px] m-auto pt-2 pb-4">
+              <p className="flex lg:hidden font-bold TeamB_text-shadow lg:text-[2.5rem] text-[1.3rem] pb-3">
+                {courseTitle}
+              </p>
+              <div className="w-full bg-[#BCE8B1] h-[2vh] items-center rounded-lg lg:rounded-lg">
+                <div className="max-w-[30%] bg-[#126912] h-[2vh] rounded-lg lg:rounded-lg"></div>
+              </div>
+              <div className="w-[95%] font-medium pt-1 pb-3 text-[1.4rem] lg:text-[1.4rem] 2xl:text-[36px] lg:m-auto lg:pt-2 lg:pb-4 ">
                 <span className=" TeamB_text-shadow">Lessons</span>
               </div>
-              <div className="h-[45vh] overflow-auto TeamB_no-scrollbar pr-3">
+              <div className="h-[45vh] lg:w-full overflow-y-auto overflow-x-hidden TeamB_no-scrollbar ">
                 {courses.map((course) => {
                   const { chapter, idx } = course;
                   return (
@@ -192,35 +203,59 @@ const CourseOverviewById = ({ courseTitle }) => {
                       {courses.map((course) => {
                         const { chapter, idx, course_id } = course;
                         // Initialize a count for chapters within this course
-                        let chapterCount = 0;
+                        {
+                          /* let chapterCount = 0; */
+                        }
                         return (
                           <div key={idx}>
                             {chapter.map((chap, idx) => {
                               const { chapter_id, chapter_title } = chap;
                               // Increment the chapter count for each chapter
-                              chapterCount++;
+                              {
+                                /* chapterCount++; */
+                              }
                               return (
                                 <div
                                   key={idx}
                                   className="relative m-0 lg:w-full">
                                   <div className="flex items-center justify-center w-full gap-4 pb-4 m-auto">
-                                    <div className="h-[1.3rem] w-[1.3rem] bg-[#126912] rounded-[100%]"></div>
+                                    <div className="h-[1.3rem] w-[1.3rem] bg-[#126912] rounded-[100%] hidden lg:flex"></div>
 
                                     <Link
                                       to={`/teambtopicpage/${chapter_id}`}
-                                      className="2xl:rounded-[20px] w-full lg:flex lg:items-center lg:font-medium lg:text-[1rem] 2xl:text-[24px] bg-[#126912] py-1 text-center text-[.8rem]  lg:p-5 text-white lg:h-[50px] lg:rounded-[1rem]  ">
-                                      <p className="text-shadow">
+                                      className="relative 2xl:rounded-[20px] w-[60vw] rounded-lg  lg:flex lg:items-center lg:font-medium lg:text-[1rem] 2xl:text-[24px] bg-[#126912] py-1  text-[.8rem]  text-white lg:rounded-[1rem] line-clamp-1">
+                                      {/* <p className="text-shadow">
                                         CHAPTER {chapterCount}:
-                                      </p>
-                                      <p className="pl-2 lg:font-medium text-shadow">
+                                      </p> */}
+                                      <p className="w-[90%] pl-2 lg:font-medium lg:text-[1.3rem] text-shadow overflow-x-auto">
                                         {chapter_title}
                                       </p>
-                                    </Link>
 
-                                    <Link className="absolute flex right-2 ">
+                                      <Link className="absolute hidden right-2 lg:flex">
+                                        <div className="flex items-center gap-2 pl-2 cursor-pointer">
+                                          <div
+                                            className="text-[1.3rem] 2xl:text-[2rem]  text-white"
+                                            onClick={() =>
+                                              handleEditClick(chapter_id)
+                                            }>
+                                            <FaEdit />
+                                          </div>
+
+                                          <div
+                                            className="text-[1.3rem] 2xl:text-[2rem]  text-white"
+                                            // onClick={() =>
+                                            //   handleDeleteChapter(chapter_id)
+                                            // }
+                                          >
+                                            <RiDeleteBinLine />
+                                          </div>
+                                        </div>
+                                      </Link>
+                                    </Link>
+                                    <Link className="flex right-2 lg:hidden">
                                       <div className="flex items-center gap-2 cursor-pointer pl-2- ">
                                         <div
-                                          className="text-[1.3rem] 2xl:text-[2rem]  text-white"
+                                          className="text-[1.3rem] 2xl:text-[2rem]  text-black"
                                           onClick={() =>
                                             handleEditClick(chapter_id)
                                           }>
@@ -228,10 +263,11 @@ const CourseOverviewById = ({ courseTitle }) => {
                                         </div>
 
                                         <div
-                                          className="text-[1.3rem] 2xl:text-[2rem]  text-white"
-                                          onClick={() =>
-                                            handleDeleteChapter(chapter_id)
-                                          }>
+                                          className="text-[1.3rem] 2xl:text-[2rem]  text-black"
+                                          // onClick={() =>
+                                          //   handleDeleteChapter(chapter_id)
+                                          // }
+                                        >
                                           <RiDeleteBinLine />
                                         </div>
                                       </div>
@@ -250,28 +286,26 @@ const CourseOverviewById = ({ courseTitle }) => {
             </div>
           </div>
           {editModalVisible && (
-            <div className="fixed w-full h-full pl-10 top-9 left-20">
-              <div className="lg:w-[1080px] ">
-                {courses.map((course, idx) => {
-                  const { chapter, course_title } = course;
-                  console.log(course_title);
-                  return (
-                    <div key={idx}>
-                      {chapter.map((chap, idx) => {
-                        const { topic, chapter_title, chapter_id } = chap;
-                        return (
-                          <div key={idx}>
-                            <ChapterModal
-                              editTitle={setEditModalVisible}
-                              chapterId={chapter_id}
-                            />
-                          </div>
-                        );
-                      })}
-                    </div>
-                  );
-                })}
-              </div>
+            <div className="w-full">
+              {courses.map((course, idx) => {
+                const { chapter, course_title } = course;
+                console.log(course_title);
+                return (
+                  <div key={idx}>
+                    {chapter.map((chap, idx) => {
+                      const { topic, chapter_title, chapter_id } = chap;
+                      return (
+                        <div key={idx}>
+                          <ChapterModal
+                            editTitle={setEditModalVisible}
+                            chapterId={chapter_id}
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+                );
+              })}
             </div>
           )}
           {deleteModalVisible && (
@@ -300,8 +334,8 @@ const CourseOverviewById = ({ courseTitle }) => {
                 </span>
               </button>
             </div>
-            <div className="absolute">
-              <div className="lg:w-[1080px] ">
+     
+              <div className="w-full ">
                 {showChapModal && (
                   <div>
                     {courses.map((course, idx) => {
@@ -318,11 +352,10 @@ const CourseOverviewById = ({ courseTitle }) => {
                   </div>
                 )}
               </div>
-            </div>
+          
           </div>
         </div>
-        {/*       
-      </div> */}
+        {/*  </div> */}
       </div>
     </>
   );

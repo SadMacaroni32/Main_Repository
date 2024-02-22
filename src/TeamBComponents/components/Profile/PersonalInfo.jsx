@@ -22,7 +22,7 @@ const PersonalInfo = ({ intructorName }) => {
 
   useEffect(() => {
     const loadInstructors = async () => {
-      const result = await axios.get("http://localhost:8080/instructors");
+      const result = await axios.get("http://localhost:8080/api/instructors");
       setInstructors(result.data);
     };
 
@@ -56,17 +56,17 @@ const PersonalInfo = ({ intructorName }) => {
   return (
     <>
       {editPersonalInfo && (
-        <div className="static bottom-[-.3rem] flex flex-col h-full gap-y-5 w-[90%] lg:h-[450px]  lg:w-[680px]  xl:h-[655px] xl:w-[948px] bg-[#BCE8B1] rounded shadow-md">
-          <div className="lg:w-[90%] lg:m-auto">
-            <div className="lg:flex lg:w-[100%] lg:gap-x-5 pb-[.8rem]">
-              <div className="lg:w-[30%]">
+        <div className=" flex flex-col h-full gap-y-5 w-[90%] lg:h-[380px]  lg:w-[680px]  xl:h-[655px] xl:w-[948px] bg-[#BCE8B1] rounded shadow-md">
+          <div className="lg:w-[95%] lg:m-auto ">
+            <div className="lg:flex lg:w-[100%] relative lg:gap-x-5 h-[500px] lg:h-[350px] xl:h-[655px]">
+              <div className="lg:w-[30%] flex justify-center lg:justify-start">
                 <img
                   src={profilePic}
                   alt=""
-                  className=" pb-4 hidden lg:flex lg:w-[200px] lg:h-[150px] xl:w-[292px] xl:h-[239px]"
+                  className=" h-[150px] lg:p-2 lg:flex lg:w-[200px]  xl:w-[292px] xl:h-[239px]"
                 />
               </div>
-              <div className="mt-3 relative lg:flex lg:flex-col lg:w-[70%] xl:gap-y-10 lg:gap-y-7">
+              <div className="mt-3 w-[90%] flex m-auto relative flex-col lg:w-[70%]">
                 <div className="relative">
                   <label
                     htmlFor="firstName"
@@ -77,17 +77,15 @@ const PersonalInfo = ({ intructorName }) => {
                   {/* FIRSTNAME INPUT */}
 
                   <input
-                    className="px-2 TeamB_input-style"
+                    className="px-2 mb-4 TeamB_input-style"
                     id="firstName"
                     type="text"
                     name="instructor_first_name" //should be edited
                     value={instructor_first_name}
-                    onChange={(e) => handleInputChange(e)}
-                    maxLength={50}
                     disabled
                   />
                 </div>
-                <div className="relative">
+                <div className="relative ">
                   <label
                     htmlFor="lastName"
                     className=" text-[#4D4141] text-opacity-[53%] absolute z-10 top-0 left-2 text-[.8rem] xl:text-[16px] ">
@@ -97,15 +95,14 @@ const PersonalInfo = ({ intructorName }) => {
                   {/* LASTNAME INPUT */}
 
                   <input
-                    className="px-2 TeamB_input-style"
+                    className="px-2 mb-4 TeamB_input-style"
                     id="lastName"
                     type="text"
                     name="instructor_last_name" //edit
                     value={instructor_last_name}
-                    onChange={(e) => handleInputChange(e)}
                     disabled
                   />
-                  <div className="mt-3 lg:flex lg:gap-y-7 lg:flex-col xl:gap-y-10">
+                  <div className="lg:flex lg:flex-col xl:gap-y-10">
                     <div className="relative">
                       <label
                         htmlFor="Email"
@@ -116,12 +113,11 @@ const PersonalInfo = ({ intructorName }) => {
                       {/* EMAIL INPUT */}
 
                       <input
-                        className="px-2 TeamB_input-style"
+                        className="px-2 mb-4 TeamB_input-style"
                         id="Email"
                         type="number"
                         name="instructor_username" //edit
                         value={instructor_email}
-                        onChange={(e) => handleInputChange(e)}
                         disabled
                       />
                     </div>
@@ -134,27 +130,25 @@ const PersonalInfo = ({ intructorName }) => {
                       {/* CONTACT NUMBER INPUT */}
 
                       <input
-                        className="px-2 TeamB_input-style mb-7"
+                        className="px-2 mb-4 TeamB_input-style"
                         placeholder="+63"
                         type="text"
                         id="ContactNumber"
                         name="instructor_contact_number" //edit
                         value={instructor_contact_number}
-                        onChange={(e) => handleInputChange(e)}
                         disabled
                       />
                       <div />
                     </div>
                   </div>
                 </div>
-
-                <div className="lg:w-[100%] lg:flex lg:justify-end">
-                  <button
-                    onClick={showUpdate}
-                    className="w-full  TeamB_btn-style  lg:w-[120px] lg:flex lg:justify-center xl:w-[170px] rounded-full ">
-                    Edit
-                  </button>
-                </div>
+              </div>
+              <div className="w-[100%] flex justify-center lg:justify-end absolute bottom-2 lg:bottom-0">
+                <button
+                  onClick={showUpdate}
+                  className=" TeamB_btn-style  lg:w-[120px] lg:flex lg:justify-center w-[90%] xl:w-[170px] rounded-full">
+                  Edit
+                </button>
               </div>
             </div>
           </div>

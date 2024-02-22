@@ -14,8 +14,11 @@ const ProfileEdit = ({ handleClose }) => {
     
   return (
     <div>
+      {/* Container for profile content */}
       <div className="Prof2-content">
+        {/* Container for profile sign */}
         <div className="Prof2-sign">
+          {/* Render the ProfileEditForm component */}
           <ProfileEditForm handleClose={handleClose}/>
         </div>
       </div>

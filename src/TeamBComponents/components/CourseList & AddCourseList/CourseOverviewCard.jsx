@@ -12,6 +12,7 @@ import Nav from "../NavBar/Nav";
 import { useNavigate } from "react-router-dom";
 
 import { IoArrowBackCircle } from "react-icons/io5";
+import Footer from "../Footer";
 
 const CourseOverviewCard = ({ courseTitle }) => {
   const [chapter, setChapter] = useState({
@@ -48,27 +49,26 @@ const CourseOverviewCard = ({ courseTitle }) => {
 
       <div className="relative w-full m-auto h-[120vh] mt-[70px]  ">
         <div className="relative w-full h-[120vh] m-auto ">
-          <div className="w-[90%] pb-5 mt-10 flex mx-auto flex-col lg:center-row lg:w-[90%] lg:m-auto  items-center  ">
-            <div className="flex w-[100%] justify-between">
+          <div className="w-[100%] pb-5 mt-10 flex mx-auto flex-col lg:center-row lg:w-[100%] lg:m-auto  items-center  ">
+            <div className=" w-[100%] justify-between hidden lg:flex">
               <div
-                className="flex items-center cursor-pointer w-[10%] absolute left-0 top-[-.3rem] pb-4"
+                className=" items-center cursor-pointer w-[10%] absolute left-0 top-[-.3rem]  hidden lg:flex pb-4"
                 onClick={goBack}>
                 <span className="text-[2.5rem] px-5">
                   <IoArrowBackCircle />
                 </span>
               </div>
-              <div className="lg:font-bold lg:text-[2rem] w-full flex justify-center">
-                <p className="lg:font-bold TeamB_text-shadow">
+              <div className="lg:text-[2rem] w-full flex justify-center">
+                <p className=" 2xl:text-[48px] lg:font-bold TeamB_text-shadow">
                   Course Overview
                 </p>
               </div>
             </div>
-            <div className="w-full lg:max-w-[800px]">
+         
               <div className="flex items-center justify-center">
                 <CourseOverviewById courseTitle={courseTitle} />
               </div>
-            </div>
-
+         
             {/* <div>
               <EditChapterTitle/>
             </div> */}
@@ -78,13 +78,7 @@ const CourseOverviewCard = ({ courseTitle }) => {
 
             {/*January 19 2024 -gem modify buttons add footer*/}
           </div>
-          <footer className="flex justify-center pt-10 pb-5">
-            <div>
-              <p className="text-[#4D9349] font-medium">
-                All Rights Reserved | Copyright 2024
-              </p>
-            </div>
-          </footer>
+          <Footer/>
         </div>
       </div>
     </>

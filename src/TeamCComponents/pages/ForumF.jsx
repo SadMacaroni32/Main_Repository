@@ -7,10 +7,10 @@ import Team_D_HeaderV2 from "../../TeamDComponents/Team_D_HeaderV2";
 const ForumF = () => {
   const [isSearchButtonDisabled, setIsSearchButtonDisabled] = useState(true);
   const [showDiscussionForm, setShowDiscussionForm] = useState(false);
-  
+
   const [searchTerm, setSearchTerm] = useState("");
-  const [discussionTitle, setDiscussionTitle] = useState('');
-  const [discussionContent, setDiscussionContent] = useState('');
+  const [discussionTitle, setDiscussionTitle] = useState("");
+  const [discussionContent, setDiscussionContent] = useState("");
   const [discussionPosts, setDiscussionPosts] = useState([]);
 
   const toggleDiscussionForm = () => {
@@ -32,90 +32,6 @@ const ForumF = () => {
     setDiscussionPosts(updatedDiscussionPosts);
   };
 
-  // function postDiscussion() { 2/14/24
-  //   var discussionTitleInput = document.getElementById("discussionTitle");
-  //   var discussionContentInput = document.getElementById("discussionContent");
-
-  //   // Retrieve the input values
-  //   var discussionTitle = discussionTitleInput.value.trim();
-  //   var discussionContent = discussionContentInput.value.trim();
-
-  //   // Validate discussion title length
-  //   if (discussionTitle.length > 200) {
-  //     alert("Discussion title must not exceed 200 characters!");
-  //     return;
-  //   }
-
-  //   // Validate special characters in the discussion title using a regular expression
-  //   var specialCharacters = /[!@#$%^&*(),.?":{}|<>]/;
-  //   if (specialCharacters.test(discussionTitle)) {
-  //     alert("Special characters are not allowed in the discussion title!");
-  //     return;
-  //   }
-
-  //   // Validate if both title and content are provided
-  //   if (discussionTitle === "" || discussionContent === "") {
-  //     alert("Discussion title and content are required!");
-  //     return;
-  //   }
-
-  //   // Add an event listener to the discussion title for redirection
-  //   var discussionTitleElement = newDiscussionCard.querySelector(
-  //     `#discussionTitle_${Date.now()}`
-  //   );
-  //   discussionTitleElement.addEventListener("click", function () {
-  //     redirectToDiscussionDetails(discussionTitle, discussionContent);
-  //   });
-
-  //   // Insert the new discussion card before the first post
-  //   var existingDiscussions = document.getElementById("discussionPosts");
-  //   existingDiscussions.insertBefore(
-  //     newDiscussionCard,
-  //     existingDiscussions.firstChild
-  //   );
-
-  //   // Reset the input fields and hide the form using state-setting functions
-  //   setDiscussionTitle("");
-  //   setDiscussionContent("");
-  //   setShowDiscussionForm(false);
-
-  //   // Show modal and set timeout to close it after 1 second
-  //   var myModal = new bootstrap.Modal(document.getElementById("niceModal"));
-  //   myModal.show();
-
-  //   setTimeout(function () {
-  //     myModal.hide();
-  //   }, 1000); // Close the modal after 1 second
-  // }
-
-  // const redirectToDiscussionDetails = (title, content) => {
-  //   const urlTitle = title.replace(/\s+/g, "-").toLowerCase();
-  //   const url = `/discussion_detail/${urlTitle}/${encodeURIComponent(content)}`;
-  //   //navigate("/"); // Use useNavigate instead of history.push
-  // };
-
-  const postDiscussion = () => {
-    if (!discussionTitle || !discussionContent) {
-      // Handle case where title or content is empty
-      return;
-    }
-
-    const newDiscussion = {
-      title: discussionTitle,
-      content: discussionContent
-    };
-
-    setDiscussionPosts([...discussionPosts, newDiscussion]);
-    setDiscussionTitle('');
-    setDiscussionContent('');
-  };
-  // Add event listener to prevent Enter key from submitting the form
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-      event.preventDefault();
-    }
-  });
-
   const toggleSearchButton = () => {
     const searchInput = document.getElementById("searchDiscussion");
     setIsSearchButtonDisabled(searchInput.value.trim() === "");
@@ -133,10 +49,13 @@ const ForumF = () => {
   //hide and show submit form
   const [showForm, setShowForm] = useState(false);
 
-  //functionlity for hiding form when submit
+  // Functionality for hiding form when submit 2.19.24 Change the modal into 
   const hideFormHandle = () => {
     setShowForm((prev) => !prev);
     setShowDiscussionForm(false);
+    setTimeout(() => {
+      alert("Discussion posted!"); // Show alert when form is submitted
+    }, 300); // Display alert for prefer time   
   };
 
   return (
@@ -235,47 +154,6 @@ const ForumF = () => {
                   )}
                 </div>
                 <div>{showForm && <DiscussionPosts />}</div>
-              </div>
-            </div>
-          </div>
-          <div
-            className="modal fade top-right"
-            id="niceModal"
-            tabIndex="-1"
-            aria-labelledby="niceModalLabel"
-            aria-hidden="true"
-          >
-            <div className="modal-dialog">
-              <div className="c_forum_modal modal-content">
-                <div className="c_forum_modbod modal-body">
-                  Discussion posted!
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            className="modalSec modal fade"
-            id="discussionDetailModal"
-            tabindex="-1"
-            aria-labelledby="discussionDetailModalLabel"
-            aria-hidden="true"
-          >
-            <div className="modal-dialog modal-lg">
-              <div className="modalCont modal-content">
-                <div className="modal-header">
-                  <h5 className="modal-title" id="discussionDetailModalLabel">
-                    Discussion Details
-                  </h5>
-                  <button
-                    type="button"
-                    className="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
-                </div>
-                <div className="modal-body">
-                  <div id="discussionDetailContent"></div>
-                </div>
               </div>
             </div>
           </div>

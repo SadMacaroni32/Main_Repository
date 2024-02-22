@@ -5,6 +5,8 @@
   text-align: center;
 }
 
+/* paye si dan */
+/* pogi si dan */
 .app-header {
   background-color: #282c34;
   padding: 20px;
@@ -1227,7 +1229,8 @@ input::placeholder{
   background-color: gray;
 }
 
-.save-button
+.save-button,
+.submit-button
 .cancel-button{
   background-color: #126912;
   color:#F6F6F6;
@@ -1250,78 +1253,81 @@ input::placeholder{
 
 
 .Prof2-Backbutton {
-  cursor: pointer;
-  display:flex;
-  padding: 10px;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-  background-color:#126912; 
-  margin-top: 20px;
-  margin-left: 20px;
+  cursor: pointer;   /* Set the cursor to a pointer when hovering, indicating it is clickable */
+  display:flex;   /* Use flexbox for layout */
+  padding: 10px;    /* Add padding around the content inside the button */
+  color: #fff;    /* Set the text color to white */
+  border: none;   /* Remove any borders from the button */
+  border-radius: 5px;     /* Apply rounded corners with a radius of 5 pixels */
+  transition: background-color 0.3s ease;   /* Add a smooth transition effect on the background color over 0.3 seconds */
+  background-color:#126912;    /* Set the initial background color to a specific shade of green */
+  margin-top: 20px;    /* Add a top margin of 20 pixels */
+  margin-left: 20px;   /* Add a left margin of 20 pixels */
 }
+
 .Change-Backbutton {
-  cursor: pointer;
-  display:flex;
-  padding: 10px;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-  background-color:#126912; 
-  margin-top: 20px;
-  margin-left: 20px;
+  cursor: pointer;   /* Set the cursor to a pointer when hovering, indicating it is clickable */
+  display:flex;    /* Use flexbox for layout */
+  padding: 10px;    /* Add padding around the content inside the button */
+  color: #fff;   /* Set the text color to white */
+  border: none;   
+  /* Remove any borders from the button */
+  border-radius: 5px;    /* Apply rounded corners with a radius of 5 pixels */
+  transition: background-color 0.3s ease;    /* Add a smooth transition effect on the background color over 0.3 seconds */
+  background-color:#126912;   /* Set the initial background color to a specific shade of green */
+  margin-top: 20px;   /* Add a top margin of 20 pixels */
+  margin-left: 20px;   /* Add a left margin of 20 pixels */
 }
 
 .Forgot-Backbutton {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: rgb(76, 175, 80);
-  border-radius: 100px;
-  margin-top: 200px;
-  margin-left: 220px;
+  position: absolute;  /* Set the position to absolute, allowing precise placement within its containing element */
+  top: 10px;   /* Position the button 10 pixels from the top of its containing element */
+  left: 10px;    /* Position the button 10 pixels from the left of its containing element */
+  background-color: rgb(76, 175, 80);   /* Set the background color to a shade of green using RGB values */
+  border-radius: 100px;   /* Apply a border-radius of 100 pixels, creating a circular shape */
+  margin-top: 200px;   /* Add a top margin of 200 pixels, creating space between the button and other elements */
+  margin-left: 220px;   /* Add a left margin of 220 pixels, creating space between the button and other elements */
 }
+
 .Email-Backbutton {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: rgb(76, 175, 80);
-  border-radius: 100px;
-  margin-top: 9px;
-  margin-left: 220px;
+  position: absolute;   /* Set the position to absolute, allowing precise placement within its containing element */
+  top: 10px;   /* Position the button 10 pixels from the top of its containing element */
+  left: 10px;   /* Position the button 10 pixels from the left of its containing element */
+  background-color: rgb(76, 175, 80);   /* Set the background color to a shade of green using RGB values */
+  border-radius: 100px;   /* Set the background color to a shade of green using RGB values */
+  margin-top: 9px;   /* Add a top margin of 9 pixels, creating space between the button and other elements */
+  margin-left: 220px;   /* Add a left margin of 220 pixels, creating space between the button and other elements */
 }
 
 .Verification-Backbutton {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: rgb(76, 175, 80);
-  border-radius: 100px;
-  margin-top: 15px;
-  margin-left: 220px;
+  position: absolute;   /* Set the position to absolute, allowing precise placement within its containing element */
+  top: 10px;   /* Position the button 10 pixels from the top of its containing element */
+  left: 10px;   /* Position the button 10 pixels from the left of its containing element */
+  background-color: rgb(76, 175, 80);   /* Set the background color to a shade of green using RGB values */
+  border-radius: 100px;   /* Apply a border-radius of 100 pixels, creating a circular shape */
+  margin-top: 15px;   /* Add a top margin of 15 pixels, creating space between the button and other elements */
+  margin-left: 220px;   /* Add a left margin of 220 pixels, creating space between the button and other elements */
 }
 
 .Log-Backbutton {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: rgb(76, 175, 80);
-  border-radius: 100px;
-  margin-top: 240px;
-  margin-left: 290px;
+  position: absolute;   /* Set the position to absolute, allowing precise placement within its containing element */
+  top: 10px;   /* Position the button 10 pixels from the top of its containing element */
+  left: 10px;   /* Position the button 10 pixels from the left of its containing element */
+  background-color: rgb(76, 175, 80);   /* Set the background color to a shade of green using RGB values */
+  border-radius: 100px;   /* Apply a border-radius of 100 pixels, creating a circular shape */
+  margin-top: 240px;   /* Add a top margin of 240 pixels, creating space between the button and other elements */
+  margin-left: 290px;   /* Add a left margin of 290 pixels, creating space between the button and other elements */
 }
 
 .Registerarrow {
-  position:absolute;
+  position:absolute;   /* Set the position to absolute, allowing precise placement within its containing element */
   top: 18%; /* Adjust this value for vertical positioning */
   left: 5%; /* Adjust this value for horizontal positioning */
-  background-color: rgb(76, 175, 80);
-  border-radius: 55%;
+  background-color: rgb(76, 175, 80);  /* Set the background color to a shade of green using RGB values */
+  border-radius: 55%;   /* Apply a border-radius of 55%, creating a circular shape */
   padding: 1vw; /* Adjust this value for the size of padding */
-  color: #000;
-  cursor: pointer;
+  color: #000;    /* Set the text color to black */
+  cursor: pointer;   /* Set the cursor to a pointer when hovering, indicating it is clickable */
 }
 
 /* Add media query for smaller screens if needed */
@@ -1336,31 +1342,32 @@ input::placeholder{
 
 
 .resend {
-  color: #4D4141;
-  font-weight: 700px;
-  cursor: pointer;
-  font-size: 14px;
-  text-decoration: underline;
-  margin-top: 30px;
-  margin-bottom: 10px;
+  color: #4D4141;   /* Set the text color to a dark shade of red-brown (#4D4141) */
+  font-weight: 700px;   /* Set the font weight to a strong value (700) */
+  cursor: pointer;   /* Set the cursor to a pointer when hovering, indicating it is clickable */
+  font-size: 14px;   /* Set the font size to 14 pixels */
+  text-decoration: underline;   /* Underline the text */
+  margin-top: 30px;   /* Add a top margin of 30 pixels */
+  margin-bottom: 10px;   /* Add a bottom margin of 10 pixels */
 }
+
 .resend:hover {
   color:blue
 }
 
 /* Default styles for the back button */
 .qBackbutton {
-  cursor: pointer;
-  display: inline-block;
-  padding: 10px;
-  background-color: #126912;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-  position: absolute;
-  top: 10px;
-  left: 10px;
+  cursor: pointer;   /* Set the cursor to a pointer when hovering, indicating it is clickable */
+  display: inline-block;   /* Display the button as an inline block */
+  padding: 10px;   /* Add padding around the content inside the button */
+  background-color: #126912;   /* Set the background color to a specific shade of green (#126912) */
+  color: #fff;   /* Set the text color to white */
+  border: none;   /* Remove any borders from the button */
+  border-radius: 5px;   /* Apply rounded corners with a radius of 5 pixels */
+  transition: background-color 0.3s ease;   /* Add a smooth transition effect on the background color over 0.3 seconds */
+  position: absolute;   /* Set the position to absolute, allowing precise placement within its containing element */
+  top: 10px;   /* Position the button 10 pixels from the top of its containing element */
+  left: 10px;   /* Position the button 10 pixels from the left of its containing element */
 }
 
 .qBackbutton:hover {
@@ -1379,18 +1386,19 @@ input::placeholder{
 /* styles.css */
 
 .wBackbutton {
-  cursor: pointer;
-  display: inline-block;
-  padding: 10px;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-  background-color:#126912; 
-  position: absolute;
-  top: 10px;
-  left: 10px;
+  cursor: pointer;   /* Set the cursor to a pointer when hovering, indicating it is clickable */
+  display: inline-block;   /* Display the button as an inline block */
+  padding: 10px;   /* Add padding around the content inside the button */
+  color: #fff;   /* Set the text color to white */
+  border: none;   /* Remove any borders from the button */
+  border-radius: 5px;   /* Apply rounded corners with a radius of 5 pixels */
+  transition: background-color 0.3s ease;   /* Add a smooth transition effect on the background color over 0.3 seconds */
+  background-color:#126912;    /* Set the background color to a specific shade of green (#126912) */
+  position: absolute;   /* Set the position to absolute, allowing precise placement within its containing element */
+  top: 10px;   /* Position the button 10 pixels from the top of its containing element */
+  left: 10px;    /* Position the button 10 pixels from the left of its containing element */
 }
+
 .wBackbutton:hover{
 background-color: gray;
 }
@@ -1451,25 +1459,27 @@ background-color: gray;
   font-weight: bold;
 }
 
-
+/* Common styles for all buttons */
 #register, #login, #logout, #profile {
-  background-color: #126912;
-  color: #fff;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-left: 10px;
+  background-color: #126912;   /* Set the background color to a specific shade of green (#126912) */
+  color: #fff;   /* Set the text color to white */
+  padding: 5px 10px;   /* Add padding of 5 pixels vertically and 10 pixels horizontally */
+  border: none;   /* Remove any borders from the buttons */
+  border-radius: 5px;   /* Apply rounded corners with a radius of 5 pixels */
+  cursor: pointer;   /* Set the cursor to a pointer when hovering, indicating they are clickable */
+  /* Add left and right margins of 10 pixels to provide spacing between buttons */
+  margin-left: 10px;   
   margin-right: 10px;
 }
 
+/* Styling for buttons with IDs register, login, logout, and profile */
 #register, #login, #logout, #profile {
-  background-color: #126912;
-  color: #fff;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  background-color: #126912;   /* Set the background color to a specific shade of green (#126912) */
+  color: #fff;   /* Set the text color to white */
+  padding: 5px 10px;   /* Add padding of 5 pixels vertically and 10 pixels horizontally */
+  border: none;   /* Remove any borders from the buttons */
+  border-radius: 5px;   /* Apply rounded corners with a radius of 5 pixels */
+  cursor: pointer;  /* Set the cursor to a pointer when hovering, indicating they are clickable */
 }
 
 #register:hover, #login:hover, #logout:hover, #profile:hover {
@@ -1481,19 +1491,19 @@ background-color: gray;
 }
 
 .content-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1em;
+  display: flex;   /* Use flexbox for layout */
+  flex-direction: row;   /* Arrange items in a row */
+  justify-content: space-between;   /* Distribute space evenly between items along the main axis */
+  align-items: center;   /* Align items at the center along the cross axis */
+  padding: 1em;    /* Add padding of 1em around the content inside the container */
 }
 
 .text-container {
-  text-align: left;
-  max-width: 50%;
-  margin-bottom:120px ;
-  margin-left: 100px;
-  font-family: 'Inter, sans-serif';
+  text-align: left;    /* Align text to the left */
+  max-width: 50%;   /* Set the maximum width of the container to 50% of its parent's width */
+  margin-bottom:120px ;   /* Add a bottom margin of 120 pixels, creating space between this container and the element below */
+  margin-left: 100px;   /* Add a left margin of 100 pixels, creating space between this container and the element on its left */
+  font-family: 'Inter, sans-serif';   /* Use the 'Inter' font family for text inside the container, falling back to sans-serif if 'Inter' is not available */
 }
 
 /* .text-container h1 {
@@ -1524,15 +1534,16 @@ background-color: gray;
 }
 
 .TeamA_Footer{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #BCE8B1;
-  height: 3rem;
+  display: flex;   /* Use flexbox for layout */
+  justify-content: space-between;   /* Distribute space evenly between items along the main axis */
+  align-items: center;   /* Align items at the center along the cross axis */
+  position: fixed;   /* Set the position to fixed, fixing the footer at the bottom of the viewport */
+  bottom: 0;   /* Position the footer at the bottom of the viewport */
+  left: 0;   /* Position the footer at the left edge of the viewport */
+  right: 0;   /* Position the footer at the right edge of the viewport */
+  background-color: #BCE8B1;   /* Set the background color to a specific shade of green (#BCE8B1) */
+  height: 3rem;   /* Set the height of the footer to 3 rem */
+  /* Add padding of 1 rem on the left and right sides of the footer */
   padding-left: 1rem;
   padding-right: 1rem;
 }
@@ -1547,28 +1558,29 @@ background-color: gray;
 
 
 .TeamA-card-container {
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  width: 100%;
-  gap: 20px;
+  display: flex;   /* Use flexbox for layout */
+  align-items: stretch;   /* Align items along the cross axis, stretching them to match the container's height */
+  justify-content: center;   /* Center items along the main axis */
+  width: 100%;   /* Set the width of the container to 100% of its parent's width */
+  gap: 20px;   /* Add a gap of 20 pixels between each item in the container */
   
 
 }
 
 .TeamA-card {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #bce8b1;
-  padding: 20px;
-  border-radius: 25px;
-  max-width: 300px;
-  overflow: hidden;
-  text-align: center;
+  flex: 1;   /* Allow the card to flexibly grow and shrink within its container */
+  display: flex;    /* Use flexbox for layout */
+  flex-direction: column;   /* Arrange content in a column */
+  align-items: center;   /* Center items along the cross axis */
+  justify-content: center;   /* Center items along the main axis */
+  background-color: #bce8b1;   /* Set the background color to a specific shade of green (#bce8b1) */
+  padding: 20px;   /* Add padding of 20 pixels around the content inside the card */
+  border-radius: 25px;   /* Apply rounded corners with a radius of 25 pixels */
+  max-width: 300px;   /* Set the maximum width of the card to 300 pixels */
+  overflow: hidden;   /* Hide content that exceeds the dimensions of the card */
+  text-align: center;   /* Center text within the card */
 }
+
 .TeamA-card-title {
   font-size: small;
   margin-bottom: 10px; /* Add margin to separate title from content */
@@ -1583,22 +1595,23 @@ background-color: gray;
   align-items:center;
   margin-left: 325px;
 } */
+
 .photo-section {
-  display: flex;
+  display: flex;   /* Use flexbox for layout */
   justify-content: space-around; /* Adjust as needed */
   margin-top: 20px; /* Adjust as needed */
-  gap: 20px;
-  width:auto;
-  font-size: medium;
-  flex-direction: row;
-  margin-left: 10px;
+  gap: 20px;   /* Add a gap of 20 pixels between each item in the section */
+  width:auto;   /* Allow the section to adjust its width based on content */
+  font-size: medium;   /* Set the font size to medium */
+  flex-direction: row;   /* Arrange items in a row */
+  margin-left: 10px;   /* Add a left margin of 10 pixels to create space between this section and elements on its left */
 }
 
 .photo-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  display: flex;   /* Use flexbox for layout */
+  align-items: center;   /* Center items along the cross axis */
+  justify-content: center;   /* Center items along the main axis */
+  flex-direction: column;   /* Arrange content in a column */
   
   
 }
@@ -1613,143 +1626,159 @@ background-color: gray;
 
 
 .home-button {
-  cursor: pointer;
-  color: #ffffff;
-  border-radius: 100px;
-  background-color: #126912;
-  border: 1px solid #126912;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
-  width: 5rem;
-  height: 2rem;
-  display: flex;
-  position: absolute;
-  right: 60px;
-  text-align: center;
-  align-items: center;
+  cursor: pointer;   /* Set the cursor to a pointer when hovering, indicating it is clickable */
+  color: #ffffff;    /* Set the text color to white */
+  border-radius: 100px;   /* Apply rounded corners with a radius of 100 pixels */
+  background-color: #126912;   /* Set the background color to a specific shade of green (#126912) */
+  border: 1px solid #126912;   /* Add a solid border with the same color as the background */
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);   /* Add a box shadow to create a subtle elevation effect */
+  width: 5rem;   /* Set the width of the button to 5rem */
+  height: 2rem;   /* Set the height of the button to 2rem */
+  display: flex;   /* Use flexbox for layout */
+  position: absolute;   /* Set the position to absolute, allowing precise placement within its containing element */
+  right: 60px;   /* Position the button 60 pixels from the right edge of its containing element */
+  text-align: center;   /* Center text within the button */
+  /* Center items along the cross and main axes */
+  align-items: center;   
   justify-content: center;
 }
+
 .home-button:hover {
   background-color: gray;
 }
+
 .Confirm-button{
-  margin: 10px 10px 10px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  color: #ffffff;
-  border-radius: 150px;
-  background-color: #126912;
-  border: 1px solid #126912;
-  margin-top: 50px;
+  margin: 10px 10px 10px;   /* Set margin around the button */
+  padding: 10px 20px;   /* Set padding around the content inside the button */
+  font-size: 16px;   /* Set the font size to 16 pixels */
+  cursor: pointer;   /* Set the cursor to a pointer when hovering, indicating it is clickable */
+  color: #ffffff;   /* Set the text color to white */
+  border-radius: 150px;   /* Apply rounded corners with a radius of 150 pixels */
+  background-color: #126912;   /* Set the background color to a specific shade of green (#126912) */
+  border: 1px solid #126912;   /* Add a solid border with the same color as the background */
+  margin-top: 50px;   /* Add top margin of 50 pixels */
 }
+
+/* Change the background color to gray when the button is hovered */
 .Confirm-button:hover{
   background-color: gray;
 }
+
 .Show-button {
-  margin: 10px 10px 10px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  color: #ffffff;
-  border-radius: 150px;
-  background-color: #126912;
-  border: 1px solid #126912;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
-  margin-top: 25px;
+  margin: 10px 10px 10px;   /* Set margin around the button */
+  padding: 10px 20px;   /* Set padding around the content inside the button */
+  font-size: 16px;   /* Set the font size to 16 pixels */
+  cursor: pointer;   /* Set the cursor to a pointer when hovering, indicating it is clickable */
+  color: #ffffff;   /* Set the text color to white */
+  border-radius: 150px;   /* Apply rounded corners with a radius of 150 pixels */
+  background-color: #126912;   /* Set the background color to a specific shade of green (#126912) */
+  border: 1px solid #126912;   /* Add a solid border with the same color as the background */
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);   /* Add a box shadow to create a subtle elevation effect */
+  margin-top: 25px;   /* Add top margin of 25 pixels */
 }
+
 .nav-HOME-button  {
-  background-color: #126912;
-  color: #fff;
-  padding: 5px 5px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-right: 10px;
+  background-color: #126912;   /* Set the background color to a specific shade of green (#126912) */
+  color: #fff;   /* Set the text color to white */
+  padding: 5px 5px;   /* Add padding of 5 pixels vertically and 5 pixels horizontally */
+  border: none;   /* Remove any borders from the button */
+  border-radius: 5px;   /* Apply rounded corners with a radius of 5 pixels */
+  cursor: pointer;   /* Set the cursor to a pointer when hovering, indicating it is clickable */
+  margin-right: 10px;   /* Add right margin of 10 pixels to create space between this button and elements on its right */
 }
+
+/* Change the background color to gray when the button is hovered */
 .nav-HOME-button:hover{
   background-color: gray;
 }
+
 .nav-LOGOUT-button {
-  background-color: #126912;
-  color: #fff;
-  padding: 5px 5px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  background-color: #126912;   /* Set the background color to a specific shade of green (#126912) */
+  color: #fff;   /* Set the text color to white */
+  padding: 5px 5px;   /* Add padding of 5 pixels vertically and 5 pixels horizontally */
+  border: none;   /* Remove any borders from the button */
+  border-radius: 5px;   /* Apply rounded corners with a radius of 5 pixels */
+  cursor: pointer;   /* Set the cursor to a pointer when hovering, indicating it is clickable */
 }
+
+/* Change the text color to gray when either button is hovered */
  .Show-button:hover,.nav-LOGOUT-button:hover  {
 color: gray;
 }
 
 .TeamA-courses {
-  display: flex;
-  justify-content: space-between;
-  width: 90%;
+  display: flex;   /* Use flexbox for layout */
+  justify-content: space-between;   /* Distribute space evenly between items along the main axis */
+  width: 90%;   /* Set the width of the container to 90% of its parent's width */
   margin-top: 20px; /* Adjust the margin as needed */
-  column-gap: 1.5rem;
+  column-gap: 1.5rem;   /* Add a gap of 1.5rem (adjust as needed) between each column in the container */
 }
 
 .TeamA-courses {
-  display: flex;
+  display: flex;   /* Use flexbox for layout */
   justify-content: space-around; /* Center the squares */
-  margin-top: 20px;
+  margin-top: 20px;   /* Add a top margin of 20 pixels to create space between this container and elements above */
   overflow: hidden; /* Prevent any content overflow */
 }
 
 .TeamA-square {
-  width: 300px;
-  height: 20rem;
+  width: 300px;   /* Set the width of the square to 300 pixels */
+  height: 20rem;   /* Set the height of the square to 20rem (adjust as needed) */
 
-  background-color: #BCE8B1;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  border-radius: 15px;
-  display: flex;
-  flex-direction: column;
+  background-color: #BCE8B1;   /* Set the background color to a specific shade of green (#BCE8B1) */
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);   /* Add a box shadow to create a subtle elevation effect */
+  border-radius: 15px;   /* Apply rounded corners with a radius of 15 pixels */
+  display: flex;   /* Use flexbox for layout */
+  flex-direction: column;    /* Arrange content in a column */
   align-items: center; /* Center the content inside the square */
-  text-align: center;
+  text-align: center;    /* Center text within the square */
 }
 
 .TeamA-square svg {
-  width: 120px;
-  height: 120px;
-  color: #050404;
-  margin-top: 50px;
+  width: 120px;    /* Set the width of the SVG element to 120 pixels */
+  height: 120px;   /* Set the height of the SVG element to 120 pixels */
+  color: #050404;   /* Set the color of the SVG element to a specific shade of dark gray (#050404) */
+  margin-top: 50px;   /* Add top margin of 50 pixels to create space between the SVG element and other content */
 }
 
 .TeamA-square h3,
 .TeamA-square h4,
 .TeamA-square h5,
 .TeamA-square h6 {
+  /* Add top margin of 20 pixels to create space between the heading and other content */
   margin-top: 20px; /* Adjust as needed */
-  font-weight: bold;
-  font-size: x-large;
+  font-weight: bold;    /* Set the font weight to bold for emphasis */
+  font-size: x-large;   /* Set the font size to x-large (adjust as needed) */
 }
 
 .data-validation {
-  display: flex;
-  height: 50px;
-  margin-top: 10px;
+  display: flex;   /* Use flexbox for layout */
+  height: 50px;    /* Set the height of the container to 50 pixels */
+  margin-top: 10px;   /* Add top margin of 10 pixels to create space between this container and elements above */
 }
 
 
 .teamDimg {
-  height: 50px;
-  width: auto;
+  height: 50px;   /* Set the height of the image to 50 pixels */
+  width: auto;   /* Set the width of the image to auto, maintaining its aspect ratio */
 }
 
+/* Media query for screens with a maximum width of 900 pixels */
 @media only screen and (max-width: 900px) 
 {
+  /* Adjust the height of the root element to 100% of the viewport height */
     #root
     {
       height: 100vh;
     }    
 
+  /* Style adjustments for the .TeamA-courses class when the screen width is 900 pixels or less */
    .TeamA-courses
    {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly; 
-    align-items: center;
+    display: flex;    /* Use flexbox for layout */
+    flex-wrap: wrap;   /* Allow items to wrap to the next line when there is not enough space */
+    justify-content: space-evenly;    /* Distribute space evenly between items along the main axis */
+    align-items: center;    /* Align items along the cross axis to the center */
 
    }
 }

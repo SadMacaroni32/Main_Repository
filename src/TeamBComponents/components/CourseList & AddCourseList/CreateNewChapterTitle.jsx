@@ -107,8 +107,6 @@ const CreateNewChapterTitle = () => {
                 </div>
               );
             })}
-          
-
             {/*footer */}
             <div>
               <footer className="flex justify-center p-10">

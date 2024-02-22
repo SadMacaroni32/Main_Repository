@@ -192,7 +192,7 @@ const ForumD = () => {
     setDropdownOpen(false);
     setReplyDropdownOpen({});
   }, []);
-  
+
   return (
     <>
       <Team_D_HeaderV2 />

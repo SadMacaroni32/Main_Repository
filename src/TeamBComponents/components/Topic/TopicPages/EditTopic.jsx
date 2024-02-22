@@ -19,6 +19,7 @@ import axios from "axios";
 import { IoEyeSharp } from "react-icons/io5";
 //import close button icon
 import { IoMdClose } from "react-icons/io";
+import LinkTopicModal from "../TopicModal/LinkTopicModal";
 const CloseButton = ({ closeToast }) => (
   <i className="material-icons" onClick={closeToast}></i>
 );
@@ -120,23 +121,26 @@ const EditTopic = ({ topicId, courseTitle, chapterTitle }) => {
   };
 
   //store url in a variable
-  const docs = [
-    {
-      uri: "https://rb.gy/wjgxf3",
-      fileType: "pptx",
-    }, // Remote file
-    // { uri: require("./example-files/pdf.pdf") }, // Local File
-  ];
+  // const docs = [
+  //   {
+  //     uri: "https://rb.gy/wjgxf3",
+  //     fileType: "pptx",
+  //   }, // Remote file
+  //   // { uri: require("./example-files/pdf.pdf") }, // Local File
+  // ];
 
-  const linkToPPTFile =
-    "https://onedrive.live.com/embed?resid=45112E029C22DBF%21345&authkey=!APHTfuIo5T7hg4w&em=2";
+  // const linkToPPTFile =
+  //   "https://onedrive.live.com/embed?resid=45112E029C22DBF%21345&authkey=!APHTfuIo5T7hg4w&em=2";
 
   const [showEmbedded, setShowEmbedded] = useState(false);
-
+  //react state for link and show
+  const [linkFileShow, setLinkFileShow] = useState(false);
   return (
     <>
       {/* add topic title */}
-      <form onSubmit={handleSubmit} className="h-[100vh] relative w-full pt-2">
+      <form
+        onSubmit={handleSubmit}
+        className="h-[100vh] w-[100%]  relative pt-2">
         <div className="flex items-center justify-end w-full ">
           <button
             type="submit"
@@ -148,12 +152,12 @@ const EditTopic = ({ topicId, courseTitle, chapterTitle }) => {
             <span className="text-[#126912] font-semibold">Save</span>
           </button>
         </div>
-        <div className="w-[90%] m-auto mb-5">
-          <span className="lg:text-[2rem] 2xl:text-[48px] font-semibold ">
+        <div className="w-[90%] m-auto mb-4 md:mb-5">
+          <span className="text-center md:text-start text-[2rem] 2xl:text-[48px] font-semibold  ">
             {courseTitle}
           </span>
-          <div className="flex items-center ">
-            <span className="lg:text-[1.5rem] 2xl:text-[36px] pr-2 text-[#070101] text-opacity-[55%]">
+          <div className="flex flex-col items-center w-full pt-3 md:pt-0 md:flex-row">
+            <span className="text-[1.5rem] 2xl:text-[36px] pr-2 text-[#070101] text-opacity-[55%]">
               {chapterTitle}:
             </span>
             <input
@@ -163,7 +167,7 @@ const EditTopic = ({ topicId, courseTitle, chapterTitle }) => {
               onChange={(e) => handleInputChange(e)}
               id=""
               placeholder="Topic Title"
-              className="bg-[#BCE8B1] rounded-lg placeholder:text-[#626262] placeholder:pl-2 outline-none pl-2"
+              className="bg-[#BCE8B1] rounded-lg placeholder:text-[#626262] placeholder:pl-2 outline-none pl-2 w-[90%] md:w-[40%]"
             />
           </div>
           <textarea
@@ -174,82 +178,105 @@ const EditTopic = ({ topicId, courseTitle, chapterTitle }) => {
             name="topic_description"
             onChange={(e) => handleInputChange(e)}
             placeholder="Topic Description"
-            className="bg-[#BCE8B1] TeamB_text-shadow resize-none lg:min-w-[100%] 2xl:h-[264px] 2xl:max-w-[1342px] lg:h-[25vh] placeholder:font-medium placeholder:text-center placeholder:p-6
-              outline-none rounded-lg placeholder:text-[#070101] placeholder:text-opacity-[55%] mt-5 pl-5"
+            className="bg-[#BCE8B1] TeamB_text-shadow resize-none min-w-[100%] 2xl:h-[264px] 2xl:max-w-[1342px] md:h-[25vh] placeholder:font-medium placeholder:text-center placeholder:p-6
+              outline-none rounded-lg placeholder:text-[#070101] placeholder:text-opacity-[55%] mt-4 md:mt-5 pl-5"
           />
         </div>
 
-        <div className="relative flex w-[90%] m-auto items-center justify-center lg:gap-x-[5rem] lg:mt-[3rem]">
-          <div className="relative 2xl:w-[491px] 2xl:h-[282px] lg:w-[20vw] lg:h-[20vh] rounded-lg flex items-center justify-center cursor-pointer ">
+        <div className="flex w-[90%] flex-col gap-y-5 lg:gap-y-0 lg:flex-row m-auto items-center justify-center md:gap-x-[5rem] md:mt-[3rem]">
+          <div
+            className="relative w-[100%] h-[200px] 2xl:w-[491px] 2xl:h-[282px]
+           lg:w-[20vw] lg:h-[20vh] bg-[#fff] rounded-lg flex items-center
+            justify-center cursor-pointer">
             {/* <img src={EditTopiclink} alt="" className="" /> */}
             <iframe
-              src={linkToPPTFile}
+              src={topic_file}
               frameborder="0"
               scrolling="no"
               className="blur-[.05rem]"></iframe>
 
             <div className="absolute flex gap-x-5">
               <span className="" onClick={toggleVideoPopup}>
-                <FaEdit className="lg:w-[30px] lg:h-[30px] 2xl:w-[59px] 2xl:h-[59px] " />
+                <FaEdit className="w-[50px] h-[50px] lg:w-[30px] lg:h-[30px] 2xl:w-[59px] 2xl:h-[59px] " />
               </span>
               <span
                 className=""
                 onClick={() => setShowEmbedded((prev) => !prev)}>
-                <IoEyeSharp className="lg:w-[30px] lg:h-[30px] 2xl:w-[59px] 2xl:h-[59px] " />
+                <IoEyeSharp className="w-[50px] h-[50px] lg:w-[30px] lg:h-[30px] 2xl:w-[59px] 2xl:h-[59px] " />
               </span>
             </div>
           </div>
 
           <div
-            className="relative 2xl:w-[491px] 2xl:h-[282px] lg:w-[20vw] lg:h-[20vh] rounded-lg flex items-center justify-center cursor-pointer"
+            className=" relative w-[100%] h-[200px] 2xl:w-[491px] 2xl:h-[282px] md:w-[100%] md:h-[100px]
+           lg:w-[20vw] lg:h-[20vh] bg-[#fff] rounded-lg flex
+           items-center justify-center cursor-pointer"
             onClick={toggleQuizPopup}>
-            <img src={EditQuizLink} alt="" className="" />
+            <iframe
+              src={topic_file}
+              frameborder="0"
+              scrolling="no"
+              className="blur-[.05rem]"></iframe>
             <span className="absolute ">
-              <FaEdit className="lg:w-[30px] lg:h-[30px] 2xl:w-[59px] 2xl:h-[59px] opacity-[80%]" />
+              <FaEdit className="w-[50px] h-[50px] lg:w-[30px] lg:h-[30px] 2xl:w-[59px] 2xl:h-[59px] opacity-[80%]" />
             </span>
           </div>
         </div>
-        {/* Video Popup */}
-        {isVideoPopupOpen && (
+
+        {linkFileShow && (
           <div className="fixed inset-0 flex items-center justify-center">
             <div className="absolute inset-0 bg-black opacity-50"></div>
-            <div className="bg-[#EBFFE5] p-8 rounded-lg z-10">
-              <p className="mb-4 text-lg font-semibold">Edit Topic Link</p>
-              <input
-                type="text"
-                name="topic_file"
-                value={topic_file}
-                onChange={(e) => handleInputChange(e)}
-                className="w-[724px] bg-[#BCE8B1] p-2 border border-gray-300 rounded-md mb-4"
-                placeholder="https://www"
-              />
-              <div className="flex justify-end">
-                <button
-                  onClick={handleVideoCancelClick}
-                  className="px-4 py-2 text-black rounded-md">
-                  Cancel
-                </button>
-                <button
-                  onClick={handleVideoDoneClick}
-                  className="bg-[#126912] text-white py-2 px-4 rounded-full ml-2">
-                  Done
-                </button>
+            <div className="bg-[#EBFFE5] rounded-lg z-10 ">
+              <div className="relative px-4 py-4">
+                <div className="absolute right-[-.5rem] top-[-.5rem] w-[30px] h-[30px] rounded-full TeamB_text-shadow drop-shadow-lg shadow-lg bg-red-500 flex items-center justify-center">
+                  <button
+                    onClick={() => setLinkFileShow((prev) => !prev)}
+                    className="text-white ">
+                    <IoMdClose />
+                  </button>
+                </div>
+                <div className="flex items-center justify-between w-[14rem] ">
+                  <div
+                    className="rounded-lg shadow-lg cursor-pointer drop-shadow-lg"
+                    onClick={toggleVideoPopup}>
+                    <p className="px-2 py-2 text-white bg-blue-600 rounded-lg TeamB_text-shadow">
+                      Upload Link
+                    </p>
+                  </div>
+                  <div className="rounded-lg shadow-lg drop-shadow-lg">
+                    <label
+                      htmlFor="uploadLink"
+                      className="bg-[#BCE8B1] cursor-pointer text-black px-2 py-2 rounded-lg  TeamB_text-shadow ">
+                      Upload File
+                    </label>
+                    <input id="uploadLink" type="file" className="hidden" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+        )}
+        {/* Video Popup */}
+        {isVideoPopupOpen && (
+          <LinkTopicModal
+            topic_file={topic_file}
+            handleInputChange={handleInputChange}
+            handleVideoCancelClick={handleVideoCancelClick}
+            handleVideoDoneClick={handleVideoDoneClick}
+          />
         )}
         {/* Quiz Popup */}
         {isQuizPopupOpen && (
           <div className="fixed inset-0 flex items-center justify-center">
             <div className="absolute inset-0 bg-black opacity-50"></div>
-            <div className="bg-[#EBFFE5] p-8 rounded-lg z-10">
+            <div className="bg-[#EBFFE5] p-8 rounded-lg z-10 w-[90%] md:w-[80%]">
               <p className="mb-4 text-lg font-semibold">Edit Quiz Link</p>
               <input
                 type="text"
                 name="topic_link"
                 value={topic_link}
                 onChange={(e) => handleInputChange(e)}
-                className="w-[724px] bg-[#BCE8B1] p-2 border border-gray-300 rounded-md mb-4"
+                className="w-full bg-[#BCE8B1] p-2 border border-gray-300 rounded-md mb-4"
                 placeholder="https://www"
               />
               <div className="flex justify-end">
@@ -269,18 +296,18 @@ const EditTopic = ({ topicId, courseTitle, chapterTitle }) => {
         )}
 
         {showEmbedded && (
-          <div className="absolute top-0 z-10 w-[100%] h-full flex justify-center backdrop-blur-[.3rem]">
-            <div className="lg:w-[750px] lg:h-[520px] bg-[#BCE8B1] flex flex-col justify-center items-center rounded-lg">
+          <div className="absolute top-0 z-10 w-[100%] h-full flex justify-center items-center backdrop-blur-[.3rem]">
+            <div className="w-[90%] h-[50vh] lg:w-[750px] lg:h-[520px] bg-[#BCE8B1] flex flex-col justify-center items-center  rounded-lg">
               <div
                 className="flex justify-end w-full pb-3 pr-2 cursor-pointer"
                 onClick={() => setShowEmbedded(false)}>
                 <IoMdClose className="text-[1.5rem]" />
               </div>
               <iframe
-                src={linkToPPTFile}
+                src={topic_file}
                 frameborder="0"
                 scrolling="no"
-                className="blur-[.01rem] lg:w-[680px] lg:h-[450px] rounded-lg"></iframe>
+                className="blur-[.01rem] w-[90%] h-[80%] md:w-[500px] md:h-[350px] lg:w-[680px] lg:h-[450px] rounded-lg"></iframe>
             </div>
           </div>
         )}

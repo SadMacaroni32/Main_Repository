@@ -6,14 +6,15 @@ import { FaArrowLeft } from "react-icons/fa";
 import { BsThreeDots } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import Nav from "../../TeamBComponents/components/NavBar/Nav";
+import Footer from "../../TeamBComponents/components/Footer";
 
 const ForumDInstructor = () => {
   // const [likeCount, setLikeCount] = useState(0);
   // const [dislikeCount, setDislikeCount] = useState(0);
   const [likeCount, setLikeCount] = useState(0); //2.12.24
-  const [dislikeCount, setDislikeCount] = useState(0);//2.12.24
-  const [liked, setLiked] = useState(false);//2.12.24
-  const [disliked, setDisliked] = useState(false);//2.12.24
+  const [dislikeCount, setDislikeCount] = useState(0); //2.12.24
+  const [liked, setLiked] = useState(false); //2.12.24
+  const [disliked, setDisliked] = useState(false); //2.12.24
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [replying, setReplying] = useState(false); //2.8.24
   const [replyContent, setReplyContent] = useState(""); //2.8.24
@@ -31,7 +32,6 @@ const ForumDInstructor = () => {
   // };
 
   //try
-  
 
   const handleLike = () => {
     if (!liked) {
@@ -119,7 +119,7 @@ const ForumDInstructor = () => {
 
     // Add a "Save Changes" button
     var saveButton = document.createElement("button");
-    saveButton.className = "btn btn-success mt-2";
+    saveButton.className = "mt-2 btn btn-success";
     saveButton.innerText = "Save Changes";
     saveButton.onclick = function () {
       // Save the changes and replace the textarea with the new post content
@@ -176,42 +176,37 @@ const ForumDInstructor = () => {
       <div className="ForumDSpace">
         <div className="ForumC_ForumDcontainer">
           <Link
-            to="/ForumF"
-            id="TeamCReturnButtonFf"
-            className="btn btn-secondary"
-          >
+            to="/ForumFInstructor"
+            id="TeamBReturnButtonFf"
+            className="btn btn-secondary">
             <FaArrowLeft />
           </Link>
           <div className="TeamCForumC_Forumcard">
             <div className="TeamCCardBody">
-              <div className="TeamCFlex d-flex justify-content-between align-items-center mb-2">
+              <div className="mb-2 TeamCFlex d-flex justify-content-between align-items-center">
                 <div>
-                  <h6 className="nameUSerfw-bold text-success mb-1">@Luigi</h6>
+                  <h6 className="mb-1 nameUSerfw-bold text-success">@Luigi</h6>
                   <p
                     id="post-time"
-                    className="TeamC_ForumD text-muted small mb-0"
-                  >
+                    className="mb-0 TeamC_ForumD text-muted small">
                     {new Date().toLocaleString()}
                   </p>
                 </div>
-                <div className="TeamForum_Drop dropdown position-absolute top-0 end-0 three-dots">
+                <div className="top-0 TeamForum_Drop dropdown position-absolute end-0 three-dots">
                   <button
                     className="TeamC_forum_link link-muted"
                     onClick={toggleDropdown}
-                    aria-expanded={dropdownOpen ? "true" : "false"}
-                  >
+                    aria-expanded={dropdownOpen ? "true" : "false"}>
                     <BsThreeDots className="TeamCdots bx bx-dots-horizontal-rounded" />
                   </button>
                   <ul
                     className={`dropdown-menu${dropdownOpen ? " show" : ""}`}
-                    aria-labelledby="dropdownMenuLink"
-                  >
+                    aria-labelledby="dropdownMenuLink">
                     <li>
                       <Link
                         to="#"
                         className="dropdown-item"
-                        onClick={handleEditClick}
-                      >
+                        onClick={handleEditClick}>
                         Edit
                       </Link>
                     </li>
@@ -219,18 +214,17 @@ const ForumDInstructor = () => {
                       <Link
                         to="#"
                         className="dropdown-item"
-                        onClick={handleDeleteClick}
-                      >
+                        onClick={handleDeleteClick}>
                         Delete
                       </Link>
                     </li>
                   </ul>
                 </div>
               </div>
-              <h2 id="discussionTitle" className="TeamC_discSec mt-3 mb-3 pb-2">
+              <h2 id="discussionTitle" className="pb-2 mt-3 mb-3 TeamC_discSec">
                 Tsukiden Upcoming Events
               </h2>
-              <p id="discussionContent" className="TeamC_ForumD mb-4 pb-2">
+              <p id="discussionContent" className="pb-2 mb-4 TeamC_ForumD">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
                 quam velit, vulputate eu pharetra nec, mattis ac neque.
               </p>
@@ -251,28 +245,26 @@ const ForumDInstructor = () => {
                   <AiOutlineDislike />
                   <span className="reaction-counter">{dislikeCount}</span>
                 </a> */}
-
                 <div
                   onClick={handleLike}
-                  className="TeamCFlex d-flex align-items-center me-3"
-                >
-                  <AiOutlineLike />{/*2.12.24 */}
+                  className="TeamCFlex d-flex align-items-center me-3">
+                  <AiOutlineLike />
+                  {/*2.12.24 */}
                   <div className="like-counter">{likeCount}</div>
-                </div> {/*2.12.24 */}
-
+                </div>{" "}
+                {/*2.12.24 */}
                 <div
                   onClick={handleDislike}
-                  className="TeamCFlex d-flex align-items-center me-3"
-                >
-                  <AiOutlineDislike />{/*2.12.24 */}
+                  className="TeamCFlex d-flex align-items-center me-3">
+                  <AiOutlineDislike />
+                  {/*2.12.24 */}
                   <div className="dislike-counter">{dislikeCount}</div>
-                </div>{/*2.12.24 */}
-
+                </div>
+                {/*2.12.24 */}
                 <a
                   href="#!"
                   className="TeamCFlex d-flex align-items-center me-3 reply-button"
-                  onClick={handleReplyClick}
-                >
+                  onClick={handleReplyClick}>
                   <MdOutlineReply />
                   Reply
                 </a>
@@ -285,12 +277,10 @@ const ForumDInstructor = () => {
                     rows="3"
                     placeholder="Write your reply..."
                     value={replyContent}
-                    onChange={handleReplyContentChange}
-                  ></textarea>
+                    onChange={handleReplyContentChange}></textarea>
                   <button
-                    className="TeamCForumBtnPrime btn btn-primary mt-2"
-                    onClick={handlePostReply}
-                  >
+                    className="mt-2 TeamCForumBtnPrime btn btn-primary"
+                    onClick={handlePostReply}>
                     Post
                   </button>
                 </div>
@@ -300,17 +290,17 @@ const ForumDInstructor = () => {
                 {replies.map((reply) => (
                   <div key={reply.id} className="reply-container">
                     <div className="TeamC_inside">
-                      <div className="TeamCFlex d-flex justify-content-between align-items-center mb-2">
+                      <div className="mb-2 TeamCFlex d-flex justify-content-between align-items-center">
                         <div>
-                          <h6 className="nameUSerfw-bold text-success mb-1">
+                          <h6 className="mb-1 nameUSerfw-bold text-success">
                             @User
                           </h6>
-                          <p className="TeamC_ForumD text-muted small mb-0">
+                          <p className="mb-0 TeamC_ForumD text-muted small">
                             {reply.time}
                           </p>
                         </div>
                       </div>
-                      <p className="TeamC_ForumD mb-0 pb-1">{reply.content}</p>{" "}
+                      <p className="pb-1 mb-0 TeamC_ForumD">{reply.content}</p>{" "}
                       {/* 2.12.24 adjusted the mb and pb */}
                     </div>
                   </div>
@@ -320,6 +310,7 @@ const ForumDInstructor = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
